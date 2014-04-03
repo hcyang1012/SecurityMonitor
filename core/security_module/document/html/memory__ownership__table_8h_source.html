@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>Security Monitor: include/memory_ownership_table.h 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">memory_ownership_table.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="memory__ownership__table_8h.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#ifndef __MEMORY_OWNERSHIP_TABLE_H__</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __MEMORY_OWNERSHIP_TABLE_H__</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="monitor__types_8h.html">monitor_types.h</a>&gt;</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">  123</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">page_state_t</a>{</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a835c68f50639590aea0ed17283b31e59">  124</a></span>&#160;    <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a835c68f50639590aea0ed17283b31e59">UNPROTECTED</a> = 0,    </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">  125</a></span>&#160;    <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">CLOSED</a>,             </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a45c1c97bdcce420fc01045ee101a0cf2">  126</a></span>&#160;    <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a45c1c97bdcce420fc01045ee101a0cf2">OPENED</a>,             </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a34d1361202d8c9652ed81b53cda15159">  127</a></span>&#160;    <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a34d1361202d8c9652ed81b53cda15159">PARTIAL</a>,            </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9aaac875c4dc08055725dd966fd44e0839">  128</a></span>&#160;    <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9aaac875c4dc08055725dd966fd44e0839">ENCRYPTED</a>           </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;};</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="structmemory__ownership__table__entry__t.html">  131</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structmemory__ownership__table__entry__t.html">memory_ownership_table_entry_t</a></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">  133</a></span>&#160;    <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> <a class="code" href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">owner_VM</a>;                </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">  134</a></span>&#160;    <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> <a class="code" href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">owner_APP</a>;              </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">  135</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">page_state_t</a> <a class="code" href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">state</a>;        </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="structmemory__ownership__table__entry__t.html#a997c69015870109b28461bfe0936cae9">  136</a></span>&#160;    <a class="code" href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef">U8_t</a> <a class="code" href="structmemory__ownership__table__entry__t.html#a997c69015870109b28461bfe0936cae9">original_permission</a>;       </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="structmemory__ownership__table__entry__t.html#a20729fd7e2a7b883cf27718596f2263a">  137</a></span>&#160;    <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a> <a class="code" href="structmemory__ownership__table__entry__t.html#a20729fd7e2a7b883cf27718596f2263a">original_page_address</a>;    </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#a7d467c1d283fdfa1f2081ba1e0d01b6e">  140</a></span>&#160;<span class="preprocessor">#define PAGE_SIZE 4096</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#adea1bd3f15f0c62a2af912434193622e">  141</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MAX_MEMORY_SIZE ((U64_t)8*1024*1024*1024)</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#acafa06dcdfd6ded9cab8f00a00310fa0">  142</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY (MAX_MEMORY_SIZE / PAGE_SIZE)</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="memory__ownership__table_8h.html#af4040dfd1fdb6c10d8ed2631173e5597">  143</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define HPA_TO_INDEX_SHIFT 12</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__ownership__table_8h.html#aa0e8340e3e2dc314a25b0c93fdfd54ab">protectCurrentApplication</a>();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__ownership__table_8h.html#ae1d205ac777b83ae72c2dd3b447a65ba">allocateNewApplicationIdentifiers</a>( <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> *new_VMID, </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                                        <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> *new_APPID</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                                        );</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> <a class="code" href="memory__ownership__table_8h.html#ae2fff5cc4db7b79454cc5340eff858e8">allocateNewVMID</a>();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> <a class="code" href="memory__ownership__table_8h.html#a5e564d933aee4d6204f23f9eba2d4740">allocateNewAppID</a>();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="memory__ownership__table_8h.html#acffc09bfc5012b61572af3d6ae889d43">closePage</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmid, </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> appID, </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa );</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keywordtype">void</span> <a class="code" href="memory__ownership__table_8h.html#a59d1447dba2fa1b312cae249d379ccf9">changePageStatus</a>(  <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmid, </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                        <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> appID, </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                        <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa,    </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                        <span class="keyword">const</span> <span class="keyword">enum</span> <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">page_state_t</a> state </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                        );</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617">U64_t</a> <a class="code" href="memory__ownership__table_8h.html#a072c0b2cb03e68adb03689dffe34aa4c">getMemoryOwnershipTableIndex</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a> hpa <span class="comment">/*&lt;&lt; [in] HPA to change */</span>);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_a997c69015870109b28461bfe0936cae9"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#a997c69015870109b28461bfe0936cae9">memory_ownership_table_entry_t::original_permission</a></div><div class="ttdeci">U8_t original_permission</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00136">memory_ownership_table.h:136</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a762dbb1b87d732bb043fdaebe9fa73a9a34d1361202d8c9652ed81b53cda15159"><div class="ttname"><a href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a34d1361202d8c9652ed81b53cda15159">PARTIAL</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00127">memory_ownership_table.h:127</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_a25ec30a201a5e2d4bdd7b40a89014d5c"><div class="ttname"><a href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a></div><div class="ttdeci">U64_t GPA_t</div><div class="ttdoc">A type definition for a guest physical address. Note : The size of this type is architecture-dependen...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00053">monitor_types.h:53</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a762dbb1b87d732bb043fdaebe9fa73a9a45c1c97bdcce420fc01045ee101a0cf2"><div class="ttname"><a href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a45c1c97bdcce420fc01045ee101a0cf2">OPENED</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00126">memory_ownership_table.h:126</a></div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_a8f52b1707f086d4e06056414cf0cadd4"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">memory_ownership_table_entry_t::owner_APP</a></div><div class="ttdeci">APPID_t owner_APP</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00134">memory_ownership_table.h:134</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a59d1447dba2fa1b312cae249d379ccf9"><div class="ttname"><a href="memory__ownership__table_8h.html#a59d1447dba2fa1b312cae249d379ccf9">changePageStatus</a></div><div class="ttdeci">void changePageStatus(const VMID_t vmid, const VMID_t appID, const GPA_t gpa, const enum page_state_t state)</div><div class="ttdoc">change a page&#39;s status </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00069">memory_ownership_table.c:69</a></div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_a51da83c62e5656f11f5539fa4345fc1b"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">memory_ownership_table_entry_t::owner_VM</a></div><div class="ttdeci">VMID_t owner_VM</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00133">memory_ownership_table.h:133</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_ae2fff5cc4db7b79454cc5340eff858e8"><div class="ttname"><a href="memory__ownership__table_8h.html#ae2fff5cc4db7b79454cc5340eff858e8">allocateNewVMID</a></div><div class="ttdeci">VMID_t allocateNewVMID()</div><div class="ttdoc">This function returns currently running VM&#39;s ID. If it does not exist, this function allocates new on...</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00042">memory_ownership_table.c:42</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a762dbb1b87d732bb043fdaebe9fa73a9aaac875c4dc08055725dd966fd44e0839"><div class="ttname"><a href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9aaac875c4dc08055725dd966fd44e0839">ENCRYPTED</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00128">memory_ownership_table.h:128</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_aa0e8340e3e2dc314a25b0c93fdfd54ab"><div class="ttname"><a href="memory__ownership__table_8h.html#aa0e8340e3e2dc314a25b0c93fdfd54ab">protectCurrentApplication</a></div><div class="ttdeci">void protectCurrentApplication()</div><div class="ttdoc">Start to protect of currently running process&#39;s pages. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00019">memory_ownership_table.c:19</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_aa4f8aee9bf87a1628e71d07f40352e02"><div class="ttname"><a href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a></div><div class="ttdeci">EPTP_t VMID_t</div><div class="ttdoc">A type definition for ID of a virtual machine. In this implementation, this type is equal to EPTP_t ...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00057">monitor_types.h:57</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a072c0b2cb03e68adb03689dffe34aa4c"><div class="ttname"><a href="memory__ownership__table_8h.html#a072c0b2cb03e68adb03689dffe34aa4c">getMemoryOwnershipTableIndex</a></div><div class="ttdeci">U64_t getMemoryOwnershipTableIndex(const HPA_t hpa)</div><div class="ttdoc">A function which is used to change HPA to index of the memory ownership table. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00056">memory_ownership_table.c:56</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603"><div class="ttname"><a href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">CLOSED</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00125">memory_ownership_table.h:125</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_a35e867d4f252496befeb6d260a03acac"><div class="ttname"><a href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a></div><div class="ttdeci">U64_t HPA_t</div><div class="ttdoc">A type definition for a host physical address. Note : The size of this type is architecture-dependent...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00054">monitor_types.h:54</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_acffc09bfc5012b61572af3d6ae889d43"><div class="ttname"><a href="memory__ownership__table_8h.html#acffc09bfc5012b61572af3d6ae889d43">closePage</a></div><div class="ttdeci">void * closePage(const VMID_t vmid, const VMID_t appID, GPA_t gpa)</div><div class="ttdoc">Set the a frame to closed state. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00061">memory_ownership_table.c:61</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_a822913f05423d4a8faac6dfec8bc1617"><div class="ttname"><a href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617">U64_t</a></div><div class="ttdeci">unsigned long long U64_t</div><div class="ttdoc">A type definition for a unsigned 64-bits data. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00051">monitor_types.h:51</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_a5e335338bb0cb66eca6ae05e61c526ef"><div class="ttname"><a href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef">U8_t</a></div><div class="ttdeci">unsigned char U8_t</div><div class="ttdoc">A type definition for a unsigned 8-bits data. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00048">monitor_types.h:48</a></div></div>
+<div class="ttc" id="monitor__types_8h_html"><div class="ttname"><a href="monitor__types_8h.html">monitor_types.h</a></div><div class="ttdoc">Definitions of types that are used in this project. </div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_ae737ccf446b6f6c963e6621c88b267f5"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">memory_ownership_table_entry_t::state</a></div><div class="ttdeci">enum page_state_t state</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00135">memory_ownership_table.h:135</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_ab2e39b8d4a768ded7be5450cc2bffe9d"><div class="ttname"><a href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a></div><div class="ttdeci">GPA_t APPID_t</div><div class="ttdoc">A type definition for ID of a application in a virtual machine. In this implmentation, this type is equal to GPA_t. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00058">monitor_types.h:58</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a762dbb1b87d732bb043fdaebe9fa73a9"><div class="ttname"><a href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">page_state_t</a></div><div class="ttdeci">page_state_t</div><div class="ttdoc">A enumeration for describing page state. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00123">memory_ownership_table.h:123</a></div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_a20729fd7e2a7b883cf27718596f2263a"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#a20729fd7e2a7b883cf27718596f2263a">memory_ownership_table_entry_t::original_page_address</a></div><div class="ttdeci">HPA_t original_page_address</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00137">memory_ownership_table.h:137</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_ae1d205ac777b83ae72c2dd3b447a65ba"><div class="ttname"><a href="memory__ownership__table_8h.html#ae1d205ac777b83ae72c2dd3b447a65ba">allocateNewApplicationIdentifiers</a></div><div class="ttdeci">void allocateNewApplicationIdentifiers(VMID_t *new_VMID, APPID_t *new_APPID)</div><div class="ttdoc">Allocate new VM ID &amp; application ID. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00030">memory_ownership_table.c:30</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a5e564d933aee4d6204f23f9eba2d4740"><div class="ttname"><a href="memory__ownership__table_8h.html#a5e564d933aee4d6204f23f9eba2d4740">allocateNewAppID</a></div><div class="ttdeci">APPID_t allocateNewAppID()</div><div class="ttdoc">This function returns currently running process&#39;s ID. For new process, this function allocates new on...</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00049">memory_ownership_table.c:49</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a762dbb1b87d732bb043fdaebe9fa73a9a835c68f50639590aea0ed17283b31e59"><div class="ttname"><a href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a835c68f50639590aea0ed17283b31e59">UNPROTECTED</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00124">memory_ownership_table.h:124</a></div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html">memory_ownership_table_entry_t</a></div><div class="ttdoc">A structure-type definition for one memory ownership table entry. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00131">memory_ownership_table.h:131</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 3월 14 2014 15:41:24, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

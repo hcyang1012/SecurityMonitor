@@ -1,0 +1,9 @@
+<map id="allocateNewApplicationIdentifiers" name="allocateNewApplicationIdentifiers">
+<area shape="rect" id="node2" href="$memory__ownership__table_8c.html#ae2fff5cc4db7b79454cc5340eff858e8" title="This function returns currently running VM&#39;s ID. If it does not exist, this function allocates new on..." alt="" coords="266,5,390,32"/>
+<area shape="rect" id="node6" href="$memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7" title="This function returns currently running process&#39;s ID. For new process, this function allocates new on..." alt="" coords="265,56,391,83"/>
+<area shape="rect" id="node3" href="$guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="463,5,598,32"/>
+<area shape="rect" id="node4" href="$vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="669,5,816,32"/>
+<area shape="rect" id="node5" href="$vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="865,31,999,57"/>
+<area shape="rect" id="node7" href="$guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table. " alt="" coords="441,56,621,83"/>
+<area shape="rect" id="node8" href="$vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac" title="get the value of the guest CR3 control register " alt="" coords="673,56,813,83"/>
+</map>

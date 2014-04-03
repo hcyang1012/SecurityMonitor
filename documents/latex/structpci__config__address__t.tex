@@ -1,0 +1,28 @@
+\section{pci\-\_\-config\-\_\-address\-\_\-t 구조체 참조}
+\label{structpci__config__address__t}\index{pci\-\_\-config\-\_\-address\-\_\-t@{pci\-\_\-config\-\_\-address\-\_\-t}}
+\subsection*{데이타 필드}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>u32 {\bfseries value}\\
+\>struct \{\\
+\>\>unsigned int {\bfseries type}: 2\\
+\>\>unsigned int {\bfseries reg\_no}: 6\\
+\>\>unsigned int {\bfseries func\_no}: 3\\
+\>\>unsigned int {\bfseries device\_no}: 5\\
+\>\>unsigned int {\bfseries bus\_no}: 8\\
+\>\>unsigned int {\bfseries reserved}: 7\\
+\>\>unsigned int {\bfseries allow}: 1\\
+\>\} \label{unionpci__config__address__t_1_1@3_a0977c6c79e266daf955ad5620abbf181}
+\\
+\}; \label{structpci__config__address__t_a05177a7ac0dd72c3c6d6b71893e03f86}
+\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+이 구조체에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\-:\begin{DoxyCompactItemize}
+\item 
+drivers/pci.\-h\end{DoxyCompactItemize}

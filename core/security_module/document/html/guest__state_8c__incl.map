@@ -1,0 +1,6 @@
+<map id="guest_state.c" name="guest_state.c">
+<area shape="rect" id="node2" href="$guest__state_8h.html" title="High&#45;level facilities to get guest VM&#39;s information. " alt="" coords="5,80,107,107"/>
+<area shape="rect" id="node4" href="$vmcs_8h.html" title="Definition of constants related to VMCS. " alt="" coords="81,155,143,181"/>
+<area shape="rect" id="node5" href="$guest___i_a32e_page_8h.html" title="functions and constants to support IA32e paging mode of guest VM " alt="" coords="167,155,301,181"/>
+<area shape="rect" id="node3" href="$monitor__types_8h.html" title="Definitions of types that are used in this project. " alt="" coords="55,229,169,256"/>
+</map>

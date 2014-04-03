@@ -1,0 +1,95 @@
+\section{pci\-\_\-config\-\_\-space 구조체 참조}
+\label{structpci__config__space}\index{pci\-\_\-config\-\_\-space@{pci\-\_\-config\-\_\-space}}
+\subsection*{데이타 필드}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>u8 {\bfseries regs8} [PCI\_CONFIG\_REGS8\_NUM]\\
+\>u32 {\bfseries regs32} [PCI\_CONFIG\_REGS32\_NUM]\\
+\}; \label{structpci__config__space_adf5f11d5e13e259e076e08f987d4920b}
+\\
+
+\end{tabbing}\item 
+u16 {\bfseries vendor\-\_\-id}\label{structpci__config__space_ae45b9e3e2201cb3c90e0f5cebeb49a07}
+
+\item 
+u16 {\bfseries device\-\_\-id}\label{structpci__config__space_a4583fb19e9e19ff4d77affa0dec0e950}
+
+\item 
+u16 {\bfseries command}\label{structpci__config__space_ae3c9a7738914370ff471e2290328a93d}
+
+\item 
+u16 {\bfseries status}\label{structpci__config__space_a0563f3e9c68363bff3e3680f4034167f}
+
+\item 
+u8 {\bfseries revision\-\_\-id}\label{structpci__config__space_a4dd075008b6636210f863609aa990d3c}
+
+\item 
+unsigned int {\bfseries class\-\_\-code}\-: 24\label{structpci__config__space_ae1364976b3e31c5733e74da82f07b277}
+
+\item 
+u8 {\bfseries programming\-\_\-interface}\label{structpci__config__space_aa6f2525a0abbc42cba92d0556f56c230}
+
+\item 
+u8 {\bfseries sub\-\_\-class}\label{structpci__config__space_a06b08502c8d784cc4b59d6469f7df32c}
+
+\item 
+u8 {\bfseries base\-\_\-class}\label{structpci__config__space_afaeda48db0f6f7766964a988ce03d1c2}
+
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\} {\bfseries \_\_attribute\_\_}\label{structpci__config__space_a5f21aec18b44eab179b16f6b349f15a6}
+\\
+
+\end{tabbing}\item 
+u8 {\bfseries cacheline\-\_\-size}\label{structpci__config__space_a9d30cd8954616966696bfb5c6ccb41d8}
+
+\item 
+u8 {\bfseries latency\-\_\-timer}\label{structpci__config__space_adcc149ec855fcf86a9317f0f3df9f022}
+
+\item 
+u8 {\bfseries header\-\_\-type}\label{structpci__config__space_abfdce47c3419ff08cb740b3cb29fb558}
+
+\item 
+unsigned int {\bfseries type}\-: 7\label{structpci__config__space_a3555cd9d961881ce4ef4e776a5463ccc}
+
+\item 
+unsigned int {\bfseries multi\-\_\-function}\-: 1\label{structpci__config__space_a7781b09e1fe543c124be3ad47d1ff5ab}
+
+\item 
+u8 {\bfseries bist}\label{structpci__config__space_abc8eae00c6f63b2f4fb06b1ad0dafd60}
+
+\item 
+u32 {\bfseries base\-\_\-address} [6]\label{structpci__config__space_a29364b92cce2c313eb132325ef016504}
+
+\item 
+u32 {\bfseries cis}\label{structpci__config__space_a07a8eeefb7cac9c93c60183dd2d1f739}
+
+\item 
+u16 {\bfseries sub\-\_\-vendor\-\_\-id}\label{structpci__config__space_ab318a205b5172b730380b1544fd06c56}
+
+\item 
+u16 {\bfseries sub\-\_\-device\-\_\-id}\label{structpci__config__space_a06571b6d9147634135107330cec71437}
+
+\item 
+u32 {\bfseries ext\-\_\-rom\-\_\-base}\label{structpci__config__space_a6c3b3c4085a8e532f3ff93b8fc6e17c8}
+
+\item 
+u32 {\bfseries dummy} [2]\label{structpci__config__space_a08bea52a4576825eb5b66acab4f6171e}
+
+\item 
+u8 {\bfseries interrupt\-\_\-line}\label{structpci__config__space_a8e48e8f43d55905948b4621c431b9380}
+
+\item 
+u8 {\bfseries dummy2} [3]\label{structpci__config__space_aea63683e8b98ce03801d73976a293abd}
+
+\end{DoxyCompactItemize}
+
+
+이 구조체에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\-:\begin{DoxyCompactItemize}
+\item 
+drivers/pci.\-h\end{DoxyCompactItemize}

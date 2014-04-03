@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>Security Monitor: guest_state.c 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">guest_state.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="guest__state_8c.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="guest__state_8h.html">guest_state.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="vmcs_8h.html">vmcs.h</a>&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="guest___i_a32e_page_8h.html">guest_IA32ePage.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="guest__state_8h.html#a4fe3391f0854e7d1c8b553adb4284436">    8</a></span>&#160;<a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> <a class="code" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436">get_page_table_base_GPA</a>()</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> cr3Value;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    cr3Value = <a class="code" href="vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac">get_guest_cr3_value</a>();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    cr3Value = cr3Value &amp; <a class="code" href="guest__state_8h.html#a11dd8a149642208c1e97f359d9c7cbf5">CR3_MASK</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">return</span> cr3Value;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="guest__state_8h.html#a33fb594e7472da1af81f2abf272a64b2">   18</a></span>&#160;<a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> <a class="code" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2">get_ept_base_HPA</a>()</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> eptpValue;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    eptpValue = <a class="code" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae">get_guest_eptp_value</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    eptpValue = eptpValue &amp; <a class="code" href="guest__state_8h.html#a6b539707d3e99cfd58c92476e9a98fd6">EPTP_MASK</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">return</span> eptpValue;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6">   27</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="guest__state_8c.html#a3d8f41db587aed7fce30c4edcd4aaaf6">traverseGuestPages</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmid, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> startGPAofPageTable, <span class="keywordtype">void</span>* (*do_something)(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa))</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="guest___i_a32e_page_8c.html#af233f3d87b0a388e0c534d928167e20a">traverseIA32ePages</a>(vmid, appID, startGPAofPageTable, do_something);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="ttc" id="vmcs_8h_html_a5c020f2b6689be533301e18f9b9061ae"><div class="ttname"><a href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae">get_guest_eptp_value</a></div><div class="ttdeci">U64_t get_guest_eptp_value()</div><div class="ttdoc">get the value of guest&#39;s EPTP field in the VMCS </div><div class="ttdef"><b>Definition:</b> <a href="vmcs_8c_source.html#l00017">vmcs.c:17</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_a25ec30a201a5e2d4bdd7b40a89014d5c"><div class="ttname"><a href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a></div><div class="ttdeci">U64_t GPA_t</div><div class="ttdoc">A type definition for a guest physical address. Note : The size of this type is architecture-dependen...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00053">monitor_types.h:53</a></div></div>
+<div class="ttc" id="vmcs_8h_html"><div class="ttname"><a href="vmcs_8h.html">vmcs.h</a></div><div class="ttdoc">Definition of constants related to VMCS. </div></div>
+<div class="ttc" id="guest__state_8h_html_a6b539707d3e99cfd58c92476e9a98fd6"><div class="ttname"><a href="guest__state_8h.html#a6b539707d3e99cfd58c92476e9a98fd6">EPTP_MASK</a></div><div class="ttdeci">#define EPTP_MASK</div><div class="ttdoc">A mask which is used to extract the base physical address of page table from EPTP field in a VMCS See...</div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8h_source.html#l00039">guest_state.h:39</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_aa4f8aee9bf87a1628e71d07f40352e02"><div class="ttname"><a href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a></div><div class="ttdeci">EPTP_t VMID_t</div><div class="ttdoc">A type definition for ID of a virtual machine. In this implementation, this type is equal to EPTP_t ...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00057">monitor_types.h:57</a></div></div>
+<div class="ttc" id="guest___i_a32e_page_8h_html"><div class="ttname"><a href="guest___i_a32e_page_8h.html">guest_IA32ePage.h</a></div><div class="ttdoc">functions and constants to support IA32e paging mode of guest VM </div></div>
+<div class="ttc" id="guest___i_a32e_page_8c_html_af233f3d87b0a388e0c534d928167e20a"><div class="ttname"><a href="guest___i_a32e_page_8c.html#af233f3d87b0a388e0c534d928167e20a">traverseIA32ePages</a></div><div class="ttdeci">void traverseIA32ePages(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPageTable, void *(*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))</div><div class="ttdoc">Traverse all pages based on IA32e paging mode. It traverse at PML4 level. </div><div class="ttdef"><b>Definition:</b> <a href="guest___i_a32e_page_8c_source.html#l00009">guest_IA32ePage.c:9</a></div></div>
+<div class="ttc" id="guest__state_8h_html_a11dd8a149642208c1e97f359d9c7cbf5"><div class="ttname"><a href="guest__state_8h.html#a11dd8a149642208c1e97f359d9c7cbf5">CR3_MASK</a></div><div class="ttdeci">#define CR3_MASK</div><div class="ttdoc">A mask which is used to extract the base physical address of page table from CR3 control register val...</div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8h_source.html#l00038">guest_state.h:38</a></div></div>
+<div class="ttc" id="vmcs_8h_html_a78803919617e6c9fb6020ede0a20efac"><div class="ttname"><a href="vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac">get_guest_cr3_value</a></div><div class="ttdeci">U64_t get_guest_cr3_value()</div><div class="ttdoc">get the value of the guest CR3 control register </div><div class="ttdef"><b>Definition:</b> <a href="vmcs_8c_source.html#l00010">vmcs.c:10</a></div></div>
+<div class="ttc" id="guest__state_8h_html"><div class="ttname"><a href="guest__state_8h.html">guest_state.h</a></div><div class="ttdoc">High-level facilities to get guest VM&#39;s information. </div></div>
+<div class="ttc" id="guest__state_8c_html_a3d8f41db587aed7fce30c4edcd4aaaf6"><div class="ttname"><a href="guest__state_8c.html#a3d8f41db587aed7fce30c4edcd4aaaf6">traverseGuestPages</a></div><div class="ttdeci">void traverseGuestPages(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPageTable, void *(*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))</div><div class="ttdoc">Traverse all pages that start from startGPAofPageTable and do something for each page. </div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8c_source.html#l00027">guest_state.c:27</a></div></div>
+<div class="ttc" id="guest__state_8c_html_a4fe3391f0854e7d1c8b553adb4284436"><div class="ttname"><a href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436">get_page_table_base_GPA</a></div><div class="ttdeci">GPA_t get_page_table_base_GPA()</div><div class="ttdoc">Get the start address of page table. </div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8c_source.html#l00008">guest_state.c:8</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_ab2e39b8d4a768ded7be5450cc2bffe9d"><div class="ttname"><a href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a></div><div class="ttdeci">GPA_t APPID_t</div><div class="ttdoc">A type definition for ID of a application in a virtual machine. In this implmentation, this type is equal to GPA_t. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00058">monitor_types.h:58</a></div></div>
+<div class="ttc" id="guest__state_8c_html_a33fb594e7472da1af81f2abf272a64b2"><div class="ttname"><a href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2">get_ept_base_HPA</a></div><div class="ttdeci">GPA_t get_ept_base_HPA()</div><div class="ttdoc">Get the start address of extended page table. </div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8c_source.html#l00018">guest_state.c:18</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 3월 14 2014 15:41:24, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

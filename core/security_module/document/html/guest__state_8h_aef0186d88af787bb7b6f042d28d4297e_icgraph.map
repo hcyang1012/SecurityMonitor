@@ -1,0 +1,5 @@
+<map id="traverseGuestPages" name="traverseGuestPages">
+<area shape="rect" id="node2" href="$memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="192,5,360,32"/>
+<area shape="rect" id="node4" href="$unit__test_8c.html#a086ccec56f0e0c8b7a62d3166a3f3aa4" title="A testing function for traverseGuestPages. " alt="" coords="192,56,360,83"/>
+<area shape="rect" id="node3" href="$event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="408,5,531,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="allocateNewVMID" name="allocateNewVMID">
+<area shape="rect" id="node2" href="$guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="179,5,314,32"/>
+<area shape="rect" id="node3" href="$vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="363,5,509,32"/>
+<area shape="rect" id="node4" href="$vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="558,5,693,32"/>
+</map>

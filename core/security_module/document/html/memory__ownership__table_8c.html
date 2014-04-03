@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>Security Monitor: memory_ownership_table.c 파일 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">함수</a>  </div>
+  <div class="headertitle">
+<div class="title">memory_ownership_table.c 파일 참조</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definition of data structrues &amp; functions for memory ownership table.<br/>
+.  
+<a href="#details">더 자세히 ...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="guest__state_8h_source.html">guest_state.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="monitor__util_8h_source.html">monitor_util.h</a>&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+memory_ownership_table.c에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c__incl.png" border="0" usemap="#memory__ownership__table_8c" alt=""/></div>
+<map name="memory__ownership__table_8c" id="memory__ownership__table_8c">
+<area shape="rect" id="node2" href="memory__ownership__table_8h.html" title="Definition of data structrues &amp; constants for memory ownership table. . " alt="" coords="5,155,184,181"/><area shape="rect" id="node4" href="guest__state_8h.html" title="High&#45;level facilities to get guest VM&#39;s information. " alt="" coords="175,80,276,107"/><area shape="rect" id="node6" href="monitor__util_8h.html" title="This file exists for supporting some uiility functions. " alt="" coords="307,80,407,107"/><area shape="rect" id="node3" href="monitor__types_8h.html" title="Definitions of types that are used in this project. " alt="" coords="200,229,315,256"/><area shape="rect" id="node5" href="vmcs_8h.html" title="Definition of constants related to VMCS. " alt="" coords="261,155,323,181"/></map>
+</div>
+</div>
+<p><a href="memory__ownership__table_8c_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+함수</h2></td></tr>
+<tr class="memitem:aa0e8340e3e2dc314a25b0c93fdfd54ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab">protectCurrentApplication</a> ()</td></tr>
+<tr class="memdesc:aa0e8340e3e2dc314a25b0c93fdfd54ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start to protect of currently running process's pages.  <a href="#aa0e8340e3e2dc314a25b0c93fdfd54ab">더 자세히 ...</a><br/></td></tr>
+<tr class="separator:aa0e8340e3e2dc314a25b0c93fdfd54ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1d205ac777b83ae72c2dd3b447a65ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba">allocateNewApplicationIdentifiers</a> (<a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> *new_VMID, <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> *new_APPID)</td></tr>
+<tr class="memdesc:ae1d205ac777b83ae72c2dd3b447a65ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate new VM ID &amp; application ID.  <a href="#ae1d205ac777b83ae72c2dd3b447a65ba">더 자세히 ...</a><br/></td></tr>
+<tr class="separator:ae1d205ac777b83ae72c2dd3b447a65ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2fff5cc4db7b79454cc5340eff858e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__ownership__table_8c.html#ae2fff5cc4db7b79454cc5340eff858e8">allocateNewVMID</a> ()</td></tr>
+<tr class="memdesc:ae2fff5cc4db7b79454cc5340eff858e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns currently running VM's ID. If it does not exist, this function allocates new one and returns it.  <a href="#ae2fff5cc4db7b79454cc5340eff858e8">더 자세히 ...</a><br/></td></tr>
+<tr class="separator:ae2fff5cc4db7b79454cc5340eff858e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6dd955e652782e55e14ceec2c99e0b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7">allocateNewAppID</a> ()</td></tr>
+<tr class="memdesc:aa6dd955e652782e55e14ceec2c99e0b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns currently running process's ID. For new process, this function allocates new one and returns it.  <a href="#aa6dd955e652782e55e14ceec2c99e0b7">더 자세히 ...</a><br/></td></tr>
+<tr class="separator:aa6dd955e652782e55e14ceec2c99e0b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a072c0b2cb03e68adb03689dffe34aa4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a072c0b2cb03e68adb03689dffe34aa4c"></a>
+<a class="el" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617">U64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__ownership__table_8c.html#a072c0b2cb03e68adb03689dffe34aa4c">getMemoryOwnershipTableIndex</a> (const <a class="el" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a> hpa)</td></tr>
+<tr class="memdesc:a072c0b2cb03e68adb03689dffe34aa4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function which is used to change HPA to index of the memory ownership table. <br/></td></tr>
+<tr class="separator:a072c0b2cb03e68adb03689dffe34aa4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af13e8ca1a88180df93e4af4db30e3244"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__ownership__table_8c.html#af13e8ca1a88180df93e4af4db30e3244">closePage</a> (const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa)</td></tr>
+<tr class="memdesc:af13e8ca1a88180df93e4af4db30e3244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the a frame to closed state.  <a href="#af13e8ca1a88180df93e4af4db30e3244">더 자세히 ...</a><br/></td></tr>
+<tr class="separator:af13e8ca1a88180df93e4af4db30e3244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3266b049b47ff6ab74a67cf35aa4147c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory__ownership__table_8c.html#a3266b049b47ff6ab74a67cf35aa4147c">changePageStatus</a> (const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa, const enum <a class="el" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">page_state_t</a> state)</td></tr>
+<tr class="memdesc:a3266b049b47ff6ab74a67cf35aa4147c"><td class="mdescLeft">&#160;</td><td class="mdescRight">change a page's status  <a href="#a3266b049b47ff6ab74a67cf35aa4147c">더 자세히 ...</a><br/></td></tr>
+<tr class="separator:a3266b049b47ff6ab74a67cf35aa4147c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Definition of data structrues &amp; functions for memory ownership table.<br/>
+. </p>
+
+<p><a class="el" href="memory__ownership__table_8c_source.html">memory_ownership_table.c</a> 파일에서 정의되었습니다.</p>
+</div><h2 class="groupheader">함수 문서화</h2>
+<a class="anchor" id="aa6dd955e652782e55e14ceec2c99e0b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> allocateNewAppID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns currently running process's ID. For new process, this function allocates new one and returns it. </p>
+<dl class="section return"><dt>반환값</dt><dd>This function returns currently running process's ID. For new process, this function allocates new one and returns it.</dd></dl>
+<p>Details.</p>
+<dl class="section note"><dt>주의</dt><dd>In this implementation, the APP ID is equal to start GPA of VM's page table. Therefore, this function extracts it from guest's current CR3 value. </dd></dl>
+
+<p><a class="el" href="memory__ownership__table_8c_source.html">memory_ownership_table.c</a> 파일의 <a class="el" href="memory__ownership__table_8c_source.html#l00049">49</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> newAppID;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    newAppID = <a class="code" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436">get_page_table_base_GPA</a>();   </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> newAppID;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="ttc" id="guest__state_8c_html_a4fe3391f0854e7d1c8b553adb4284436"><div class="ttname"><a href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436">get_page_table_base_GPA</a></div><div class="ttdeci">GPA_t get_page_table_base_GPA()</div><div class="ttdoc">Get the start address of page table. </div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8c_source.html#l00008">guest_state.c:8</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_ab2e39b8d4a768ded7be5450cc2bffe9d"><div class="ttname"><a href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a></div><div class="ttdeci">GPA_t APPID_t</div><div class="ttdoc">A type definition for ID of a application in a virtual machine. In this implmentation, this type is equal to GPA_t. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00058">monitor_types.h:58</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_aa6dd955e652782e55e14ceec2c99e0b7_cgraph.png" border="0" usemap="#memory__ownership__table_8c_aa6dd955e652782e55e14ceec2c99e0b7_cgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_aa6dd955e652782e55e14ceec2c99e0b7_cgraph" id="memory__ownership__table_8c_aa6dd955e652782e55e14ceec2c99e0b7_cgraph">
+<area shape="rect" id="node2" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table. " alt="" coords="182,5,362,32"/><area shape="rect" id="node3" href="vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac" title="get the value of the guest CR3 control register " alt="" coords="411,5,551,32"/><area shape="rect" id="node4" href="vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="601,5,735,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_aa6dd955e652782e55e14ceec2c99e0b7_icgraph.png" border="0" usemap="#memory__ownership__table_8c_aa6dd955e652782e55e14ceec2c99e0b7_icgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_aa6dd955e652782e55e14ceec2c99e0b7_icgraph" id="memory__ownership__table_8c_aa6dd955e652782e55e14ceec2c99e0b7_icgraph">
+<area shape="rect" id="node2" href="memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba" title="Allocate new VM ID &amp; application ID. " alt="" coords="181,5,392,32"/><area shape="rect" id="node3" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="440,5,608,32"/><area shape="rect" id="node4" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="656,5,779,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1d205ac777b83ae72c2dd3b447a65ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void allocateNewApplicationIdentifiers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> *&#160;</td>
+          <td class="paramname"><em>new_VMID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> *&#160;</td>
+          <td class="paramname"><em>new_APPID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allocate new VM ID &amp; application ID. </p>
+<p>Details.</p>
+<p>This function allocates new ID of virtual machine and application. Actually, the new virtual machine ID is already generated because there may be another protected application. In this case, the same VMID will be returned instead of allocating new VMID. However, application ID always should be unique. Therefore, this function always allocates new application ID. </p>
+<dl class="section note"><dt>주의</dt><dd>In this implementation, VM ID is equal to start address (HPA) of EPT, and APP ID is equal to the start address (GPA) of the page table. Therefore, above conditions will be naturally satisfied. </dd></dl>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">new_VMID</td><td>The newly allocated VM ID will be stored in this parameter. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">new_APPID</td><td>The newly allocated application ID will be stored in this parameter. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="memory__ownership__table_8c_source.html">memory_ownership_table.c</a> 파일의 <a class="el" href="memory__ownership__table_8c_source.html#l00030">30</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> allocatedVMID;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> allocatedAppID;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    allocatedVMID = <a class="code" href="memory__ownership__table_8c.html#ae2fff5cc4db7b79454cc5340eff858e8">allocateNewVMID</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    *new_VMID = allocatedVMID;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    allocatedAppID = <a class="code" href="memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7">allocateNewAppID</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    *new_APPID = allocatedAppID;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
+<div class="ttc" id="memory__ownership__table_8c_html_aa6dd955e652782e55e14ceec2c99e0b7"><div class="ttname"><a href="memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7">allocateNewAppID</a></div><div class="ttdeci">APPID_t allocateNewAppID()</div><div class="ttdoc">This function returns currently running process&#39;s ID. For new process, this function allocates new on...</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00049">memory_ownership_table.c:49</a></div></div>
+<div class="ttc" id="memory__ownership__table_8c_html_ae2fff5cc4db7b79454cc5340eff858e8"><div class="ttname"><a href="memory__ownership__table_8c.html#ae2fff5cc4db7b79454cc5340eff858e8">allocateNewVMID</a></div><div class="ttdeci">VMID_t allocateNewVMID()</div><div class="ttdoc">This function returns currently running VM&#39;s ID. If it does not exist, this function allocates new on...</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00042">memory_ownership_table.c:42</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_aa4f8aee9bf87a1628e71d07f40352e02"><div class="ttname"><a href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a></div><div class="ttdeci">EPTP_t VMID_t</div><div class="ttdoc">A type definition for ID of a virtual machine. In this implementation, this type is equal to EPTP_t ...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00057">monitor_types.h:57</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_ab2e39b8d4a768ded7be5450cc2bffe9d"><div class="ttname"><a href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a></div><div class="ttdeci">GPA_t APPID_t</div><div class="ttdoc">A type definition for ID of a application in a virtual machine. In this implmentation, this type is equal to GPA_t. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00058">monitor_types.h:58</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_ae1d205ac777b83ae72c2dd3b447a65ba_cgraph.png" border="0" usemap="#memory__ownership__table_8c_ae1d205ac777b83ae72c2dd3b447a65ba_cgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_ae1d205ac777b83ae72c2dd3b447a65ba_cgraph" id="memory__ownership__table_8c_ae1d205ac777b83ae72c2dd3b447a65ba_cgraph">
+<area shape="rect" id="node2" href="memory__ownership__table_8c.html#ae2fff5cc4db7b79454cc5340eff858e8" title="This function returns currently running VM&#39;s ID. If it does not exist, this function allocates new on..." alt="" coords="266,5,390,32"/><area shape="rect" id="node6" href="memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7" title="This function returns currently running process&#39;s ID. For new process, this function allocates new on..." alt="" coords="265,56,391,83"/><area shape="rect" id="node3" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="463,5,598,32"/><area shape="rect" id="node4" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="669,5,816,32"/><area shape="rect" id="node5" href="vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="865,31,999,57"/><area shape="rect" id="node7" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table. " alt="" coords="441,56,621,83"/><area shape="rect" id="node8" href="vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac" title="get the value of the guest CR3 control register " alt="" coords="673,56,813,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_ae1d205ac777b83ae72c2dd3b447a65ba_icgraph.png" border="0" usemap="#memory__ownership__table_8c_ae1d205ac777b83ae72c2dd3b447a65ba_icgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_ae1d205ac777b83ae72c2dd3b447a65ba_icgraph" id="memory__ownership__table_8c_ae1d205ac777b83ae72c2dd3b447a65ba_icgraph">
+<area shape="rect" id="node2" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="264,5,432,32"/><area shape="rect" id="node3" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="480,5,603,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2fff5cc4db7b79454cc5340eff858e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> allocateNewVMID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns currently running VM's ID. If it does not exist, this function allocates new one and returns it. </p>
+<dl class="section return"><dt>반환값</dt><dd>This function returns currently running VM's ID. If it does not exist, this function allocates new one and returns it.</dd></dl>
+<p>Details.</p>
+<dl class="section note"><dt>주의</dt><dd>In this implementation, VM ID is equal to start address of VM's EPT. Therefore, this function extracts it from EPTP field in the VMCS. </dd></dl>
+
+<p><a class="el" href="memory__ownership__table_8c_source.html">memory_ownership_table.c</a> 파일의 <a class="el" href="memory__ownership__table_8c_source.html#l00042">42</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> newVMID;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    newVMID = <a class="code" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2">get_ept_base_HPA</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">return</span> newVMID;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="ttc" id="monitor__types_8h_html_aa4f8aee9bf87a1628e71d07f40352e02"><div class="ttname"><a href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a></div><div class="ttdeci">EPTP_t VMID_t</div><div class="ttdoc">A type definition for ID of a virtual machine. In this implementation, this type is equal to EPTP_t ...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00057">monitor_types.h:57</a></div></div>
+<div class="ttc" id="guest__state_8c_html_a33fb594e7472da1af81f2abf272a64b2"><div class="ttname"><a href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2">get_ept_base_HPA</a></div><div class="ttdeci">GPA_t get_ept_base_HPA()</div><div class="ttdoc">Get the start address of extended page table. </div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8c_source.html#l00018">guest_state.c:18</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_ae2fff5cc4db7b79454cc5340eff858e8_cgraph.png" border="0" usemap="#memory__ownership__table_8c_ae2fff5cc4db7b79454cc5340eff858e8_cgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_ae2fff5cc4db7b79454cc5340eff858e8_cgraph" id="memory__ownership__table_8c_ae2fff5cc4db7b79454cc5340eff858e8_cgraph">
+<area shape="rect" id="node2" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="179,5,314,32"/><area shape="rect" id="node3" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="363,5,509,32"/><area shape="rect" id="node4" href="vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="558,5,693,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_ae2fff5cc4db7b79454cc5340eff858e8_icgraph.png" border="0" usemap="#memory__ownership__table_8c_ae2fff5cc4db7b79454cc5340eff858e8_icgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_ae2fff5cc4db7b79454cc5340eff858e8_icgraph" id="memory__ownership__table_8c_ae2fff5cc4db7b79454cc5340eff858e8_icgraph">
+<area shape="rect" id="node2" href="memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba" title="Allocate new VM ID &amp; application ID. " alt="" coords="179,5,389,32"/><area shape="rect" id="node3" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="437,5,605,32"/><area shape="rect" id="node4" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="653,5,776,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3266b049b47ff6ab74a67cf35aa4147c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void changePageStatus </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a>&#160;</td>
+          <td class="paramname"><em>vmID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a>&#160;</td>
+          <td class="paramname"><em>appID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a>&#160;</td>
+          <td class="paramname"><em>gpa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const enum <a class="el" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">page_state_t</a>&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>change a page's status </p>
+<p>Details.</p>
+<p>This function is used to change state of a page frame </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vmID</td><td>owner VMID of the page to close </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">appID</td><td>owner app ID of the page to close </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpa</td><td>GPA of page frame to change </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">state</td><td>state value to change </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="memory__ownership__table_8c_source.html">memory_ownership_table.c</a> 파일의 <a class="el" href="memory__ownership__table_8c_source.html#l00069">69</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a> targetEPTEntryHPA;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a> hpa = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323">gpaToHPA</a>(gpa, &amp;targetEPTEntryHPA);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617">U64_t</a> index;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    index = <a class="code" href="memory__ownership__table_8c.html#a072c0b2cb03e68adb03689dffe34aa4c">getMemoryOwnershipTableIndex</a>(hpa);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span>( memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">owner_VM</a> != 0 &amp;&amp;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">owner_APP</a> != 0)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">owner_VM</a> = vmID;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">owner_APP</a> = appID;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">state</a> = <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">CLOSED</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a997c69015870109b28461bfe0936cae9">original_permission</a> = 0;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a20729fd7e2a7b883cf27718596f2263a">original_page_address</a> = 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}<div class="ttc" id="structmemory__ownership__table__entry__t_html_a997c69015870109b28461bfe0936cae9"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#a997c69015870109b28461bfe0936cae9">memory_ownership_table_entry_t::original_permission</a></div><div class="ttdeci">U8_t original_permission</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00136">memory_ownership_table.h:136</a></div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_a8f52b1707f086d4e06056414cf0cadd4"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">memory_ownership_table_entry_t::owner_APP</a></div><div class="ttdeci">APPID_t owner_APP</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00134">memory_ownership_table.h:134</a></div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_a51da83c62e5656f11f5539fa4345fc1b"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">memory_ownership_table_entry_t::owner_VM</a></div><div class="ttdeci">VMID_t owner_VM</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00133">memory_ownership_table.h:133</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603"><div class="ttname"><a href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">CLOSED</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00125">memory_ownership_table.h:125</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_a35e867d4f252496befeb6d260a03acac"><div class="ttname"><a href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a></div><div class="ttdeci">U64_t HPA_t</div><div class="ttdoc">A type definition for a host physical address. Note : The size of this type is architecture-dependent...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00054">monitor_types.h:54</a></div></div>
+<div class="ttc" id="monitor__util_8h_html_a19ca3fbdba02a8a291fbf56b030e7323"><div class="ttname"><a href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323">gpaToHPA</a></div><div class="ttdeci">HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)</div><div class="ttdoc">This function converts guest physical address to host physical address. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__util_8c_source.html#l00014">monitor_util.c:14</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_a822913f05423d4a8faac6dfec8bc1617"><div class="ttname"><a href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617">U64_t</a></div><div class="ttdeci">unsigned long long U64_t</div><div class="ttdoc">A type definition for a unsigned 64-bits data. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00051">monitor_types.h:51</a></div></div>
+<div class="ttc" id="memory__ownership__table_8c_html_a072c0b2cb03e68adb03689dffe34aa4c"><div class="ttname"><a href="memory__ownership__table_8c.html#a072c0b2cb03e68adb03689dffe34aa4c">getMemoryOwnershipTableIndex</a></div><div class="ttdeci">U64_t getMemoryOwnershipTableIndex(const HPA_t hpa)</div><div class="ttdoc">A function which is used to change HPA to index of the memory ownership table. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00056">memory_ownership_table.c:56</a></div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_ae737ccf446b6f6c963e6621c88b267f5"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">memory_ownership_table_entry_t::state</a></div><div class="ttdeci">enum page_state_t state</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00135">memory_ownership_table.h:135</a></div></div>
+<div class="ttc" id="structmemory__ownership__table__entry__t_html_a20729fd7e2a7b883cf27718596f2263a"><div class="ttname"><a href="structmemory__ownership__table__entry__t.html#a20729fd7e2a7b883cf27718596f2263a">memory_ownership_table_entry_t::original_page_address</a></div><div class="ttdeci">HPA_t original_page_address</div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00137">memory_ownership_table.h:137</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_a3266b049b47ff6ab74a67cf35aa4147c_cgraph.png" border="0" usemap="#memory__ownership__table_8c_a3266b049b47ff6ab74a67cf35aa4147c_cgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_a3266b049b47ff6ab74a67cf35aa4147c_cgraph" id="memory__ownership__table_8c_a3266b049b47ff6ab74a67cf35aa4147c_cgraph">
+<area shape="rect" id="node2" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address. " alt="" coords="250,56,334,83"/><area shape="rect" id="node8" href="memory__ownership__table_8c.html#a072c0b2cb03e68adb03689dffe34aa4c" title="A function which is used to change HPA to index of the memory ownership table. " alt="" coords="187,107,397,133"/><area shape="rect" id="node3" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="446,5,581,32"/><area shape="rect" id="node6" href="monitor__util_8c.html#a5c5054946f567612d0ad5878def288f3" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="452,56,575,83"/><area shape="rect" id="node7" href="monitor__util_8c.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="445,107,581,133"/><area shape="rect" id="node4" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="629,5,776,32"/><area shape="rect" id="node5" href="vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="825,5,959,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_a3266b049b47ff6ab74a67cf35aa4147c_icgraph.png" border="0" usemap="#memory__ownership__table_8c_a3266b049b47ff6ab74a67cf35aa4147c_icgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_a3266b049b47ff6ab74a67cf35aa4147c_icgraph" id="memory__ownership__table_8c_a3266b049b47ff6ab74a67cf35aa4147c_icgraph">
+<area shape="rect" id="node2" href="memory__ownership__table_8c.html#af13e8ca1a88180df93e4af4db30e3244" title="Set the a frame to closed state. " alt="" coords="187,5,269,32"/><area shape="rect" id="node3" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="317,5,485,32"/><area shape="rect" id="node4" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="533,5,656,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af13e8ca1a88180df93e4af4db30e3244"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* closePage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a>&#160;</td>
+          <td class="paramname"><em>vmID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a>&#160;</td>
+          <td class="paramname"><em>appID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a>&#160;</td>
+          <td class="paramname"><em>gpa</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the a frame to closed state. </p>
+<p>Details.</p>
+<p>This function changes a page frame's status to CLOSED status. By doing this, it also clears all access permissions in the EPT entry to prohibit all accesses to the closed page frame. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vmID</td><td>owner VMID of the page to close </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">appID</td><td>owner app ID of the page to close </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gpa</td><td>GPA of page frame to close </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="memory__ownership__table_8c_source.html">memory_ownership_table.c</a> 파일의 <a class="el" href="memory__ownership__table_8c_source.html#l00061">61</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="memory__ownership__table_8c.html#a3266b049b47ff6ab74a67cf35aa4147c">changePageStatus</a>(vmID, appID, gpa, <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">CLOSED</a>);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">/* To do. Change EPT entry */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="ttc" id="memory__ownership__table_8c_html_a3266b049b47ff6ab74a67cf35aa4147c"><div class="ttname"><a href="memory__ownership__table_8c.html#a3266b049b47ff6ab74a67cf35aa4147c">changePageStatus</a></div><div class="ttdeci">void changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, const enum page_state_t state)</div><div class="ttdoc">change a page&#39;s status </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00069">memory_ownership_table.c:69</a></div></div>
+<div class="ttc" id="memory__ownership__table_8h_html_a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603"><div class="ttname"><a href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">CLOSED</a></div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8h_source.html#l00125">memory_ownership_table.h:125</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_af13e8ca1a88180df93e4af4db30e3244_cgraph.png" border="0" usemap="#memory__ownership__table_8c_af13e8ca1a88180df93e4af4db30e3244_cgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_af13e8ca1a88180df93e4af4db30e3244_cgraph" id="memory__ownership__table_8c_af13e8ca1a88180df93e4af4db30e3244_cgraph">
+<area shape="rect" id="node2" href="memory__ownership__table_8c.html#a3266b049b47ff6ab74a67cf35aa4147c" title="change a page&#39;s status " alt="" coords="137,81,269,108"/><area shape="rect" id="node3" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address. " alt="" coords="381,56,465,83"/><area shape="rect" id="node9" href="memory__ownership__table_8c.html#a072c0b2cb03e68adb03689dffe34aa4c" title="A function which is used to change HPA to index of the memory ownership table. " alt="" coords="317,107,528,133"/><area shape="rect" id="node4" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="577,5,711,32"/><area shape="rect" id="node7" href="monitor__util_8c.html#a5c5054946f567612d0ad5878def288f3" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="583,56,705,83"/><area shape="rect" id="node8" href="monitor__util_8c.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="576,107,712,133"/><area shape="rect" id="node5" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="760,5,907,32"/><area shape="rect" id="node6" href="vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="955,5,1090,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_af13e8ca1a88180df93e4af4db30e3244_icgraph.png" border="0" usemap="#memory__ownership__table_8c_af13e8ca1a88180df93e4af4db30e3244_icgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_af13e8ca1a88180df93e4af4db30e3244_icgraph" id="memory__ownership__table_8c_af13e8ca1a88180df93e4af4db30e3244_icgraph">
+<area shape="rect" id="node2" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="136,5,304,32"/><area shape="rect" id="node3" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="352,5,475,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa0e8340e3e2dc314a25b0c93fdfd54ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void protectCurrentApplication </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start to protect of currently running process's pages. </p>
+<p>Details.</p>
+<p>When this function is invoked (by the hypercall handler), the security monitor starts to protect the pages of application that the issued the hypercall.<br/>
+For protection, this function does followings:</p>
+<ol type="1">
+<li>Allocate VM ID and application ID. The security monitor identifies the application by ID of virtual machine that running the application and the appplication's ID.<br/>
+ So to start protection, this function first allocates new VMID and APP ID of the currently running process.<br/>
+ <dl class="section note"><dt>주의</dt><dd>In this implementation, VM ID is equal to start address (HPA) of EPT, and APP ID is equal to the start address (GPA) of the page table.</dd></dl>
+</li>
+<li>Traverse the process's all pages. Next step is to traverse all guest pages that the application owns. As traversing each page, this function translates the GPA of page into HPA. This translated HPA is used for index of memory ownership table. Once the HPA of the page is identified, the following fields of corresponding memory ownership table entry are set:<ul>
+<li>The owner VM ID and owner application ID is set to the values that are allocated from step 1.</li>
+<li>The page state is set to <em>CLOSED</em> state.</li>
+<li>The original permission attribute is the same with the attributes of the EPT entry(RWX permission field in the EPT).</li>
+<li>The original page address is set to the translated HPA. After the entry is initialized correctly, the permission in EPT entry is set cleared. That is, if anyone tries to access the page, the EPT violation will be occurred. </li>
+</ul>
+</li>
+</ol>
+
+<p><a class="el" href="memory__ownership__table_8c_source.html">memory_ownership_table.c</a> 파일의 <a class="el" href="memory__ownership__table_8c_source.html#l00019">19</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> newVMID;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> newAPPID;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> cr3GPA;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba">allocateNewApplicationIdentifiers</a>(&amp;newVMID,&amp;newAPPID);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    cr3GPA = <a class="code" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436">get_page_table_base_GPA</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="guest__state_8c.html#a3d8f41db587aed7fce30c4edcd4aaaf6">traverseGuestPages</a>(newVMID, newAPPID, cr3GPA, <a class="code" href="memory__ownership__table_8c.html#af13e8ca1a88180df93e4af4db30e3244">closePage</a>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="ttc" id="monitor__types_8h_html_a25ec30a201a5e2d4bdd7b40a89014d5c"><div class="ttname"><a href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a></div><div class="ttdeci">U64_t GPA_t</div><div class="ttdoc">A type definition for a guest physical address. Note : The size of this type is architecture-dependen...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00053">monitor_types.h:53</a></div></div>
+<div class="ttc" id="memory__ownership__table_8c_html_af13e8ca1a88180df93e4af4db30e3244"><div class="ttname"><a href="memory__ownership__table_8c.html#af13e8ca1a88180df93e4af4db30e3244">closePage</a></div><div class="ttdeci">void * closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)</div><div class="ttdoc">Set the a frame to closed state. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00061">memory_ownership_table.c:61</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_aa4f8aee9bf87a1628e71d07f40352e02"><div class="ttname"><a href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a></div><div class="ttdeci">EPTP_t VMID_t</div><div class="ttdoc">A type definition for ID of a virtual machine. In this implementation, this type is equal to EPTP_t ...</div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00057">monitor_types.h:57</a></div></div>
+<div class="ttc" id="guest__state_8c_html_a3d8f41db587aed7fce30c4edcd4aaaf6"><div class="ttname"><a href="guest__state_8c.html#a3d8f41db587aed7fce30c4edcd4aaaf6">traverseGuestPages</a></div><div class="ttdeci">void traverseGuestPages(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPageTable, void *(*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))</div><div class="ttdoc">Traverse all pages that start from startGPAofPageTable and do something for each page. </div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8c_source.html#l00027">guest_state.c:27</a></div></div>
+<div class="ttc" id="guest__state_8c_html_a4fe3391f0854e7d1c8b553adb4284436"><div class="ttname"><a href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436">get_page_table_base_GPA</a></div><div class="ttdeci">GPA_t get_page_table_base_GPA()</div><div class="ttdoc">Get the start address of page table. </div><div class="ttdef"><b>Definition:</b> <a href="guest__state_8c_source.html#l00008">guest_state.c:8</a></div></div>
+<div class="ttc" id="monitor__types_8h_html_ab2e39b8d4a768ded7be5450cc2bffe9d"><div class="ttname"><a href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a></div><div class="ttdeci">GPA_t APPID_t</div><div class="ttdoc">A type definition for ID of a application in a virtual machine. In this implmentation, this type is equal to GPA_t. </div><div class="ttdef"><b>Definition:</b> <a href="monitor__types_8h_source.html#l00058">monitor_types.h:58</a></div></div>
+<div class="ttc" id="memory__ownership__table_8c_html_ae1d205ac777b83ae72c2dd3b447a65ba"><div class="ttname"><a href="memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba">allocateNewApplicationIdentifiers</a></div><div class="ttdeci">void allocateNewApplicationIdentifiers(VMID_t *new_VMID, APPID_t *new_APPID)</div><div class="ttdoc">Allocate new VM ID &amp; application ID. </div><div class="ttdef"><b>Definition:</b> <a href="memory__ownership__table_8c_source.html#l00030">memory_ownership_table.c:30</a></div></div>
+</div><!-- fragment -->
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_aa0e8340e3e2dc314a25b0c93fdfd54ab_cgraph.png" border="0" usemap="#memory__ownership__table_8c_aa0e8340e3e2dc314a25b0c93fdfd54ab_cgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_aa0e8340e3e2dc314a25b0c93fdfd54ab_cgraph" id="memory__ownership__table_8c_aa0e8340e3e2dc314a25b0c93fdfd54ab_cgraph">
+<area shape="rect" id="node2" href="memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba" title="Allocate new VM ID &amp; application ID. " alt="" coords="221,79,432,106"/><area shape="rect" id="node8" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table. " alt="" coords="682,29,862,55"/><area shape="rect" id="node10" href="guest__state_8c.html#a3d8f41db587aed7fce30c4edcd4aaaf6" title="Traverse all pages that start from startGPAofPageTable and do something for each page. " alt="" coords="257,243,396,270"/><area shape="rect" id="node20" href="memory__ownership__table_8c.html#af13e8ca1a88180df93e4af4db30e3244" title="Set the a frame to closed state. " alt="" coords="285,522,368,549"/><area shape="rect" id="node3" href="memory__ownership__table_8c.html#ae2fff5cc4db7b79454cc5340eff858e8" title="This function returns currently running VM&#39;s ID. If it does not exist, this function allocates new on..." alt="" coords="1099,79,1223,106"/><area shape="rect" id="node7" href="memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7" title="This function returns currently running process&#39;s ID. For new process, this function allocates new on..." alt="" coords="486,29,613,55"/><area shape="rect" id="node4" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="1457,79,1591,106"/><area shape="rect" id="node5" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="1640,79,1787,106"/><area shape="rect" id="node6" href="vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="1835,54,1970,81"/><area shape="rect" id="node9" href="vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac" title="get the value of the guest CR3 control register " alt="" coords="1643,29,1783,55"/><area shape="rect" id="node11" href="guest___i_a32e_page_8c.html#af233f3d87b0a388e0c534d928167e20a" title="Traverse all pages based on IA32e paging mode. It traverse at PML4 level. " alt="" coords="481,383,618,410"/><area shape="rect" id="node12" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address. " alt="" coords="1298,459,1382,486"/><area shape="rect" id="node15" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="1279,206,1401,233"/><area shape="rect" id="node16" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="1272,333,1408,359"/><area shape="rect" id="node17" href="guest___i_a32e_page_8c.html#acc5be7aa7fcf4568891e6620f0b94141" title="Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level..." alt="" coords="705,383,839,410"/><area shape="rect" id="node13" href="monitor__util_8c.html#a5c5054946f567612d0ad5878def288f3" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="1463,485,1585,511"/><area shape="rect" id="node14" href="monitor__util_8c.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="1456,434,1592,461"/><area shape="rect" id="node18" href="guest___i_a32e_page_8c.html#a7253467a3aa5a9560748b75c4b7c57d5" title="Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level..." alt="" coords="925,333,1051,359"/><area shape="rect" id="node19" href="guest___i_a32e_page_8c.html#ab5dc18fd91ff94f88a941b35972f43ad" title="Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level. " alt="" coords="1103,333,1219,359"/><area shape="rect" id="node21" href="memory__ownership__table_8c.html#a3266b049b47ff6ab74a67cf35aa4147c" title="change a page&#39;s status " alt="" coords="483,637,615,663"/><area shape="rect" id="node22" href="memory__ownership__table_8c.html#a072c0b2cb03e68adb03689dffe34aa4c" title="A function which is used to change HPA to index of the memory ownership table. " alt="" coords="667,687,877,714"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="memory__ownership__table_8c_aa0e8340e3e2dc314a25b0c93fdfd54ab_icgraph.png" border="0" usemap="#memory__ownership__table_8c_aa0e8340e3e2dc314a25b0c93fdfd54ab_icgraph" alt=""/></div>
+<map name="memory__ownership__table_8c_aa0e8340e3e2dc314a25b0c93fdfd54ab_icgraph" id="memory__ownership__table_8c_aa0e8340e3e2dc314a25b0c93fdfd54ab_icgraph">
+<area shape="rect" id="node2" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="221,5,344,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 3월 14 2014 15:41:32, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

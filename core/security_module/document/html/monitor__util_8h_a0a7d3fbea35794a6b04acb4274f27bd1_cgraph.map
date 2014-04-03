@@ -1,0 +1,7 @@
+<map id="gpaToHPA" name="gpaToHPA">
+<area shape="rect" id="node2" href="$guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="139,5,274,32"/>
+<area shape="rect" id="node5" href="$monitor__util_8c.html#a5c5054946f567612d0ad5878def288f3" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="145,56,268,83"/>
+<area shape="rect" id="node6" href="$monitor__util_8c.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory. " alt="" coords="139,107,275,133"/>
+<area shape="rect" id="node3" href="$vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="323,5,469,32"/>
+<area shape="rect" id="node4" href="$vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="518,5,653,32"/>
+</map>

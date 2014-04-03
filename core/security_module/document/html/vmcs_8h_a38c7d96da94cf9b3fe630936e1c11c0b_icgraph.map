@@ -1,0 +1,23 @@
+<map id="monitor_vmcs_read" name="monitor_vmcs_read">
+<area shape="rect" id="node2" href="$unit__test_8c.html#a3156e95cd80005f4c6f3f70e9914e135" title="A testing function to see the logical CPU configuration. " alt="" coords="190,128,343,154"/>
+<area shape="rect" id="node3" href="$vmcs_8c.html#a78803919617e6c9fb6020ede0a20efac" title="get the value of the guest CR3 control register " alt="" coords="197,178,337,205"/>
+<area shape="rect" id="node12" href="$vmcs_8c.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS " alt="" coords="193,254,340,281"/>
+<area shape="rect" id="node4" href="$guest__state_8h.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table. " alt="" coords="577,153,757,180"/>
+<area shape="rect" id="node5" href="$event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="2053,141,2176,168"/>
+<area shape="rect" id="node6" href="$memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="1837,280,2005,306"/>
+<area shape="rect" id="node7" href="$memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7" title="This function returns currently running process&#39;s ID. For new process, this function allocates new on..." alt="" coords="826,254,953,281"/>
+<area shape="rect" id="node9" href="$unit__test_8c.html#a4b454bbf54829d209850a8efa639b942" title="A function to start unit test. " alt="" coords="1088,102,1165,129"/>
+<area shape="rect" id="node10" href="$unit__test_8c.html#a9a5ea09666782de7674e77cb9211aa9f" title="A testing function for gpaToHPA. " alt="" coords="833,204,946,230"/>
+<area shape="rect" id="node11" href="$unit__test_8c.html#a086ccec56f0e0c8b7a62d3166a3f3aa4" title="A testing function for traverseGuestPages. " alt="" coords="805,52,973,78"/>
+<area shape="rect" id="node8" href="$memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba" title="Allocate new VM ID &amp; application ID. " alt="" coords="1021,280,1232,306"/>
+<area shape="rect" id="node13" href="$guest__state_8h.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table. " alt="" coords="393,305,527,332"/>
+<area shape="rect" id="node14" href="$memory__ownership__table_8c.html#ae2fff5cc4db7b79454cc5340eff858e8" title="This function returns currently running VM&#39;s ID. If it does not exist, this function allocates new on..." alt="" coords="605,305,729,332"/>
+<area shape="rect" id="node15" href="$monitor__util_8c.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address. " alt="" coords="625,406,709,433"/>
+<area shape="rect" id="node16" href="$guest___i_a32e_page_8h.html#af233f3d87b0a388e0c534d928167e20a" title="Traverse all pages based on IA32e paging mode. It traverse at PML4 level. " alt="" coords="1465,432,1602,458"/>
+<area shape="rect" id="node18" href="$guest___i_a32e_page_8h.html#acc5be7aa7fcf4568891e6620f0b94141" title="Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level..." alt="" coords="1281,432,1415,458"/>
+<area shape="rect" id="node19" href="$guest___i_a32e_page_8h.html#a7253467a3aa5a9560748b75c4b7c57d5" title="Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level..." alt="" coords="1064,406,1189,433"/>
+<area shape="rect" id="node20" href="$guest___i_a32e_page_8h.html#ab5dc18fd91ff94f88a941b35972f43ad" title="Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level. " alt="" coords="831,356,947,382"/>
+<area shape="rect" id="node21" href="$memory__ownership__table_8c.html#a3266b049b47ff6ab74a67cf35aa4147c" title="change a page&#39;s status " alt="" coords="823,558,955,585"/>
+<area shape="rect" id="node17" href="$guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6" title="Traverse all pages that start from startGPAofPageTable and do something for each page. " alt="" coords="1651,381,1789,408"/>
+<area shape="rect" id="node22" href="$memory__ownership__table_8c.html#af13e8ca1a88180df93e4af4db30e3244" title="Set the a frame to closed state. " alt="" coords="1307,558,1389,585"/>
+</map>

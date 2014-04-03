@@ -1,0 +1,5 @@
+<map id="allocateNewAppID" name="allocateNewAppID">
+<area shape="rect" id="node2" href="$guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table. " alt="" coords="182,5,362,32"/>
+<area shape="rect" id="node3" href="$vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac" title="get the value of the guest CR3 control register " alt="" coords="411,5,551,32"/>
+<area shape="rect" id="node4" href="$vmcs_8c.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS " alt="" coords="601,5,735,32"/>
+</map>

@@ -1,0 +1,37 @@
+\section{remap\-\_\-inf 구조체 참조}
+\label{structremap__inf}\index{remap\-\_\-inf@{remap\-\_\-inf}}
+\subsection*{데이타 필드}
+\begin{DoxyCompactItemize}
+\item 
+u8 {\bfseries bus}\label{structremap__inf_a580f9145f92e4519518a4ca7ec4470e1}
+
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>u8 {\bfseries devfn}\\
+\>struct \{\\
+\>\>unsigned int {\bfseries func\_no}: 3\\
+\>\>unsigned int {\bfseries dev\_no}: 5\\
+\>\} {\bfseries df}\\
+\}; \label{structremap__inf_a84ce2520562ceb0b4da574ea05383b80}
+\\
+
+\end{tabbing}\item 
+int {\bfseries phys}\label{structremap__inf_a0fcc99d35bfc7374e758e743fb2e4dee}
+
+\item 
+int {\bfseries num\-\_\-pages}\label{structremap__inf_af2b698bf41d6ad470284a6c29bcac936}
+
+\item 
+int {\bfseries perm}\label{structremap__inf_a9e3e1739571ba4832fcdce8e978a20ad}
+
+\item 
+int {\bfseries dom}\label{structremap__inf_a9dbb15fa353bc503a9a5c13e32adf425}
+
+\end{DoxyCompactItemize}
+
+
+이 구조체에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\-:\begin{DoxyCompactItemize}
+\item 
+drivers/iommu.\-c\end{DoxyCompactItemize}

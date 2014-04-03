@@ -1,0 +1,7 @@
+<map id="traverseIA32ePages" name="traverseIA32ePages">
+<area shape="rect" id="node2" href="$guest__state_8h.html#a4806cd11621d620f40a7e24540d948d0" title="Traverse all pages that start from startGPAofPageTable and do something for each page. " alt="" coords="192,31,331,57"/>
+<area shape="rect" id="node3" href="$memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="379,5,547,32"/>
+<area shape="rect" id="node5" href="$unit__test_8c.html#a086ccec56f0e0c8b7a62d3166a3f3aa4" title="A testing function for traverseGuestPages. " alt="" coords="379,56,547,83"/>
+<area shape="rect" id="node4" href="$event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="595,5,717,32"/>
+<area shape="rect" id="node6" href="$unit__test_8c.html#a4b454bbf54829d209850a8efa639b942" title="A function to start unit test. " alt="" coords="617,56,695,83"/>
+</map>

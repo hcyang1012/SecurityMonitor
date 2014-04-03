@@ -1,0 +1,5 @@
+<map id="allocateNewAppID" name="allocateNewAppID">
+<area shape="rect" id="node2" href="$memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba" title="Allocate new VM ID &amp; application ID. " alt="" coords="181,5,392,32"/>
+<area shape="rect" id="node3" href="$memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages. " alt="" coords="440,5,608,32"/>
+<area shape="rect" id="node4" href="$event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. The goal of this function is to start..." alt="" coords="656,5,779,32"/>
+</map>

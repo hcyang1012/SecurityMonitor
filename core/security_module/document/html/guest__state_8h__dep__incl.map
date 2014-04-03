@@ -1,0 +1,7 @@
+<map id="include/guest_state.h" name="include/guest_state.h">
+<area shape="rect" id="node2" href="$event_handler_8c.html" title="Catching &amp; handling of memory&#45;related events. " alt="" coords="5,80,112,107"/>
+<area shape="rect" id="node3" href="$guest__state_8c.html" title="High&#45;level facilities to get guest VM&#39;s information. " alt="" coords="136,80,237,107"/>
+<area shape="rect" id="node4" href="$memory__ownership__table_8c.html" title="Definition of data structrues &amp; functions for memory ownership table. . " alt="" coords="262,80,441,107"/>
+<area shape="rect" id="node5" href="$monitor__util_8c.html" title="This file includes some implementations of some utility functions. " alt="" coords="466,80,565,107"/>
+<area shape="rect" id="node6" href="$unit__test_8c.html" title="This file is used for unit test of functions in the security monitor. " alt="" coords="591,80,673,107"/>
+</map>

@@ -1,0 +1,1 @@
+cmd_/home/hcyang/nfs/bitvisor/bitvisor-1.3/hack/hack.ko := ld -r -m elf_x86_64 -T /usr/src/linux-headers-3.8.0-19-generic/scripts/module-common.lds --build-id  -o /home/hcyang/nfs/bitvisor/bitvisor-1.3/hack/hack.ko /home/hcyang/nfs/bitvisor/bitvisor-1.3/hack/hack.o /home/hcyang/nfs/bitvisor/bitvisor-1.3/hack/hack.mod.o

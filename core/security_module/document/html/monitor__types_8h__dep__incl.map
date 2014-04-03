@@ -1,0 +1,16 @@
+<map id="include/monitor_types.h" name="include/monitor_types.h">
+<area shape="rect" id="node2" href="$event_handler_8c.html" title="Catching &amp; handling of memory&#45;related events. " alt="" coords="61,245,168,272"/>
+<area shape="rect" id="node3" href="$guest___i_a32e_page_8c.html" title="defines functions that are related to IA32e paging mode (for guest) " alt="" coords="611,245,745,272"/>
+<area shape="rect" id="node4" href="$guest___i_a32e_page_8h.html" title="functions and constants to support IA32e paging mode of guest VM " alt="" coords="589,163,768,189"/>
+<area shape="rect" id="node6" href="$unit__test_8c.html" title="This file is used for unit test of functions in the security monitor. " alt="" coords="797,245,880,272"/>
+<area shape="rect" id="node7" href="$guest__state_8h.html" title="High&#45;level facilities to get guest VM&#39;s information. " alt="" coords="228,163,375,189"/>
+<area shape="rect" id="node10" href="$memory__ownership__table_8h.html" title="Definition of data structrues &amp; constants for memory ownership table. . " alt="" coords="25,155,204,197"/>
+<area shape="rect" id="node11" href="$monitor__ept_8h.html" title="This file declares some EPT&#45;related functions and defines EPT&#45;related constants. " alt="" coords="1064,80,1211,107"/>
+<area shape="rect" id="node12" href="$monitor__util_8h.html" title="This file exists for supporting some uiility functions. " alt="" coords="793,163,937,189"/>
+<area shape="rect" id="node13" href="$unit__test_8h.html" title="This file declares functions for unit test of functions in the security module. " alt="" coords="828,80,956,107"/>
+<area shape="rect" id="node14" href="$vmcs_8h.html" title="Definition of constants related to VMCS. " alt="" coords="354,80,461,107"/>
+<area shape="rect" id="node15" href="$vmcs_8c.html" title="Get VM information by reading VMCS. " alt="" coords="450,163,512,189"/>
+<area shape="rect" id="node5" href="$guest__state_8c.html" title="High&#45;level facilities to get guest VM&#39;s information. " alt="" coords="407,245,508,272"/>
+<area shape="rect" id="node8" href="$memory__ownership__table_8c.html" title="Definition of data structrues &amp; functions for memory ownership table. . " alt="" coords="202,245,381,272"/>
+<area shape="rect" id="node9" href="$monitor__util_8c.html" title="This file includes some implementations of some utility functions. " alt="" coords="905,245,1004,272"/>
+</map>

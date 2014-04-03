@@ -1,0 +1,45 @@
+\section{pci\-\_\-driver 구조체 참조}
+\label{structpci__driver}\index{pci\-\_\-driver@{pci\-\_\-driver}}
+\subsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries L\-I\-S\-T\-\_\-\-D\-E\-F\-I\-N\-E} (pci\-\_\-driver\-\_\-list)\label{structpci__driver_ac7eeca00f4d9cacf41d704b0d4c6ec0a}
+
+\end{DoxyCompactItemize}
+\subsection*{데이타 필드}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf idmask} {\bfseries id}\label{structpci__driver_a0addb7b97b3a219c2aeabc19fd0d8611}
+
+\item 
+struct {\bf idmask} {\bfseries class}\label{structpci__driver_aa077fa3233fa1f4a408862a0d125874b}
+
+\item 
+void($\ast$ {\bfseries new} )(struct {\bf pci\-\_\-device} $\ast$dev)\label{structpci__driver_a6fe4275794eddb8940181ae92d70e0c2}
+
+\item 
+int($\ast$ {\bfseries config\-\_\-read} )(struct {\bf pci\-\_\-device} $\ast$dev, core\-\_\-io\-\_\-t ioaddr, u8 offset, union mem $\ast$data)\label{structpci__driver_abfe1eac4a89ba9b8f6eca06174600e5c}
+
+\item 
+int($\ast$ {\bfseries config\-\_\-write} )(struct {\bf pci\-\_\-device} $\ast$dev, core\-\_\-io\-\_\-t ioaddr, u8 offset, union mem $\ast$data)\label{structpci__driver_a19191e5182a72b52036f848734282d30}
+
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned int {\bfseries use\_base\_address\_mask\_emulation}: 1\\
+\} {\bfseries options}\label{structpci__driver_a94f07c8dd495863eae7ecf56496a51cf}
+\\
+
+\end{tabbing}\item 
+const char $\ast$ {\bfseries name}\label{structpci__driver_a05cc3c788ae87a07ae4d92ce603ce211}
+
+\item 
+const char $\ast$ {\bfseries longname}\label{structpci__driver_a465b7186b1c03f7c2d16ec53097bfc4d}
+
+\end{DoxyCompactItemize}
+
+
+이 구조체에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.\-:\begin{DoxyCompactItemize}
+\item 
+drivers/pci.\-h\end{DoxyCompactItemize}

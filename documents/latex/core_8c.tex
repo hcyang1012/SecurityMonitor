@@ -1,0 +1,158 @@
+\section{drivers/core.c 파일 참조}
+\label{core_8c}\index{drivers/core.\-c@{drivers/core.\-c}}
+{\ttfamily \#include $<$core.\-h$>$}\\*
+\subsection*{데이타 구조}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf handler\-\_\-descriptor}
+\end{DoxyCompactItemize}
+\subsection*{매크로}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries I\-O\-T\-Y\-P\-E\-\_\-\-G\-E\-T\-\_\-\-S\-I\-Z\-E}(iotype)~(iotype \& 0x0\-F)\label{core_8c_aea418cbb2443f1abfd648364619c1347}
+
+\item 
+\#define {\bfseries M\-A\-X\-\_\-\-H\-D}~64\label{core_8c_a4f3fd33d1e0605d7f39a3b31eca805b7}
+
+\end{DoxyCompactItemize}
+\subsection*{함수}
+\begin{DoxyCompactItemize}
+\item 
+phys\-\_\-t {\bfseries core\-\_\-mm\-\_\-read\-\_\-guest\-\_\-phys} (phys\-\_\-t phys, void $\ast$buf, int len)\label{core_8c_ab1993aecb38f15c17376b1bfe177c7d1}
+
+\item 
+phys\-\_\-t {\bfseries core\-\_\-mm\-\_\-write\-\_\-guest\-\_\-phys} (phys\-\_\-t phys, void $\ast$buf, int len)\label{core_8c_aefc9af00d27a366118da9e08055b6669}
+
+\item 
+struct {\bf handler\-\_\-descriptor} $\ast$ {\bfseries alloc\-\_\-handler\-\_\-descriptor} ()\label{core_8c_a9ce7943618e2f0478aad2467c8661011}
+
+\item 
+int {\bf core\-\_\-io\-\_\-register\-\_\-handler} (ioport\-\_\-t start, size\-\_\-t num, core\-\_\-io\-\_\-handler\-\_\-t handler, void $\ast$arg, enum core\-\_\-io\-\_\-prio priority, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em core\-\_\-io\-\_\-register\-\_\-handler \end{DoxyCompactList}\item 
+int {\bf core\-\_\-io\-\_\-modify\-\_\-handler} (int hd, ioport\-\_\-t start, size\-\_\-t num)
+\begin{DoxyCompactList}\small\item\em core\-\_\-io\-\_\-modify\-\_\-handler \end{DoxyCompactList}\item 
+int {\bf core\-\_\-io\-\_\-unregister\-\_\-handler} (int hd)
+\begin{DoxyCompactList}\small\item\em unregister io handler \end{DoxyCompactList}\item 
+void {\bf core\-\_\-io\-\_\-handle\-\_\-default} (core\-\_\-io\-\_\-t io, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em handle default io operation \end{DoxyCompactList}\item 
+void {\bfseries panic\-\_\-oom} ()\label{core_8c_a0d1e14cc93c27697e1bd1db081cb6e06}
+
+\item 
+void {\bfseries core\-\_\-init} ()\label{core_8c_a166d6adeedf84c1aad6848b3573382e6}
+
+\item 
+{\bfseries C\-O\-R\-E\-\_\-\-I\-N\-I\-T} (core\-\_\-init)\label{core_8c_a1201a35737d21eddeaf96ddb867d55cd}
+
+\end{DoxyCompactItemize}
+\subsection*{변수}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf handler\-\_\-descriptor} $\ast$ {\bfseries handler\-\_\-descriptor} [M\-A\-X\-\_\-\-H\-D] = \{ N\-U\-L\-L \}\label{core_8c_a5b01159cc8ff4659c536b6cd9d7ecad6}
+
+\item 
+spinlock\-\_\-t {\bfseries handler\-\_\-descriptor\-\_\-lock}\label{core_8c_addac6ce48ec81ce436dcafc5a799160b}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{상세한 설명}
+V\-M\-M core A\-P\-I support functions (expected to be moved to \char`\"{}core\char`\"{})
+
+\begin{DoxyAuthor}{작성자}
+T. Shinagawa 
+\end{DoxyAuthor}
+
+
+\subsection{함수 문서화}
+\index{core.\-c@{core.\-c}!core\-\_\-io\-\_\-handle\-\_\-default@{core\-\_\-io\-\_\-handle\-\_\-default}}
+\index{core\-\_\-io\-\_\-handle\-\_\-default@{core\-\_\-io\-\_\-handle\-\_\-default}!core.c@{core.\-c}}
+\subsubsection[{core\-\_\-io\-\_\-handle\-\_\-default}]{\setlength{\rightskip}{0pt plus 5cm}void core\-\_\-io\-\_\-handle\-\_\-default (
+\begin{DoxyParamCaption}
+\item[{core\-\_\-io\-\_\-t}]{io, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\label{core_8c_a7b733cc480661fe31fa61a2573499287}
+
+
+handle default io operation 
+
+
+\begin{DoxyParams}{매개변수}
+{\em io} & io \\
+\hline
+{\em data} & data \\
+\hline
+\end{DoxyParams}
+\index{core.\-c@{core.\-c}!core\-\_\-io\-\_\-modify\-\_\-handler@{core\-\_\-io\-\_\-modify\-\_\-handler}}
+\index{core\-\_\-io\-\_\-modify\-\_\-handler@{core\-\_\-io\-\_\-modify\-\_\-handler}!core.c@{core.\-c}}
+\subsubsection[{core\-\_\-io\-\_\-modify\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int core\-\_\-io\-\_\-modify\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{int}]{hd, }
+\item[{ioport\-\_\-t}]{start, }
+\item[{size\-\_\-t}]{num}
+\end{DoxyParamCaption}
+)}\label{core_8c_a606fd916ff1870f2a746f9653c0d91fd}
+
+
+core\-\_\-io\-\_\-modify\-\_\-handler 
+
+
+\begin{DoxyParams}{매개변수}
+{\em start} & start port \\
+\hline
+{\em num} & end port \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+handler descriptor 
+\end{DoxyReturn}
+\index{core.\-c@{core.\-c}!core\-\_\-io\-\_\-register\-\_\-handler@{core\-\_\-io\-\_\-register\-\_\-handler}}
+\index{core\-\_\-io\-\_\-register\-\_\-handler@{core\-\_\-io\-\_\-register\-\_\-handler}!core.c@{core.\-c}}
+\subsubsection[{core\-\_\-io\-\_\-register\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int core\-\_\-io\-\_\-register\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{ioport\-\_\-t}]{start, }
+\item[{size\-\_\-t}]{num, }
+\item[{core\-\_\-io\-\_\-handler\-\_\-t}]{handler, }
+\item[{void $\ast$}]{arg, }
+\item[{enum core\-\_\-io\-\_\-prio}]{priority, }
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\label{core_8c_af40005625334446661d54de9ad53842c}
+
+
+core\-\_\-io\-\_\-register\-\_\-handler 
+
+
+\begin{DoxyParams}{매개변수}
+{\em start} & start port \\
+\hline
+{\em num} & end port \\
+\hline
+{\em handler} & handler function \\
+\hline
+{\em arg} & argument passed to the handler \\
+\hline
+{\em prio} & priority \\
+\hline
+{\em name} & driver's name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{반환값}
+handler descriptor 
+\end{DoxyReturn}
+\index{core.\-c@{core.\-c}!core\-\_\-io\-\_\-unregister\-\_\-handler@{core\-\_\-io\-\_\-unregister\-\_\-handler}}
+\index{core\-\_\-io\-\_\-unregister\-\_\-handler@{core\-\_\-io\-\_\-unregister\-\_\-handler}!core.c@{core.\-c}}
+\subsubsection[{core\-\_\-io\-\_\-unregister\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int core\-\_\-io\-\_\-unregister\-\_\-handler (
+\begin{DoxyParamCaption}
+\item[{int}]{hd}
+\end{DoxyParamCaption}
+)}\label{core_8c_a0f2978a09f57ed21f5826e7aa5f48f00}
+
+
+unregister io handler 
+
+
+\begin{DoxyParams}{매개변수}
+{\em hd} & handler descriptor \\
+\hline
+\end{DoxyParams}
