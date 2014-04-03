@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table." alt="" coords="183,5,316,35"/>
+<area shape="rect" id="node5" href="$vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS" alt="" coords="365,5,515,35"/>
+<area shape="rect" id="node7" href="$vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS" alt="" coords="563,5,699,35"/>
+</map>

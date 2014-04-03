@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$event_handler_8h.html" title="Catching &amp; handling of memory&#45;related events." alt="" coords="5,83,115,112"/>
+<area shape="rect" id="node5" href="$monitor__types_8h.html" title="Definitions of types that are used in this project." alt="" coords="180,237,295,267"/>
+<area shape="rect" id="node7" href="$guest__state_8h.html" title="High&#45;level facilities to get guest VM&#39;s information." alt="" coords="189,83,291,112"/>
+<area shape="rect" id="node13" href="$memory__ownership__table_8h.html" title="Definition of data structrues &amp; constants for memory ownership table. ." alt="" coords="328,160,509,189"/>
+<area shape="rect" id="node10" href="$vmcs_8h.html" title="Definition of constants related to VMCS." alt="" coords="240,160,304,189"/>
+</map>

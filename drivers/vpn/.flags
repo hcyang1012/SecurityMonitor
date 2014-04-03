@@ -1,0 +1,1 @@
+CFLAGS=-m64 -mno-red-zone -mno-sse -nostdinc -g -O -ffreestanding -fno-builtin -fno-stack-protector -fno-omit-frame-pointer -fno-strict-aliasing -Wall -DIEEE1394_CONCEALER -DENABLE_ASSERT -DVPN -DVPN_PRO100 -DVPN_PRO1000 -DTTY_PRO1000 -Idrivers/vpn -Iinclude -I./core/security_module/include -Idrivers -Ivpn/lib ASFLAGS=-m64 -g -Wa,-I,drivers/vpn LDFLAGS=-m64 -g -nostdlib

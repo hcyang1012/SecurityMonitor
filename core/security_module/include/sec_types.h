@@ -10,8 +10,8 @@ typedef U64_t				PHYADDR_t;
 
 typedef PHYADDR_t			GUEST_PHYADDR_t;
 
-typedef PHYADDR_t			APPID_t;
-typedef U64_t				VMID_t;
+typedef U8_t				APPID_t;
+typedef U8_t				VMID_t;
 
 typedef U8_t				BOOL_t;
 

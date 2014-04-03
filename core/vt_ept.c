@@ -133,7 +133,6 @@ vt_ept_map_page (bool write, u64 gphys)
 void
 vt_ept_violation (bool write, u64 gphys)
 {
-	static int count = 0;
 	mmio_lock ();
 	#ifdef CONFIG_SSLAB
 	{

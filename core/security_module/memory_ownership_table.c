@@ -29,7 +29,6 @@ void protectCurrentApplication()
 	allocateNewApplicationIdentifiers(&newVMID,&newAPPID);
 	cr3GPA = get_page_table_base_GPA();
 	traverseGuestPages(newVMID, newAPPID, cr3GPA, closePage);
-	printf("Closing end\n");
 }
 
 void allocateNewApplicationIdentifiers(VMID_t *new_VMID, APPID_t *new_APPID)
@@ -136,7 +135,7 @@ int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, co
 	return 0;
 }
 
-struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(U64_t index)
+struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(const U64_t index)
 {
 	return memory_ownership_table[index];
 }

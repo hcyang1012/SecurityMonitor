@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Security Monitor: guest_IA32ePage.c 소스 파일</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 다음에 의해 생성됨 :  Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">guest_IA32ePage.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="guest___i_a32e_page_8c.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;<a class="code" href="guest___i_a32e_page_8h.html" title="functions and constants to support IA32e paging mode of guest VM">guest_IA32ePage.h</a>&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;<a class="code" href="monitor__util_8h.html" title="This file exists for supporting some uiility functions.">monitor_util.h</a>&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;<a class="code" href="monitor__types_8h.html" title="Definitions of types that are used in this project.">monitor_types.h</a>&gt;</span>
+<a name="l00008"></a>00008 
+<a name="l00009"></a><a class="code" href="guest___i_a32e_page_8h.html#af233f3d87b0a388e0c534d928167e20a">00009</a> <span class="keywordtype">void</span> <a class="code" href="guest___i_a32e_page_8c.html#af233f3d87b0a388e0c534d928167e20a" title="Traverse all pages based on IA32e paging mode. It traverse at PML4 level.">traverseIA32ePages</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPageTable, <span class="keywordtype">void</span>* (*do_something)(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> gpa))
+<a name="l00010"></a>00010 {
+<a name="l00011"></a>00011     <span class="keywordtype">int</span> pml4Index;
+<a name="l00012"></a>00012     <span class="keywordflow">for</span>(pml4Index = 0 ; pml4Index &lt; <a class="code" href="guest___i_a32e_page_8h.html#a95899c079745b0d248c7999db30739ce" title="The maximum number of guest PML4 entries.">MAX_GUEST_PML4_INDEX</a> ; pml4Index++)
+<a name="l00013"></a>00013     {
+<a name="l00014"></a>00014         <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> currentPML4EntryGPA;
+<a name="l00015"></a>00015         <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentPML4EntryHPA;
+<a name="l00016"></a>00016         <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a> *pCurrentPML4Entry, currentPML4Entry;
+<a name="l00017"></a>00017         <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPDPT;
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019         currentPML4EntryGPA = (startGPAofPageTable | (pml4Index &lt;&lt; <a class="code" href="guest___i_a32e_page_8h.html#a4f9f11d3f1d992b8d528dc6ce8702000" title="The left-shift value for PML4 entry.">GUEST_PML4_INDEX_SHIFT</a>));
+<a name="l00020"></a>00020         currentPML4EntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPML4EntryGPA, 0);
+<a name="l00021"></a>00021         <span class="keywordflow">if</span>(!currentPML4EntryHPA)
+<a name="l00022"></a>00022         {
+<a name="l00023"></a>00023             <span class="keywordflow">continue</span>;
+<a name="l00024"></a>00024         }
+<a name="l00025"></a>00025         pCurrentPML4Entry = (<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentPML4EntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+<a name="l00026"></a>00026         <span class="keywordflow">if</span>(!pCurrentPML4Entry)
+<a name="l00027"></a>00027         {
+<a name="l00028"></a>00028             <span class="keywordflow">continue</span>;
+<a name="l00029"></a>00029         }
+<a name="l00030"></a>00030         currentPML4Entry = *pCurrentPML4Entry;
+<a name="l00031"></a>00031         <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentPML4Entry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033         startGPAofPDPT = currentPML4Entry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a71ab36e768a6cf0cff31a9e288abe306" title="A mask that is used to extract base HPA of EPT PDP from EPT PML4 entry.">EPT_PML4_ENTRY_MASK</a>;
+<a name="l00034"></a>00034         
+<a name="l00035"></a>00035         <span class="keywordflow">if</span>(startGPAofPDPT &amp;&amp; (currentPML4Entry &amp; 0x01) &amp;&amp; !(currentPML4Entry &amp; 0x80))
+<a name="l00036"></a>00036         {
+<a name="l00037"></a>00037             printf(<span class="stringliteral">&quot;%llx\n&quot;</span>,currentPML4Entry);
+<a name="l00038"></a>00038             <a class="code" href="guest___i_a32e_page_8c.html#acc5be7aa7fcf4568891e6620f0b94141" title="Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level...">traverseIA32ePDPT</a>(vmid, appID, startGPAofPDPT,do_something);
+<a name="l00039"></a>00039         }
+<a name="l00040"></a>00040     }
+<a name="l00041"></a>00041 }
+<a name="l00042"></a>00042 
+<a name="l00043"></a><a class="code" href="guest___i_a32e_page_8h.html#acc5be7aa7fcf4568891e6620f0b94141">00043</a> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="guest___i_a32e_page_8c.html#acc5be7aa7fcf4568891e6620f0b94141" title="Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level...">traverseIA32ePDPT</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPDPT, <span class="keywordtype">void</span>* (*do_something)(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> gpa))
+<a name="l00044"></a>00044 {
+<a name="l00045"></a>00045     <span class="keywordtype">int</span> pdpIndex;
+<a name="l00046"></a>00046     <span class="keywordflow">for</span>(pdpIndex = 0 ; pdpIndex &lt; <a class="code" href="guest___i_a32e_page_8h.html#aea301bb20ba8cf3d3c28e8153142c4e7" title="The maximum number of guest PDP table entries.">MAX_GUEST_PDP_INDEX</a> ; pdpIndex++)
+<a name="l00047"></a>00047     {
+<a name="l00048"></a>00048         <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> currentPDPTEntryGPA;
+<a name="l00049"></a>00049         <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentPDPTEntryHPA;
+<a name="l00050"></a>00050         <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a> *pCurrentPDPTEntry, currentPDPTEntry;
+<a name="l00051"></a>00051         <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPDT;
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053         currentPDPTEntryGPA = (startGPAofPDPT | (pdpIndex &lt;&lt; <a class="code" href="guest___i_a32e_page_8h.html#a97220f3f7ecb24472d9d17523e5a5b3c" title="The left-shift value for PDP table entry.">GUEST_PDP_INDEX_SHIFT</a>));
+<a name="l00054"></a>00054         currentPDPTEntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPDPTEntryGPA, 0);
+<a name="l00055"></a>00055         <span class="keywordflow">if</span>(!currentPDPTEntryHPA)
+<a name="l00056"></a>00056         {
+<a name="l00057"></a>00057             <span class="keywordflow">continue</span>;
+<a name="l00058"></a>00058         }
+<a name="l00059"></a>00059         pCurrentPDPTEntry = (<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentPDPTEntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+<a name="l00060"></a>00060         <span class="keywordflow">if</span>(!pCurrentPDPTEntry)
+<a name="l00061"></a>00061         {
+<a name="l00062"></a>00062             <span class="keywordflow">continue</span>;
+<a name="l00063"></a>00063         }
+<a name="l00064"></a>00064         currentPDPTEntry = *pCurrentPDPTEntry;
+<a name="l00065"></a>00065         <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentPDPTEntry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067         startGPAofPDT = currentPDPTEntry &amp; <a class="code" href="guest___i_a32e_page_8h.html#aca4d6718af5283d4aa065fac24e64e54" title="A mask that is used to extract base HPA of EPT PDP from EPT PDP table entry.">EPT_PDP_ENTRY_MASK</a>;  
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069         <span class="keywordflow">if</span>(startGPAofPDT &amp;&amp; (currentPDPTEntry &amp; 0x01) &amp;&amp; !(currentPDPTEntry &amp; 0x80))
+<a name="l00070"></a>00070         {
+<a name="l00071"></a>00071             <a class="code" href="guest___i_a32e_page_8c.html#a7253467a3aa5a9560748b75c4b7c57d5" title="Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level...">traverseIA32ePDT</a>(vmid, appID, startGPAofPDT, do_something);
+<a name="l00072"></a>00072         }
+<a name="l00073"></a>00073     }
+<a name="l00074"></a>00074 }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 
+<a name="l00077"></a><a class="code" href="guest___i_a32e_page_8h.html#a7253467a3aa5a9560748b75c4b7c57d5">00077</a> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="guest___i_a32e_page_8c.html#a7253467a3aa5a9560748b75c4b7c57d5" title="Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level...">traverseIA32ePDT</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPDT, <span class="keywordtype">void</span>* (*do_something)(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> gpa))
+<a name="l00078"></a>00078 {
+<a name="l00079"></a>00079     <span class="keywordtype">int</span> pdIndex;
+<a name="l00080"></a>00080     <span class="keywordflow">for</span>(pdIndex = 0 ; pdIndex &lt; <a class="code" href="guest___i_a32e_page_8h.html#a614095969a102b7d4637860c27460e35" title="The maximum number of guest page directory (PD) entries.">MAX_GUEST_PD_INDEX</a> ; pdIndex++)
+<a name="l00081"></a>00081     {
+<a name="l00082"></a>00082         <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> currentPDTEntryGPA;
+<a name="l00083"></a>00083         <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentPDTEntryHPA;
+<a name="l00084"></a>00084         <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a> *pCurrentPDTEntry, currentPDTEntry;
+<a name="l00085"></a>00085         <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPT;
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087         currentPDTEntryGPA = (startGPAofPDT | (pdIndex &lt;&lt; <a class="code" href="guest___i_a32e_page_8h.html#aebfd7bdceef07644bb6ddb5d9f647d7b" title="The left-shift value for PD table entry.">GUEST_PD_INDEX_SHIFT</a>));
+<a name="l00088"></a>00088         currentPDTEntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPDTEntryGPA, 0);
+<a name="l00089"></a>00089         <span class="keywordflow">if</span>(!currentPDTEntryHPA)
+<a name="l00090"></a>00090         {
+<a name="l00091"></a>00091             <span class="keywordflow">continue</span>;
+<a name="l00092"></a>00092         }
+<a name="l00093"></a>00093         pCurrentPDTEntry = (<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentPDTEntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+<a name="l00094"></a>00094         <span class="keywordflow">if</span>(!pCurrentPDTEntry)
+<a name="l00095"></a>00095         {
+<a name="l00096"></a>00096             <span class="keywordflow">continue</span>;
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098         currentPDTEntry = *pCurrentPDTEntry;
+<a name="l00099"></a>00099         <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentPDTEntry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101         startGPAofPT = currentPDTEntry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a23ff1894aab21877ab61e8d453aacaec" title="A mask that is used to extract base HPA of EPT PT from EPT PD table entry.">EPT_PD_ENTRY_MASK</a>;
+<a name="l00102"></a>00102         
+<a name="l00103"></a>00103         <span class="keywordflow">if</span>(startGPAofPT &amp;&amp; (currentPDTEntry &amp; 0x01) &amp;&amp; !(currentPDTEntry &amp; 0x80))
+<a name="l00104"></a>00104         {
+<a name="l00105"></a>00105             <a class="code" href="guest___i_a32e_page_8c.html#ab5dc18fd91ff94f88a941b35972f43ad" title="Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level.">traverseIA32ePT</a>(vmid, appID, startGPAofPT,do_something);            
+<a name="l00106"></a>00106         }
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108     }
+<a name="l00109"></a>00109 }
+<a name="l00110"></a>00110 
+<a name="l00111"></a><a class="code" href="guest___i_a32e_page_8h.html#ab5dc18fd91ff94f88a941b35972f43ad">00111</a> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="guest___i_a32e_page_8c.html#ab5dc18fd91ff94f88a941b35972f43ad" title="Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level.">traverseIA32ePT</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPT, <span class="keywordtype">void</span>* (*do_something)(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> gpa))
+<a name="l00112"></a>00112 {
+<a name="l00113"></a>00113     <span class="keywordtype">int</span> ptIndex;
+<a name="l00114"></a>00114     <span class="keywordflow">for</span>(ptIndex = 0 ; ptIndex &lt; <a class="code" href="guest___i_a32e_page_8h.html#a865a49bc90d4a6ea369beaf5337b215d" title="The maximum number of guest page table (PT) entries.">MAX_GUEST_PT_INDEX</a> ; ptIndex++)
+<a name="l00115"></a>00115     {
+<a name="l00116"></a>00116         <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> currentPTEntryGPA;
+<a name="l00117"></a>00117         <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentPTEntryHPA;
+<a name="l00118"></a>00118         <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a> *pCurrentPTEntry, currentPTEntry;
+<a name="l00119"></a>00119         <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> pageGPA;
+<a name="l00120"></a>00120 
+<a name="l00121"></a>00121         currentPTEntryGPA = (startGPAofPT | (ptIndex &lt;&lt; <a class="code" href="guest___i_a32e_page_8h.html#abe8d240c883a8cac849d53fd22590794" title="The left-shift value for page table entry.">GUEST_PT_INDEX_SHIFT</a>));
+<a name="l00122"></a>00122         currentPTEntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPTEntryGPA, 0);
+<a name="l00123"></a>00123         <span class="keywordflow">if</span>(!currentPTEntryHPA)
+<a name="l00124"></a>00124         {
+<a name="l00125"></a>00125             <span class="keywordflow">continue</span>;
+<a name="l00126"></a>00126         }
+<a name="l00127"></a>00127         pCurrentPTEntry = (<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentPTEntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+<a name="l00128"></a>00128         <span class="keywordflow">if</span>(!pCurrentPTEntry)
+<a name="l00129"></a>00129         {
+<a name="l00130"></a>00130             <span class="keywordflow">continue</span>;
+<a name="l00131"></a>00131         }
+<a name="l00132"></a>00132         currentPTEntry = *pCurrentPTEntry;
+<a name="l00133"></a>00133         <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentPTEntry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135         pageGPA = currentPTEntry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a369c8c91c392e3da4f0368c4640563df" title="A mask that is used to extract base HPA of page from EPT page table entry.">EPT_PT_ENTRY_MASK</a>;
+<a name="l00136"></a>00136         <span class="keywordflow">if</span>(do_something &amp;&amp; (currentPTEntry &amp; 0x01))
+<a name="l00137"></a>00137         {
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139             (*do_something)(vmid, appID, pageGPA);          
+<a name="l00140"></a>00140         }
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142     }
+<a name="l00143"></a>00143 }
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 4월 4 2014 00:46:47, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

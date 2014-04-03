@@ -1,0 +1,1 @@
+core/output.o drivers/output.o storage/output.o vpn/output.o idman/output.o crypto/output.a process/processes.o

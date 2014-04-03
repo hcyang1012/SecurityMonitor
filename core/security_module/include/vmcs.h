@@ -1,4 +1,4 @@
-/**	\file	VMCS.h
+/**	\file	vmcs.h
 *	\brief	Definition of constants related to VMCS
 
 *	#	Details

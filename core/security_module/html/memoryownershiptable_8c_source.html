@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Security Monitor: memoryownershiptable.c 소스 파일</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 다음에 의해 생성됨 :  Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">memoryownershiptable.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &lt;memoryownershiptable.h&gt;</span>
+<a name="l00002"></a>00002 <span class="preprocessor">#include &lt;util.h&gt;</span>
+<a name="l00003"></a>00003 <span class="preprocessor">#include &lt;<a class="code" href="vmcs_8h.html" title="Definition of constants related to VMCS.">vmcs.h</a>&gt;</span>
+<a name="l00004"></a>00004 
+<a name="l00005"></a>00005 <span class="preprocessor">#ifdef CONFIG_BITVISOR</span>
+<a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">    #include &lt;printf.h&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#endif</span>
+<a name="l00008"></a>00008 <span class="preprocessor"></span>
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 PHYADDR_t targetApplicationPageTableBasePhysicalAddress = 0;
+<a name="l00011"></a>00011 OWNERSHIPTABLE_t ownershipTable[MAX_NUMBER_OF_PAGES];
+<a name="l00012"></a>00012 <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> gpaToHPACache[PD_INDEX_MAX * PT_INDEX_MAX];
+<a name="l00013"></a>00013 <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> protectingPageTable[PD_INDEX_MAX * PT_INDEX_MAX];
+<a name="l00014"></a>00014 BOOL_t stop = FALSE;
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 <span class="comment">//Initialize memory ownership table</span>
+<a name="l00017"></a>00017 <span class="keywordtype">void</span> initOwnershipTable()
+<a name="l00018"></a>00018 {
+<a name="l00019"></a>00019     <a class="code" href="monitor__types_8h.html#a7d95b1a68a8959f02a82e7b360cd2d2a" title="A type definition for a unsigned 32-bits data.">U32_t</a> index;
+<a name="l00020"></a>00020     <a class="code" href="monitor__types_8h.html#a7d95b1a68a8959f02a82e7b360cd2d2a" title="A type definition for a unsigned 32-bits data.">U32_t</a> primaryProcessorBasedVMExecutionControlsVector;
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022     <span class="keywordflow">for</span>(index = 0 ; index &lt; MAX_NUMBER_OF_PAGES ; index++)
+<a name="l00023"></a>00023     {
+<a name="l00024"></a>00024         sec_memset(ownershipTable + index,0,<span class="keyword">sizeof</span>(OWNERSHIPTABLE_t));
+<a name="l00025"></a>00025         ownershipTable[index].ownerVM = OWNER_VMM;
+<a name="l00026"></a>00026         ownershipTable[index].ownerApp = OWNER_KERNEL;
+<a name="l00027"></a>00027     }
+<a name="l00028"></a>00028     sec_memset(gpaToHPACache,0,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a7d95b1a68a8959f02a82e7b360cd2d2a" title="A type definition for a unsigned 32-bits data.">U32_t</a>) * PD_INDEX_MAX * PT_INDEX_MAX);
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030     primaryProcessorBasedVMExecutionControlsVector = sec_getPrimaryProcessorBasedVMExecutionControlsVector();
+<a name="l00031"></a>00031 }
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 <span class="comment">//Traverse one VM&#39;s EPT &amp; update memory ownership table</span>
+<a name="l00034"></a>00034 <span class="keywordtype">void</span> updateOwnershipTableForOneVM(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, PHYADDR_t *eptPhyBaseAddr)
+<a name="l00035"></a>00035 {
+<a name="l00036"></a>00036     traverseEPTPML4(vmid,eptPhyBaseAddr);
+<a name="l00037"></a>00037 }
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="comment">//Traverse EPT PML4</span>
+<a name="l00040"></a>00040 <span class="keywordtype">void</span> traverseEPTPML4(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, PHYADDR_t *eptPhyBaseAddr)
+<a name="l00041"></a>00041 {
+<a name="l00042"></a>00042     <span class="keywordtype">int</span> eptPML4Index;
+<a name="l00043"></a>00043     <span class="keywordflow">for</span>(eptPML4Index = 0 ; eptPML4Index &lt; NUMBER_OF_PML4_ENTRY ; eptPML4Index++)
+<a name="l00044"></a>00044     {
+<a name="l00045"></a>00045         PHYADDR_t *currentPML4EntryPhyAddr;
+<a name="l00046"></a>00046         VIRTADDR_t *currentPML4EntryVirtAddr;
+<a name="l00047"></a>00047         <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPML4Entry;
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049         currentPML4EntryPhyAddr = ((<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>)eptPhyBaseAddr | ((eptPML4Index &amp; 0xFF) &lt;&lt; PML4_SHIFT));
+<a name="l00050"></a>00050         currentPML4EntryVirtAddr = getVirtualAddressFromPhysiacalAddress(currentPML4EntryPhyAddr);
+<a name="l00051"></a>00051         currentPML4Entry = *currentPML4EntryVirtAddr;
+<a name="l00052"></a>00052         <span class="keywordflow">if</span>(currentPML4Entry)
+<a name="l00053"></a>00053         {
+<a name="l00054"></a>00054             PHYADDR_t *currentEPTPageDirectoryPointerTableBasePhysicalAddress;
+<a name="l00055"></a>00055             currentEPTPageDirectoryPointerTableBasePhysicalAddress = currentPML4Entry &amp; PAGE_DIRECTORY_POINTER_TABLE_ENTRY_MASK;
+<a name="l00056"></a>00056             <span class="keywordflow">if</span>(currentEPTPageDirectoryPointerTableBasePhysicalAddress)
+<a name="l00057"></a>00057             {
+<a name="l00058"></a>00058                 traverseEPTPageDirectoryPointerTable(vmid, currentEPTPageDirectoryPointerTableBasePhysicalAddress);             
+<a name="l00059"></a>00059             }
+<a name="l00060"></a>00060         }
+<a name="l00061"></a>00061     }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="comment">//Travers one VM&#39;s EPT Page Directory Pointer Table</span>
+<a name="l00067"></a>00067 <span class="keywordtype">void</span> traverseEPTPageDirectoryPointerTable(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, PHYADDR_t *currentEPTPageDirectoryPointerTableBasePhysicalAddress)
+<a name="l00068"></a>00068 {
+<a name="l00069"></a>00069     <span class="keywordtype">int</span> eptPDPTIndex;
+<a name="l00070"></a>00070     <span class="keywordflow">for</span>(eptPDPTIndex = 0 ; eptPDPTIndex &lt; NUMBER_OF_PAGE_DIRECTORY_POINTER_ENTRY ; eptPDPTIndex++)
+<a name="l00071"></a>00071     {
+<a name="l00072"></a>00072         PHYADDR_t *currentEPTPDPTEntryPhyAddr;
+<a name="l00073"></a>00073         VIRTADDR_t *currentEPTPDPTEntryVirtAddr;
+<a name="l00074"></a>00074         <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPDPTEntry;
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076         currentEPTPDPTEntryPhyAddr = ((<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>)currentEPTPageDirectoryPointerTableBasePhysicalAddress | ((eptPDPTIndex &amp; 0xFF) &lt;&lt; PDPT_SHIFT));
+<a name="l00077"></a>00077         currentEPTPDPTEntryVirtAddr = getVirtualAddressFromPhysiacalAddress(currentEPTPDPTEntryPhyAddr);
+<a name="l00078"></a>00078         currentPDPTEntry = *currentEPTPDPTEntryVirtAddr;
+<a name="l00079"></a>00079         <span class="keywordflow">if</span>(currentPDPTEntry)
+<a name="l00080"></a>00080         {
+<a name="l00081"></a>00081             PHYADDR_t *currentEPTPageDirectoryBasePhysicalAddress;
+<a name="l00082"></a>00082             currentEPTPageDirectoryBasePhysicalAddress = currentPDPTEntry &amp; PAGE_DIECTORY_ENTRY_MASK;
+<a name="l00083"></a>00083             <span class="comment">//sec_showDataofPhysicalAddress(currentEPTPageDirectoryBasePhysicalAddress);</span>
+<a name="l00084"></a>00084             <span class="keywordflow">if</span>(currentEPTPageDirectoryBasePhysicalAddress)
+<a name="l00085"></a>00085             {
+<a name="l00086"></a>00086                 traverseEPTPageDirectory(vmid, currentEPTPageDirectoryBasePhysicalAddress);             
+<a name="l00087"></a>00087             }
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090     }   
+<a name="l00091"></a>00091 }
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="comment">//Traverse one VM&#39;s EPT Page Directory</span>
+<a name="l00094"></a>00094 <span class="keywordtype">void</span> traverseEPTPageDirectory(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, PHYADDR_t *currentEPTPageDirectoryBasePhysicalAddress)
+<a name="l00095"></a>00095 {
+<a name="l00096"></a>00096     <span class="keywordtype">int</span> eptPDIndex;
+<a name="l00097"></a>00097     <span class="keywordflow">for</span>(eptPDIndex = 0 ; eptPDIndex &lt; NUMBER_OF_PAGE_DIRECTORY_ENTRY ; eptPDIndex++)
+<a name="l00098"></a>00098     {
+<a name="l00099"></a>00099         PHYADDR_t *currentEPTPDEntryPhyAddr;
+<a name="l00100"></a>00100         VIRTADDR_t *currentEPTPDEntryVirtAddr;
+<a name="l00101"></a>00101         <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPDEntry;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103         currentEPTPDEntryPhyAddr = ((<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>)currentEPTPageDirectoryBasePhysicalAddress | ((eptPDIndex &amp; 0xFF) &lt;&lt; PD_SHIFT));
+<a name="l00104"></a>00104         currentEPTPDEntryVirtAddr = getVirtualAddressFromPhysiacalAddress(currentEPTPDEntryPhyAddr);
+<a name="l00105"></a>00105         currentPDEntry = *currentEPTPDEntryVirtAddr;
+<a name="l00106"></a>00106         <span class="keywordflow">if</span>(currentPDEntry)
+<a name="l00107"></a>00107         {
+<a name="l00108"></a>00108             PHYADDR_t *currentEPTPageTableBasePhysicalAddress;
+<a name="l00109"></a>00109             currentEPTPageTableBasePhysicalAddress = currentPDEntry &amp; PAGE_TABLE_ENTRY_MASK;
+<a name="l00110"></a>00110             <span class="keywordflow">if</span>(currentEPTPageTableBasePhysicalAddress)
+<a name="l00111"></a>00111             {
+<a name="l00112"></a>00112                 traverseEPTPageTable(vmid, currentEPTPageTableBasePhysicalAddress);             
+<a name="l00113"></a>00113             }
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115         }
+<a name="l00116"></a>00116     }   
+<a name="l00117"></a>00117 }
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 <span class="comment">//Traverse one VM&#39;s EPT Page Table</span>
+<a name="l00120"></a>00120 <span class="keywordtype">void</span> traverseEPTPageTable(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, PHYADDR_t *currentEPTPageTableBasePhysicalAddress)
+<a name="l00121"></a>00121 {
+<a name="l00122"></a>00122     <span class="keywordtype">int</span> eptPTIndex;
+<a name="l00123"></a>00123     <span class="keywordflow">for</span>(eptPTIndex = 0 ; eptPTIndex &lt; NUMBER_OF_PAGE_DIRECTORY_ENTRY ; eptPTIndex++)
+<a name="l00124"></a>00124     {
+<a name="l00125"></a>00125         PHYADDR_t *currentEPTPTEntryPhyAddr;
+<a name="l00126"></a>00126         VIRTADDR_t *currentEPTPTEntryVirtAddr;
+<a name="l00127"></a>00127         <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPTEntry;
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129         currentEPTPTEntryPhyAddr = ((<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>)currentEPTPageTableBasePhysicalAddress | ((eptPTIndex &amp; 0xFF) &lt;&lt; PT_SHIFT));
+<a name="l00130"></a>00130         currentEPTPTEntryVirtAddr = getVirtualAddressFromPhysiacalAddress(currentEPTPTEntryPhyAddr);
+<a name="l00131"></a>00131         currentPTEntry = *currentEPTPTEntryVirtAddr;
+<a name="l00132"></a>00132         <span class="keywordflow">if</span>(currentPTEntry)
+<a name="l00133"></a>00133         {
+<a name="l00134"></a>00134             <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> pageID;
+<a name="l00135"></a>00135             <a class="code" href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef" title="A type definition for a unsigned 8-bits data.">U8_t</a> originalAttr;
+<a name="l00136"></a>00136             pageID = currentPTEntry &amp; PAGE_TABLE_MASK;
+<a name="l00137"></a>00137             pageID &gt;&gt;= PAGE_ID_SHIFT;
+<a name="l00138"></a>00138             originalAttr = currentPTEntry &amp; (~PAGE_TABLE_MASK);
+<a name="l00139"></a>00139             updateOwnerVMIDofEPTPage(vmid, pageID, originalAttr);
+<a name="l00140"></a>00140         }
+<a name="l00141"></a>00141     }   
+<a name="l00142"></a>00142 }
+<a name="l00143"></a>00143 
+<a name="l00144"></a><a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323">00144</a> PHYADDR_t <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(<span class="keyword">const</span> GUEST_PHYADDR_t gpa, PHYADDR_t *pageTableEntryPhysicalAddress)
+<a name="l00145"></a>00145 {
+<a name="l00146"></a>00146     PHYADDR_t eptPML4BasePhysicalAddress;
+<a name="l00147"></a>00147     PHYADDR_t eptPML4EntryPhysicalAddress;
+<a name="l00148"></a>00148     VIRTADDR_t *eptPML4EntryVirtualAddress;
+<a name="l00149"></a>00149     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>   selectedEPTPML4Entry;
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151     PHYADDR_t eptPDPTBasePhysicalAddress;
+<a name="l00152"></a>00152     PHYADDR_t eptPDPTEntryPhysicalAddress;
+<a name="l00153"></a>00153     VIRTADDR_t *eptPDPTEntryVirtualAddress;
+<a name="l00154"></a>00154     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> selectedEPTPDPTEntry;
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156     PHYADDR_t eptPDBasePhysicalAddress;
+<a name="l00157"></a>00157     PHYADDR_t eptPDEntryPhysicalAddress;
+<a name="l00158"></a>00158     VIRTADDR_t *eptPDEntryVirtualAddress;
+<a name="l00159"></a>00159     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> selectedEPTPDEntry;
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161     PHYADDR_t eptPTBasePhysicalAddress;
+<a name="l00162"></a>00162     PHYADDR_t eptPTEntryPhysicalAddress;
+<a name="l00163"></a>00163     VIRTADDR_t *eptPTEntryVirtualAddress;
+<a name="l00164"></a>00164     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> selectedEPTPTEntry;
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166     PHYADDR_t hpa = 0;
+<a name="l00167"></a>00167     <span class="comment">//Traverse EPT PML</span>
+<a name="l00168"></a>00168     sec_getEPTPhyAddr(&amp;eptPML4BasePhysicalAddress);
+<a name="l00169"></a>00169     eptPML4EntryPhysicalAddress = (eptPML4BasePhysicalAddress | (((gpa &amp; <a class="code" href="monitor__ept_8h.html#ace14d38a20945cb7618b39812883005c" title="A mask used to extract HPA of EPT entry from GPA.">EPT_PML4_GPA_MASK</a>) &gt;&gt; <a class="code" href="monitor__ept_8h.html#a3ce3f0ab82d640f2e804b9731ad40372" title="A right-shift value for EPT-PML4 entry address calculation.">EPT_PML4_GPA_SHIFT</a>) &lt;&lt; PML4_SHIFT));
+<a name="l00170"></a>00170     eptPML4EntryVirtualAddress =  mapHPAIntoHVA(eptPML4EntryPhysicalAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));<span class="comment">//getVirtualAddressFromPhysiacalAddress(eptPML4EntryPhysicalAddress);</span>
+<a name="l00171"></a>00171     selectedEPTPML4Entry = *eptPML4EntryVirtualAddress;
+<a name="l00172"></a>00172     unmapHPAFromHVA(eptPML4EntryVirtualAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));
+<a name="l00173"></a>00173     <span class="keywordflow">if</span>(!selectedEPTPML4Entry)
+<a name="l00174"></a>00174     {
+<a name="l00175"></a>00175         <span class="keywordflow">return</span> 0;
+<a name="l00176"></a>00176     }
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179     
+<a name="l00180"></a>00180     <span class="comment">//Traverse EPT PDPT</span>
+<a name="l00181"></a>00181     eptPDPTBasePhysicalAddress = selectedEPTPML4Entry &amp; PAGE_DIRECTORY_POINTER_TABLE_ENTRY_MASK;
+<a name="l00182"></a>00182     eptPDPTEntryPhysicalAddress = (eptPDPTBasePhysicalAddress | (((gpa &amp; EPT_PDPT_GPA_MASK) &gt;&gt; EPT_PDPT_GPA_SHIFT) &lt;&lt; PDPT_SHIFT));
+<a name="l00183"></a>00183     eptPDPTEntryVirtualAddress =  mapHPAIntoHVA(eptPDPTEntryPhysicalAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));<span class="comment">//getVirtualAddressFromPhysiacalAddress(eptPDPTEntryPhysicalAddress);</span>
+<a name="l00184"></a>00184     selectedEPTPDPTEntry = *eptPDPTEntryVirtualAddress;
+<a name="l00185"></a>00185     unmapHPAFromHVA(eptPDPTEntryVirtualAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));
+<a name="l00186"></a>00186     <span class="keywordflow">if</span>(!selectedEPTPDPTEntry)
+<a name="l00187"></a>00187     {
+<a name="l00188"></a>00188         <span class="keywordflow">return</span> 0;
+<a name="l00189"></a>00189     }
+<a name="l00190"></a>00190     
+<a name="l00191"></a>00191     <span class="comment">//Traverse EPT PD</span>
+<a name="l00192"></a>00192     eptPDBasePhysicalAddress = selectedEPTPDPTEntry &amp; PAGE_DIECTORY_ENTRY_MASK;
+<a name="l00193"></a>00193     eptPDEntryPhysicalAddress = (eptPDBasePhysicalAddress | (((gpa &amp; <a class="code" href="monitor__ept_8h.html#abf806e0ba2ec2f5405e3ef9701d8a737" title="A mask used to extract HPA of EPT entry from GPA.">EPT_PD_GPA_MASK</a>) &gt;&gt; <a class="code" href="monitor__ept_8h.html#aa06a29042c653e73fca00adc8fd7d663" title="A right-shift value for EPT-PD entry address calculation.">EPT_PD_GPA_SHIFT</a>) &lt;&lt; PD_SHIFT));
+<a name="l00194"></a>00194     eptPDEntryVirtualAddress =  mapHPAIntoHVA(eptPDEntryPhysicalAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));<span class="comment">//getVirtualAddressFromPhysiacalAddress(eptPDEntryPhysicalAddress);</span>
+<a name="l00195"></a>00195     selectedEPTPDEntry = *eptPDEntryVirtualAddress;
+<a name="l00196"></a>00196     unmapHPAFromHVA(eptPDEntryVirtualAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));
+<a name="l00197"></a>00197     <span class="keywordflow">if</span>(!selectedEPTPDEntry)
+<a name="l00198"></a>00198     {
+<a name="l00199"></a>00199         <span class="keywordflow">return</span> 0;
+<a name="l00200"></a>00200     }   
+<a name="l00201"></a>00201     
+<a name="l00202"></a>00202     <span class="comment">//Traverse EPT PT</span>
+<a name="l00203"></a>00203     eptPTBasePhysicalAddress = selectedEPTPDEntry &amp; PAGE_TABLE_ENTRY_MASK;
+<a name="l00204"></a>00204     eptPTEntryPhysicalAddress = (eptPTBasePhysicalAddress | (((gpa &amp; <a class="code" href="monitor__ept_8h.html#a6f24b0fd49793bb5746899f709fbf171" title="A mask used to extract HPA of EPT entry from GPA.">EPT_PT_GPA_MASK</a>) &gt;&gt; <a class="code" href="monitor__ept_8h.html#a95ef0343cf64ff4f5c3a519d24d131dc" title="A right-shift value for EPT-PT entry address calculation.">EPT_PT_GPA_SHIFT</a>) &lt;&lt; PT_SHIFT));
+<a name="l00205"></a>00205     eptPTEntryVirtualAddress =  mapHPAIntoHVA(eptPTEntryPhysicalAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));<span class="comment">//getVirtualAddressFromPhysiacalAddress(eptPTEntryPhysicalAddress); </span>
+<a name="l00206"></a>00206     selectedEPTPTEntry = *eptPTEntryVirtualAddress;
+<a name="l00207"></a>00207     <span class="keywordflow">if</span>(pageTableEntryPhysicalAddress)
+<a name="l00208"></a>00208     {
+<a name="l00209"></a>00209         *pageTableEntryPhysicalAddress = eptPTEntryPhysicalAddress;
+<a name="l00210"></a>00210     }
+<a name="l00211"></a>00211     unmapHPAFromHVA(eptPTEntryVirtualAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));            
+<a name="l00212"></a>00212     <span class="keywordflow">if</span>(!selectedEPTPTEntry)
+<a name="l00213"></a>00213     {
+<a name="l00214"></a>00214         <span class="keywordflow">return</span> 0;
+<a name="l00215"></a>00215     }
+<a name="l00216"></a>00216     
+<a name="l00217"></a>00217     <span class="comment">//Calculate final HPA</span>
+<a name="l00218"></a>00218     hpa = ((selectedEPTPTEntry &amp; PAGE_MASK) | (gpa &amp; <a class="code" href="monitor__ept_8h.html#a666c4ed20e984021f4fd95a52bd2144f" title="A mask used to extract HPA of EPT entry from GPA.">EPT_GPA_MASK</a>));
+<a name="l00219"></a>00219     
+<a name="l00220"></a>00220     <span class="keywordflow">return</span> hpa;
+<a name="l00221"></a>00221 }
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223 <span class="comment">//Update all VM&#39;s memory ownership table by scanning entire EPT.</span>
+<a name="l00224"></a>00224 <span class="keywordtype">void</span> updateOwnershipTable()
+<a name="l00225"></a>00225 {
+<a name="l00226"></a>00226     PHYADDR_t *eptPhyAddr;
+<a name="l00227"></a>00227     <a class="code" href="monitor__types_8h.html#a7d95b1a68a8959f02a82e7b360cd2d2a" title="A type definition for a unsigned 32-bits data.">U32_t</a> physicalAddressWidth;
+<a name="l00228"></a>00228     sec_getEPTPhyAddr(&amp;eptPhyAddr);
+<a name="l00229"></a>00229     <span class="comment">//printf(&quot;SSLAB : EPT Physical Addr(%d) : %llx\n&quot;,sizeof(eptPhyAddr), eptPhyAddr);</span>
+<a name="l00230"></a>00230     <span class="comment">//printf(&quot;SSLAB : EPT Traverse...\n&quot;);</span>
+<a name="l00231"></a>00231 
+<a name="l00232"></a>00232     <span class="comment">//get physical address width through cpuid</span>
+<a name="l00233"></a>00233     physicalAddressWidth = sec_getPhysicalAddressWidth();
+<a name="l00234"></a>00234     <span class="comment">//printf(&quot;SSLAB : physicalAddressWidth : %d\n&quot;,physicalAddressWidth);</span>
+<a name="l00235"></a>00235     <span class="comment">//printf(&quot;\n----------------------------------------------------------------------\n&quot;);</span>
+<a name="l00236"></a>00236     updateOwnershipTableForOneVM(0, eptPhyAddr);
+<a name="l00237"></a>00237 }
+<a name="l00238"></a>00238 
+<a name="l00239"></a>00239 
+<a name="l00240"></a>00240 <span class="comment">//Update one VM&#39;s memory ownership entry</span>
+<a name="l00241"></a>00241 <span class="keywordtype">void</span> updateOwnerVMIDofEPTPage(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> pageID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef" title="A type definition for a unsigned 8-bits data.">U8_t</a> originalAttr)
+<a name="l00242"></a>00242 {
+<a name="l00243"></a>00243     <span class="keywordflow">if</span>(ownershipTable[pageID].ownerVM  != OWNER_VMM)
+<a name="l00244"></a>00244     {
+<a name="l00245"></a>00245         <span class="comment">//printf(&quot;Already allocated Page : %x\n&quot;,pageID);</span>
+<a name="l00246"></a>00246     }
+<a name="l00247"></a>00247     ownershipTable[pageID].ownerVM = vmid;
+<a name="l00248"></a>00248     ownershipTable[pageID].originalAttr = originalAttr;
+<a name="l00249"></a>00249 }
+<a name="l00250"></a>00250 
+<a name="l00251"></a>00251 <span class="comment">//Update one App&#39;s memory ownership entry</span>
+<a name="l00252"></a>00252 <span class="keywordtype">void</span> updateOwnerAppIDofEPTPage(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmid, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> pageID)
+<a name="l00253"></a>00253 {
+<a name="l00254"></a>00254     ownershipTable[pageID].ownerVM  = vmid;
+<a name="l00255"></a>00255     ownershipTable[pageID].ownerApp = appID;
+<a name="l00256"></a>00256     ownershipTable[pageID].originalAttr = 0x7;
+<a name="l00257"></a>00257 }
+<a name="l00258"></a>00258 
+<a name="l00259"></a>00259 <span class="keywordtype">void</span> addCurrentProcessToProctectingApp()
+<a name="l00260"></a>00260 {
+<a name="l00261"></a>00261     PHYADDR_t *currentCR3Value;
+<a name="l00262"></a>00262     sec_getCR3Value(&amp;currentCR3Value);
+<a name="l00263"></a>00263     printf(<span class="stringliteral">&quot;currentCR3Value : %llx\n&quot;</span>,currentCR3Value);;
+<a name="l00264"></a>00264     <span class="keywordflow">if</span>(currentCR3Value)
+<a name="l00265"></a>00265     {
+<a name="l00266"></a>00266         GUEST_PHYADDR_t cr3PDGPA = (<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>)currentCR3Value &amp; <a class="code" href="guest__state_8h.html#a11dd8a149642208c1e97f359d9c7cbf5" title="A mask which is used to extract the base physical address of page table from CR3 control register val...">CR3_MASK</a>;
+<a name="l00267"></a>00267         <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appIDToSwitch = cr3PDGPA;
+<a name="l00268"></a>00268         targetApplicationPageTableBasePhysicalAddress = appIDToSwitch;
+<a name="l00269"></a>00269         printf(<span class="stringliteral">&quot;SSLAB : Target application ID initialized (%llx)\n&quot;</span>,appIDToSwitch);
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271     }   
+<a name="l00272"></a>00272 }
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274 <span class="comment">// CR3Change handler</span>
+<a name="l00275"></a>00275 <span class="keywordtype">void</span> cr3ChangedHandler()
+<a name="l00276"></a>00276 {
+<a name="l00277"></a>00277     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> cr3ValueToWrite;
+<a name="l00278"></a>00278     cr3ValueToWrite = sec_getCR3ValueToWrite();
+<a name="l00279"></a>00279     <span class="keywordflow">if</span>(cr3ValueToWrite)
+<a name="l00280"></a>00280     {
+<a name="l00281"></a>00281         GUEST_PHYADDR_t cr3PDGPA = cr3ValueToWrite &amp; <a class="code" href="guest__state_8h.html#a11dd8a149642208c1e97f359d9c7cbf5" title="A mask which is used to extract the base physical address of page table from CR3 control register val...">CR3_MASK</a>;
+<a name="l00282"></a>00282 
+<a name="l00283"></a>00283         <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appIDToSwitch = cr3PDGPA;
+<a name="l00284"></a>00284         <span class="keywordflow">if</span>(appIDToSwitch == targetApplicationPageTableBasePhysicalAddress)
+<a name="l00285"></a>00285         {
+<a name="l00286"></a>00286             <span class="comment">//Start scanning the page table of application to protect</span>
+<a name="l00287"></a>00287             traverseApplicationPageTable(0, appIDToSwitch, cr3PDGPA);
+<a name="l00288"></a>00288         }   
+<a name="l00289"></a>00289 
+<a name="l00290"></a>00290     }
+<a name="l00291"></a>00291 
+<a name="l00292"></a>00292 }
+<a name="l00293"></a>00293 
+<a name="l00294"></a>00294 <span class="comment">//Traverse total guest pages</span>
+<a name="l00295"></a>00295 <span class="keywordtype">void</span> traverseApplicationPageTable(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> GUEST_PHYADDR_t cr3PDGPA)
+<a name="l00296"></a>00296 {
+<a name="l00297"></a>00297     traverseGuestPD(vmID, appID, cr3PDGPA);
+<a name="l00298"></a>00298 }
+<a name="l00299"></a>00299 
+<a name="l00300"></a>00300 <span class="comment">//Traverse guest page directories</span>
+<a name="l00301"></a>00301 <span class="keywordtype">void</span> traverseGuestPD(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> GUEST_PHYADDR_t cr3PDGPA)
+<a name="l00302"></a>00302 {
+<a name="l00303"></a>00303     <span class="keywordtype">int</span> pdIndex;
+<a name="l00304"></a>00304     <span class="keywordflow">for</span>(pdIndex = 0 ; pdIndex &lt; PD_INDEX_MAX ; pdIndex++)
+<a name="l00305"></a>00305     {
+<a name="l00306"></a>00306         GUEST_PHYADDR_t currentPDEntryGPA = 0;
+<a name="l00307"></a>00307         PHYADDR_t currentPDEntryHPA = 0;
+<a name="l00308"></a>00308         VIRTADDR_t *currentPDEntryHVA = 0;
+<a name="l00309"></a>00309         <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPDEntry;
+<a name="l00310"></a>00310 
+<a name="l00311"></a>00311         currentPDEntryGPA = (cr3PDGPA | (pdIndex &lt;&lt; PD_SHIFT));
+<a name="l00312"></a>00312         currentPDEntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPDEntryGPA,0);
+<a name="l00313"></a>00313         currentPDEntryHVA = mapHPAIntoHVA(currentPDEntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));
+<a name="l00314"></a>00314         <span class="keywordflow">if</span>(currentPDEntryHVA)
+<a name="l00315"></a>00315         {
+<a name="l00316"></a>00316             currentPDEntry = *currentPDEntryHVA;
+<a name="l00317"></a>00317             traversePT(vmID,appID,currentPDEntry);          
+<a name="l00318"></a>00318         }
+<a name="l00319"></a>00319         unmapHPAFromHVA(currentPDEntryHVA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));   
+<a name="l00320"></a>00320         
+<a name="l00321"></a>00321     }
+<a name="l00322"></a>00322 }
+<a name="l00323"></a>00323 
+<a name="l00324"></a>00324 <span class="comment">//Traverse guest page tables</span>
+<a name="l00325"></a>00325 <span class="keywordtype">void</span> traversePT(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPDEntry)
+<a name="l00326"></a>00326 {
+<a name="l00327"></a>00327     <span class="keywordtype">int</span> ptIndex;
+<a name="l00328"></a>00328     <span class="keywordflow">for</span>(ptIndex = 0 ; ptIndex &lt; PT_INDEX_MAX ; ptIndex++)
+<a name="l00329"></a>00329     {
+<a name="l00330"></a>00330         GUEST_PHYADDR_t currentPTEntryGPA = 0;
+<a name="l00331"></a>00331         PHYADDR_t currentPTEntryHPA = 0;
+<a name="l00332"></a>00332         VIRTADDR_t *currentPTEntryHVA = 0;
+<a name="l00333"></a>00333         <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPTEntry;
+<a name="l00334"></a>00334         
+<a name="l00335"></a>00335 
+<a name="l00336"></a>00336         currentPTEntryGPA = ((currentPDEntry &amp;  GUEST_PAGE_MASK) | (ptIndex &lt;&lt; PT_SHIFT));
+<a name="l00337"></a>00337 
+<a name="l00338"></a>00338         <span class="keywordflow">if</span>(gpaToHPACache[(currentPTEntryGPA &gt;&gt; PAGE_ID_SHIFT)])<span class="comment">//Already owned guest page</span>
+<a name="l00339"></a>00339         {
+<a name="l00340"></a>00340             <span class="keywordflow">continue</span>;
+<a name="l00341"></a>00341         }
+<a name="l00342"></a>00342         currentPTEntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPTEntryGPA, 0);
+<a name="l00343"></a>00343         <span class="keywordflow">if</span>(currentPTEntryHPA)
+<a name="l00344"></a>00344         {
+<a name="l00345"></a>00345             gpaToHPACache[(currentPTEntryGPA &gt;&gt; PAGE_ID_SHIFT)] = currentPTEntryHPA;
+<a name="l00346"></a>00346             currentPTEntryHVA = mapHPAIntoHVA(currentPTEntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));
+<a name="l00347"></a>00347             <span class="keywordflow">if</span>(currentPTEntryHVA)
+<a name="l00348"></a>00348             {
+<a name="l00349"></a>00349                 currentPTEntry = *currentPTEntryHVA;
+<a name="l00350"></a>00350                 updateOwnerAppIDofGuestPage(vmID, appID, currentPTEntry);
+<a name="l00351"></a>00351             }
+<a name="l00352"></a>00352             unmapHPAFromHVA(currentPTEntryHVA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));
+<a name="l00353"></a>00353         }
+<a name="l00354"></a>00354 
+<a name="l00355"></a>00355     }
+<a name="l00356"></a>00356 }
+<a name="l00357"></a>00357 
+<a name="l00358"></a>00358 
+<a name="l00359"></a>00359 <span class="keywordtype">void</span> updateOwnerAppIDofGuestPage(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPTEntry)
+<a name="l00360"></a>00360 {
+<a name="l00361"></a>00361     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> eptEntryOfCurrentPage;
+<a name="l00362"></a>00362     PHYADDR_t eptEntryPhysicalAddress;
+<a name="l00363"></a>00363     eptEntryOfCurrentPage = getEPTEntryIndexOfGuestPage(currentPTEntry, &amp;eptEntryPhysicalAddress);
+<a name="l00364"></a>00364     <span class="keywordflow">if</span>(eptEntryOfCurrentPage)
+<a name="l00365"></a>00365     {
+<a name="l00366"></a>00366         <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> *eptEntryVirtualAddress;
+<a name="l00367"></a>00367         <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> eptEntryValue;
+<a name="l00368"></a>00368         eptEntryVirtualAddress = mapHPAIntoHVA(eptEntryPhysicalAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));
+<a name="l00369"></a>00369         <span class="keywordflow">if</span>(eptEntryVirtualAddress)
+<a name="l00370"></a>00370         {
+<a name="l00371"></a>00371             <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> currentPageID;
+<a name="l00372"></a>00372             eptEntryValue = *eptEntryVirtualAddress;
+<a name="l00373"></a>00373             currentPageID = eptEntryValue &gt;&gt; PAGE_ID_SHIFT;
+<a name="l00374"></a>00374             protectingPageTable[currentPageID] = appID;
+<a name="l00375"></a>00375             printf(<span class="stringliteral">&quot;(Before)currentPageID : %llx\n&quot;</span>,currentPageID);
+<a name="l00376"></a>00376             printf(<span class="stringliteral">&quot;(Before)eptEntryValue : %llx\n&quot;</span>,eptEntryValue);
+<a name="l00377"></a>00377             eptEntryValue &amp;= (~0x7);
+<a name="l00378"></a>00378             *eptEntryVirtualAddress = eptEntryValue;
+<a name="l00379"></a>00379             printf(<span class="stringliteral">&quot;(After)eptEntryValue : %llx\n&quot;</span>,eptEntryValue);
+<a name="l00380"></a>00380             unmapHPAFromHVA(eptEntryVirtualAddress,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>));
+<a name="l00381"></a>00381             updateOwnerAppIDofEPTPage(vmID,appID, eptEntryOfCurrentPage);       
+<a name="l00382"></a>00382         }       
+<a name="l00383"></a>00383     }
+<a name="l00384"></a>00384 
+<a name="l00385"></a>00385 
+<a name="l00386"></a>00386 }
+<a name="l00387"></a>00387 
+<a name="l00388"></a>00388 <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> getEPTEntryIndexOfGuestPage(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> guestPTEntry, <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> *eptEntryValue)
+<a name="l00389"></a>00389 {
+<a name="l00390"></a>00390     GUEST_PHYADDR_t currentGuestPageGPA;
+<a name="l00391"></a>00391     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> eptpBaseAddr;
+<a name="l00392"></a>00392     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> pageID;
+<a name="l00393"></a>00393     currentGuestPageGPA = guestPTEntry &amp; GUEST_PAGE_MASK;
+<a name="l00394"></a>00394 
+<a name="l00395"></a>00395     pageID = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentGuestPageGPA, eptEntryValue);
+<a name="l00396"></a>00396     pageID &gt;&gt;= PAGE_ID_SHIFT;
+<a name="l00397"></a>00397 
+<a name="l00398"></a>00398     <span class="keywordflow">return</span> pageID;
+<a name="l00399"></a>00399 }
+<a name="l00400"></a>00400 
+<a name="l00401"></a>00401 
+<a name="l00402"></a>00402 BOOL_t pageIsProtecting(<a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> pageID)
+<a name="l00403"></a>00403 {
+<a name="l00404"></a>00404     <span class="keywordflow">return</span> protectingPageTable[pageID];
+<a name="l00405"></a>00405 }
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 4월 4 2014 00:46:48, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

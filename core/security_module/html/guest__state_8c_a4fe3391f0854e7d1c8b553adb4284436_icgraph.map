@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. &#160;The goal of this function is to star..." alt="" coords="936,22,1059,52"/>
+<area shape="rect" id="node5" href="$memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages." alt="" coords="719,48,887,77"/>
+<area shape="rect" id="node8" href="$memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7" title="This function returns currently running process&#39;s ID. For new process, this function allocates new on..." alt="" coords="255,98,385,128"/>
+<area shape="rect" id="node13" href="$unit__test_8c.html#a4b454bbf54829d209850a8efa639b942" title="A function to start unit test." alt="" coords="523,202,600,232"/>
+<area shape="rect" id="node15" href="$unit__test_8c.html#a9a5ea09666782de7674e77cb9211aa9f" title="A testing function for [gpaToHPA](gpaToHPA)" alt="" coords="263,202,377,232"/>
+<area shape="rect" id="node18" href="$unit__test_8c.html#a086ccec56f0e0c8b7a62d3166a3f3aa4" title="A testing function for [traverseGuestPages](traverseGuestPages)" alt="" coords="235,256,405,285"/>
+<area shape="rect" id="node10" href="$memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba" title="Allocate new VM ID &amp; application ID." alt="" coords="455,98,668,128"/>
+</map>

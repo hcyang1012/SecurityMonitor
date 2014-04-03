@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$guest___i_a32e_page_8h.html#af233f3d87b0a388e0c534d928167e20a" title="Traverse all pages based on IA32e paging mode. It traverse at PML4 level." alt="" coords="193,5,332,35"/>
+<area shape="rect" id="node5" href="$guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6" title="Traverse all pages that start from startGPAofPageTable and do something for each page." alt="" coords="381,5,523,35"/>
+<area shape="rect" id="node7" href="$memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages." alt="" coords="572,5,740,35"/>
+<area shape="rect" id="node9" href="$event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. &#160;The goal of this function is to star..." alt="" coords="789,5,912,35"/>
+</map>

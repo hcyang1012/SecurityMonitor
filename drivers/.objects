@@ -1,0 +1,1 @@
+drivers/bios32.o drivers/core.o drivers/dmar.o drivers/ieee1394.o drivers/iommu.o drivers/pci_conceal.o drivers/pci_core.o drivers/pci_debug.o drivers/pci_init.o drivers/security.o drivers/smi.o drivers/ata/output.o drivers/usb/output.o drivers/vpn/output.o

@@ -15,7 +15,6 @@ void hypercall_handler()
 
 	if(pagetable_start_GPA)
 	{
-		printf("Protection start\n");
 		protectCurrentApplication();
 	}
 }

@@ -1,0 +1,1 @@
+idman/lib/ccid/IDMan_CcAtr.o idman/lib/ccid/IDMan_CcIfdhandler.o idman/lib/ccid/IDMan_CcInitCard.o idman/lib/ccid/IDMan_CcProtocol.o idman/lib/ccid/IDMan_CcReaderControl.o idman/lib/ccid/IDMan_CcUsb.o

@@ -1,0 +1,1 @@
+include drivers/bios32.d drivers/core.d drivers/dmar.d drivers/ieee1394.d drivers/iommu.d drivers/pci_conceal.d drivers/pci_core.d drivers/pci_debug.d drivers/pci_init.d drivers/security.d drivers/smi.d

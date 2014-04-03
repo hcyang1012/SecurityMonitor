@@ -1,21 +1,21 @@
-\section{drivers/core.c 파일 참조}
+\section{drivers/core.c}
 \label{core_8c}\index{drivers/core.\-c@{drivers/core.\-c}}
-{\ttfamily \#include $<$core.\-h$>$}\\*
-\subsection*{데이타 구조}
+{\ttfamily \#include $<$core.\-h$>$}\*
+\subsection*{データ構造}
 \begin{DoxyCompactItemize}
 \item 
 struct {\bf handler\-\_\-descriptor}
 \end{DoxyCompactItemize}
-\subsection*{매크로}
+\subsection*{マクロ定義}
 \begin{DoxyCompactItemize}
 \item 
-\#define {\bfseries I\-O\-T\-Y\-P\-E\-\_\-\-G\-E\-T\-\_\-\-S\-I\-Z\-E}(iotype)~(iotype \& 0x0\-F)\label{core_8c_aea418cbb2443f1abfd648364619c1347}
+\#define {\bfseries \-I\-O\-T\-Y\-P\-E\-\_\-\-G\-E\-T\-\_\-\-S\-I\-Z\-E}(iotype)~(iotype \& 0x0\-F)\label{core_8c_aea418cbb2443f1abfd648364619c1347}
 
 \item 
-\#define {\bfseries M\-A\-X\-\_\-\-H\-D}~64\label{core_8c_a4f3fd33d1e0605d7f39a3b31eca805b7}
+\#define {\bfseries \-M\-A\-X\-\_\-\-H\-D}~64\label{core_8c_a4f3fd33d1e0605d7f39a3b31eca805b7}
 
 \end{DoxyCompactItemize}
-\subsection*{함수}
+\subsection*{関数}
 \begin{DoxyCompactItemize}
 \item 
 phys\-\_\-t {\bfseries core\-\_\-mm\-\_\-read\-\_\-guest\-\_\-phys} (phys\-\_\-t phys, void $\ast$buf, int len)\label{core_8c_ab1993aecb38f15c17376b1bfe177c7d1}
@@ -41,13 +41,13 @@ void {\bfseries panic\-\_\-oom} ()\label{core_8c_a0d1e14cc93c27697e1bd1db081cb6e
 void {\bfseries core\-\_\-init} ()\label{core_8c_a166d6adeedf84c1aad6848b3573382e6}
 
 \item 
-{\bfseries C\-O\-R\-E\-\_\-\-I\-N\-I\-T} (core\-\_\-init)\label{core_8c_a1201a35737d21eddeaf96ddb867d55cd}
+{\bfseries \-C\-O\-R\-E\-\_\-\-I\-N\-I\-T} (core\-\_\-init)\label{core_8c_a1201a35737d21eddeaf96ddb867d55cd}
 
 \end{DoxyCompactItemize}
-\subsection*{변수}
+\subsection*{変数}
 \begin{DoxyCompactItemize}
 \item 
-struct {\bf handler\-\_\-descriptor} $\ast$ {\bfseries handler\-\_\-descriptor} [M\-A\-X\-\_\-\-H\-D] = \{ N\-U\-L\-L \}\label{core_8c_a5b01159cc8ff4659c536b6cd9d7ecad6}
+struct {\bf handler\-\_\-descriptor} $\ast$ {\bfseries handler\-\_\-descriptor} [\-M\-A\-X\-\_\-\-H\-D]\label{core_8c_a5b01159cc8ff4659c536b6cd9d7ecad6}
 
 \item 
 spinlock\-\_\-t {\bfseries handler\-\_\-descriptor\-\_\-lock}\label{core_8c_addac6ce48ec81ce436dcafc5a799160b}
@@ -55,18 +55,18 @@ spinlock\-\_\-t {\bfseries handler\-\_\-descriptor\-\_\-lock}\label{core_8c_adda
 \end{DoxyCompactItemize}
 
 
-\subsection{상세한 설명}
-V\-M\-M core A\-P\-I support functions (expected to be moved to \char`\"{}core\char`\"{})
+\subsection{説明}
+\-V\-M\-M core \-A\-P\-I support functions (expected to be moved to \char`\"{}core\char`\"{})
 
-\begin{DoxyAuthor}{작성자}
-T. Shinagawa 
+\begin{DoxyAuthor}{作者}
+\-T. \-Shinagawa 
 \end{DoxyAuthor}
 
 
-\subsection{함수 문서화}
+\subsection{関数}
 \index{core.\-c@{core.\-c}!core\-\_\-io\-\_\-handle\-\_\-default@{core\-\_\-io\-\_\-handle\-\_\-default}}
 \index{core\-\_\-io\-\_\-handle\-\_\-default@{core\-\_\-io\-\_\-handle\-\_\-default}!core.c@{core.\-c}}
-\subsubsection[{core\-\_\-io\-\_\-handle\-\_\-default}]{\setlength{\rightskip}{0pt plus 5cm}void core\-\_\-io\-\_\-handle\-\_\-default (
+\subsubsection[{core\-\_\-io\-\_\-handle\-\_\-default}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf core\-\_\-io\-\_\-handle\-\_\-default} (
 \begin{DoxyParamCaption}
 \item[{core\-\_\-io\-\_\-t}]{io, }
 \item[{void $\ast$}]{data}
@@ -77,7 +77,7 @@ T. Shinagawa
 handle default io operation 
 
 
-\begin{DoxyParams}{매개변수}
+\begin{DoxyParams}{引数}
 {\em io} & io \\
 \hline
 {\em data} & data \\
@@ -85,7 +85,7 @@ handle default io operation
 \end{DoxyParams}
 \index{core.\-c@{core.\-c}!core\-\_\-io\-\_\-modify\-\_\-handler@{core\-\_\-io\-\_\-modify\-\_\-handler}}
 \index{core\-\_\-io\-\_\-modify\-\_\-handler@{core\-\_\-io\-\_\-modify\-\_\-handler}!core.c@{core.\-c}}
-\subsubsection[{core\-\_\-io\-\_\-modify\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int core\-\_\-io\-\_\-modify\-\_\-handler (
+\subsubsection[{core\-\_\-io\-\_\-modify\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\-\_\-io\-\_\-modify\-\_\-handler} (
 \begin{DoxyParamCaption}
 \item[{int}]{hd, }
 \item[{ioport\-\_\-t}]{start, }
@@ -97,18 +97,18 @@ handle default io operation
 core\-\_\-io\-\_\-modify\-\_\-handler 
 
 
-\begin{DoxyParams}{매개변수}
+\begin{DoxyParams}{引数}
 {\em start} & start port \\
 \hline
 {\em num} & end port \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{반환값}
+\begin{DoxyReturn}{戻り値}
 handler descriptor 
 \end{DoxyReturn}
 \index{core.\-c@{core.\-c}!core\-\_\-io\-\_\-register\-\_\-handler@{core\-\_\-io\-\_\-register\-\_\-handler}}
 \index{core\-\_\-io\-\_\-register\-\_\-handler@{core\-\_\-io\-\_\-register\-\_\-handler}!core.c@{core.\-c}}
-\subsubsection[{core\-\_\-io\-\_\-register\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int core\-\_\-io\-\_\-register\-\_\-handler (
+\subsubsection[{core\-\_\-io\-\_\-register\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\-\_\-io\-\_\-register\-\_\-handler} (
 \begin{DoxyParamCaption}
 \item[{ioport\-\_\-t}]{start, }
 \item[{size\-\_\-t}]{num, }
@@ -123,7 +123,7 @@ handler descriptor
 core\-\_\-io\-\_\-register\-\_\-handler 
 
 
-\begin{DoxyParams}{매개변수}
+\begin{DoxyParams}{引数}
 {\em start} & start port \\
 \hline
 {\em num} & end port \\
@@ -137,12 +137,12 @@ core\-\_\-io\-\_\-register\-\_\-handler
 {\em name} & driver's name \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{반환값}
+\begin{DoxyReturn}{戻り値}
 handler descriptor 
 \end{DoxyReturn}
 \index{core.\-c@{core.\-c}!core\-\_\-io\-\_\-unregister\-\_\-handler@{core\-\_\-io\-\_\-unregister\-\_\-handler}}
 \index{core\-\_\-io\-\_\-unregister\-\_\-handler@{core\-\_\-io\-\_\-unregister\-\_\-handler}!core.c@{core.\-c}}
-\subsubsection[{core\-\_\-io\-\_\-unregister\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int core\-\_\-io\-\_\-unregister\-\_\-handler (
+\subsubsection[{core\-\_\-io\-\_\-unregister\-\_\-handler}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf core\-\_\-io\-\_\-unregister\-\_\-handler} (
 \begin{DoxyParamCaption}
 \item[{int}]{hd}
 \end{DoxyParamCaption}
@@ -152,7 +152,7 @@ handler descriptor
 unregister io handler 
 
 
-\begin{DoxyParams}{매개변수}
+\begin{DoxyParams}{引数}
 {\em hd} & handler descriptor \\
 \hline
 \end{DoxyParams}

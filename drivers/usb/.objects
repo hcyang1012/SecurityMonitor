@@ -1,0 +1,1 @@
+drivers/usb/uhci.o drivers/usb/uhci_debug.o drivers/usb/uhci_shadow.o drivers/usb/uhci_trans.o drivers/usb/ehci.o drivers/usb/ehci_debug.o drivers/usb/ehci_shadow.o drivers/usb/ehci_trans.o drivers/usb/usb_mscd.o drivers/usb/usb_hub.o drivers/usb/usb_ccid.o drivers/usb/usb.o drivers/usb/usb_device.o drivers/usb/usb_hid.o drivers/usb/usb_hook.o drivers/usb/usb_log.o

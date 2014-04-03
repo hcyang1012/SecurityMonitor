@@ -1,0 +1,1 @@
+CFLAGS=-m64 -mno-red-zone -mno-sse -nostdinc -g -O -ffreestanding -fno-builtin -fno-stack-protector -fno-omit-frame-pointer -fno-strict-aliasing -Wall -Icrypto/chelp -Iinclude -I./core/security_module/include -Icrypto -Icrypto/openssl-1.0.0g/include ASFLAGS=-m64 -g -Wa,-I,crypto/chelp LDFLAGS=-m64 -g -nostdlib

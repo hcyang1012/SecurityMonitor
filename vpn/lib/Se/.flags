@@ -1,0 +1,1 @@
+CFLAGS=-m64 -mno-red-zone -mno-sse -nostdinc -g -O -ffreestanding -fno-builtin -fno-stack-protector -fno-omit-frame-pointer -fno-strict-aliasing -Wall -DENABLE_ASSERT -DIDMAN -Ivpn/lib/Se -Iinclude -I./core/security_module/include -Icrypto -Icrypto/openssl-1.0.0g/include -Ivpn/lib ASFLAGS=-m64 -g -Wa,-I,vpn/lib/Se LDFLAGS=-m64 -g -nostdlib

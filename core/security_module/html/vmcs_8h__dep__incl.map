@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$guest__state_8c.html" title="High&#45;level facilities to get guest VM&#39;s information." alt="" coords="5,160,107,189"/>
+<area shape="rect" id="node5" href="$guest__state_8h.html" title="High&#45;level facilities to get guest VM&#39;s information." alt="" coords="196,83,343,112"/>
+<area shape="rect" id="node16" href="$memoryownershiptable_8c_source.html" title="memoryownershiptable.c" alt="" coords="367,83,532,112"/>
+<area shape="rect" id="node18" href="$util_8c_source.html" title="util.c" alt="" coords="556,83,607,112"/>
+<area shape="rect" id="node20" href="$vmcs_8c.html" title="Get VM information by reading VMCS." alt="" coords="631,83,695,112"/>
+<area shape="rect" id="node7" href="$event_handler_8c.html" title="Catching &amp; handling of memory&#45;related events." alt="" coords="131,160,240,189"/>
+<area shape="rect" id="node10" href="$memory__ownership__table_8c.html" title="Definition of data structrues &amp; functions for memory ownership table. ." alt="" coords="264,160,445,189"/>
+<area shape="rect" id="node12" href="$monitor__util_8c.html" title="This file includes some implementations of some utility functions." alt="" coords="469,160,568,189"/>
+<area shape="rect" id="node14" href="$unit__test_8c.html" title="This file is used for unit test of functions in the security monitor." alt="" coords="592,160,675,189"/>
+</map>

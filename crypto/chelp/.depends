@@ -1,0 +1,1 @@
+include crypto/chelp/chelp.d crypto/chelp/chelp_mem.d crypto/chelp/chelp_str.d crypto/chelp/decryptcfg.d

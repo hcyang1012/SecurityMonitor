@@ -1,0 +1,1 @@
+include drivers/usb/uhci.d drivers/usb/uhci_debug.d drivers/usb/uhci_shadow.d drivers/usb/uhci_trans.d drivers/usb/ehci.d drivers/usb/ehci_debug.d drivers/usb/ehci_shadow.d drivers/usb/ehci_trans.d drivers/usb/usb_mscd.d drivers/usb/usb_hub.d drivers/usb/usb_ccid.d drivers/usb/usb.d drivers/usb/usb_device.d drivers/usb/usb_hid.d drivers/usb/usb_hook.d drivers/usb/usb_log.d

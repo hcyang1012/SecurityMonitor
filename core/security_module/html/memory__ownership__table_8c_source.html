@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Security Monitor: memory_ownership_table.c 소스 파일</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 다음에 의해 생성됨 :  Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">memory_ownership_table.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="memory__ownership__table_8c.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;<a class="code" href="memory__ownership__table_8h.html" title="Definition of data structrues &amp; constants for memory ownership table. .">memory_ownership_table.h</a>&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;<a class="code" href="guest__state_8h.html" title="High-level facilities to get guest VM&#39;s information.">guest_state.h</a>&gt;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;<a class="code" href="monitor__util_8h.html" title="This file exists for supporting some uiility functions.">monitor_util.h</a>&gt;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;<a class="code" href="monitor__ept_8h.html" title="This file declares some EPT-related functions and defines EPT-related constants.">monitor_ept.h</a>&gt;</span>
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 <span class="preprocessor">#ifdef CONFIG_BITVISOR</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#include &lt;mm.h&gt;</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#endif</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span>
+<a name="l00021"></a>00021 <span class="keyword">static</span> <span class="keyword">struct </span><a class="code" href="structmemory__ownership__table__entry__t.html" title="A structure-type definition for one memory ownership table entry.">memory_ownership_table_entry_t</a> memory_ownership_table[<a class="code" href="memory__ownership__table_8h.html#acafa06dcdfd6ded9cab8f00a00310fa0" title="A constant that describes the number of entries that the memory ownership table has to contain...">NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY</a>];
+<a name="l00022"></a>00022 
+<a name="l00023"></a><a class="code" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab">00023</a> <span class="keywordtype">void</span> <a class="code" href="memory__ownership__table_8h.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages.">protectCurrentApplication</a>()
+<a name="l00024"></a>00024 {
+<a name="l00025"></a>00025     <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> newVMID;
+<a name="l00026"></a>00026     <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> newAPPID;
+<a name="l00027"></a>00027     <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> cr3GPA;
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029     <a class="code" href="memory__ownership__table_8h.html#ae1d205ac777b83ae72c2dd3b447a65ba" title="Allocate new VM ID &amp; application ID.">allocateNewApplicationIdentifiers</a>(&amp;newVMID,&amp;newAPPID);
+<a name="l00030"></a>00030     cr3GPA = <a class="code" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table.">get_page_table_base_GPA</a>();
+<a name="l00031"></a>00031     <a class="code" href="guest__state_8c.html#a3d8f41db587aed7fce30c4edcd4aaaf6" title="Traverse all pages that start from startGPAofPageTable and do something for each page.">traverseGuestPages</a>(newVMID, newAPPID, cr3GPA, <a class="code" href="memory__ownership__table_8h.html#acffc09bfc5012b61572af3d6ae889d43" title="Set the a frame to closed state.">closePage</a>);
+<a name="l00032"></a>00032     printf(<span class="stringliteral">&quot;Closing end\n&quot;</span>);
+<a name="l00033"></a>00033 }
+<a name="l00034"></a>00034 
+<a name="l00035"></a><a class="code" href="memory__ownership__table_8c.html#ae1d205ac777b83ae72c2dd3b447a65ba">00035</a> <span class="keywordtype">void</span> <a class="code" href="memory__ownership__table_8h.html#ae1d205ac777b83ae72c2dd3b447a65ba" title="Allocate new VM ID &amp; application ID.">allocateNewApplicationIdentifiers</a>(<a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> *new_VMID, <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> *new_APPID)
+<a name="l00036"></a>00036 {
+<a name="l00037"></a>00037     <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> allocatedVMID;
+<a name="l00038"></a>00038     <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> allocatedAppID;
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040     allocatedVMID = <a class="code" href="memory__ownership__table_8h.html#ae2fff5cc4db7b79454cc5340eff858e8" title="This function returns currently running VM&#39;s ID. If it does not exist, this function allocates new on...">allocateNewVMID</a>();
+<a name="l00041"></a>00041     *new_VMID = allocatedVMID;
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043     allocatedAppID = <a class="code" href="memory__ownership__table_8h.html#a5e564d933aee4d6204f23f9eba2d4740" title="This function returns currently running process&#39;s ID. For new process, this function allocates new on...">allocateNewAppID</a>();
+<a name="l00044"></a>00044     *new_APPID = allocatedAppID;
+<a name="l00045"></a>00045 }
+<a name="l00046"></a>00046 
+<a name="l00047"></a><a class="code" href="memory__ownership__table_8c.html#ae2fff5cc4db7b79454cc5340eff858e8">00047</a> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> <a class="code" href="memory__ownership__table_8h.html#ae2fff5cc4db7b79454cc5340eff858e8" title="This function returns currently running VM&#39;s ID. If it does not exist, this function allocates new on...">allocateNewVMID</a>()
+<a name="l00048"></a>00048 {
+<a name="l00049"></a>00049     <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> newVMID;
+<a name="l00050"></a>00050     newVMID = <a class="code" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table.">get_ept_base_HPA</a>();
+<a name="l00051"></a>00051     <span class="keywordflow">return</span> newVMID;
+<a name="l00052"></a>00052 }
+<a name="l00053"></a>00053 
+<a name="l00054"></a><a class="code" href="memory__ownership__table_8c.html#aa6dd955e652782e55e14ceec2c99e0b7">00054</a> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> <a class="code" href="memory__ownership__table_8h.html#a5e564d933aee4d6204f23f9eba2d4740" title="This function returns currently running process&#39;s ID. For new process, this function allocates new on...">allocateNewAppID</a>()
+<a name="l00055"></a>00055 {
+<a name="l00056"></a>00056     <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> newAppID;
+<a name="l00057"></a>00057     newAppID = <a class="code" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table.">get_page_table_base_GPA</a>();   
+<a name="l00058"></a>00058     <span class="keywordflow">return</span> newAppID;
+<a name="l00059"></a>00059 }
+<a name="l00060"></a>00060 
+<a name="l00061"></a><a class="code" href="memory__ownership__table_8c.html#a072c0b2cb03e68adb03689dffe34aa4c">00061</a> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> <a class="code" href="memory__ownership__table_8h.html#a072c0b2cb03e68adb03689dffe34aa4c" title="A function which is used to change HPA to index of the memory ownership table.">getMemoryOwnershipTableIndex</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> hpa)
+<a name="l00062"></a>00062 {
+<a name="l00063"></a>00063     <span class="keywordflow">return</span> hpa &gt;&gt; <a class="code" href="memory__ownership__table_8h.html#af4040dfd1fdb6c10d8ed2631173e5597" title="A constant which is used to change HPA to index of the memory ownership table.">HPA_TO_INDEX_SHIFT</a>;
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 
+<a name="l00066"></a><a class="code" href="memory__ownership__table_8c.html#af13e8ca1a88180df93e4af4db30e3244">00066</a> <span class="keywordtype">void</span>* <a class="code" href="memory__ownership__table_8h.html#acffc09bfc5012b61572af3d6ae889d43" title="Set the a frame to closed state.">closePage</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> gpa)
+<a name="l00067"></a>00067 {
+<a name="l00068"></a>00068     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> targetEPTEntryHPA = 0;
+<a name="l00069"></a>00069     <a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a> *pTargetEPTEntry, targetEPTEntry;
+<a name="l00070"></a>00070     <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(gpa, &amp;targetEPTEntryHPA);
+<a name="l00071"></a>00071     <span class="keywordflow">if</span>(targetEPTEntryHPA)
+<a name="l00072"></a>00072     {
+<a name="l00073"></a>00073         pTargetEPTEntry = <a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(targetEPTEntryHPA, <span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00074"></a>00074         <span class="keywordflow">if</span>(!pTargetEPTEntry)
+<a name="l00075"></a>00075         {
+<a name="l00076"></a>00076             printf(<span class="stringliteral">&quot;Error\n&quot;</span>);
+<a name="l00077"></a>00077             <span class="keywordflow">return</span> 0;
+<a name="l00078"></a>00078         }
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081         <span class="keywordflow">if</span>(<a class="code" href="memory__ownership__table_8h.html#a59d1447dba2fa1b312cae249d379ccf9" title="change a page&#39;s status">changePageStatus</a>(vmID, appID, gpa, <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">CLOSED</a>))
+<a name="l00082"></a>00082         {
+<a name="l00083"></a>00083             targetEPTEntry = *pTargetEPTEntry;
+<a name="l00084"></a>00084             targetEPTEntry &amp;= (~(<a class="code" href="monitor__ept_8h.html#af0f9b8645d450175e29fa94945a7f2ab" title="A mask to extract page attribute from EPT entry The bits [2:0] indicate R/W/X attribute of a page...">EPT_ATTRIBUTE_MASK</a>));
+<a name="l00085"></a>00085             *pTargetEPTEntry = targetEPTEntry;
+<a name="l00086"></a>00086             <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pTargetEPTEntry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));            
+<a name="l00087"></a>00087         }
+<a name="l00088"></a>00088         <span class="keywordflow">else</span>
+<a name="l00089"></a>00089         {
+<a name="l00090"></a>00090             <span class="comment">//printf(&quot;Fail\n&quot;);</span>
+<a name="l00091"></a>00091         }
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094     <span class="keywordflow">return</span> 0;
+<a name="l00095"></a>00095 }
+<a name="l00096"></a>00096 
+<a name="l00097"></a><a class="code" href="memory__ownership__table_8c.html#abf5fe4889dc29561c6131dc40c59fc61">00097</a> <span class="keywordtype">int</span> <a class="code" href="memory__ownership__table_8h.html#a59d1447dba2fa1b312cae249d379ccf9" title="change a page&#39;s status">changePageStatus</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a> vmID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a> appID, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> gpa, <span class="keyword">const</span> <span class="keyword">enum</span> <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9" title="A enumeration for describing page state.">page_state_t</a> <a class="code" href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">state</a>)
+<a name="l00098"></a>00098 {
+<a name="l00099"></a>00099     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> targetEPTEntryHPA;
+<a name="l00100"></a>00100     <a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a> *pTargetEPTEntry, targetEPTEntry;
+<a name="l00101"></a>00101     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> hpa = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(gpa, &amp;targetEPTEntryHPA);
+<a name="l00102"></a>00102     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> index;
+<a name="l00103"></a>00103     <a class="code" href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef" title="A type definition for a unsigned 8-bits data.">U8_t</a> pageAttribute;
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105     index = <a class="code" href="memory__ownership__table_8h.html#a072c0b2cb03e68adb03689dffe34aa4c" title="A function which is used to change HPA to index of the memory ownership table.">getMemoryOwnershipTableIndex</a>(hpa);
+<a name="l00106"></a>00106     <span class="comment">//printf(&quot;Index : %d / %d\n&quot;,index,NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY);</span>
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108     pTargetEPTEntry = <a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(targetEPTEntryHPA, <span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00109"></a>00109     <span class="keywordflow">if</span>(!pTargetEPTEntry)
+<a name="l00110"></a>00110     {
+<a name="l00111"></a>00111         printf(<span class="stringliteral">&quot;Error : %s(%d)\n&quot;</span>,__FILE__, __LINE__);
+<a name="l00112"></a>00112         <span class="keywordflow">return</span> 0;
+<a name="l00113"></a>00113     }
+<a name="l00114"></a>00114     targetEPTEntry = *pTargetEPTEntry;
+<a name="l00115"></a>00115     <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pTargetEPTEntry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117     pageAttribute = targetEPTEntry &amp; <a class="code" href="monitor__ept_8h.html#af0f9b8645d450175e29fa94945a7f2ab" title="A mask to extract page attribute from EPT entry The bits [2:0] indicate R/W/X attribute of a page...">EPT_ATTRIBUTE_MASK</a>;
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120     <span class="keywordflow">if</span>(index &gt;= <a class="code" href="memory__ownership__table_8h.html#acafa06dcdfd6ded9cab8f00a00310fa0" title="A constant that describes the number of entries that the memory ownership table has to contain...">NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY</a>)
+<a name="l00121"></a>00121     {
+<a name="l00122"></a>00122         printf(<span class="stringliteral">&quot;%s(%d) - Overflow : %d(%llx) / %d \n&quot;</span>,__FILE__,__LINE__,index,hpa,<a class="code" href="memory__ownership__table_8h.html#acafa06dcdfd6ded9cab8f00a00310fa0" title="A constant that describes the number of entries that the memory ownership table has to contain...">NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY</a>);
+<a name="l00123"></a>00123     }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125     <span class="keywordflow">if</span>( memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">owner_VM</a> == 0 &amp;&amp;
+<a name="l00126"></a>00126         memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">owner_APP</a> == 0)
+<a name="l00127"></a>00127     {
+<a name="l00128"></a>00128         memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">owner_VM</a> = vmID;
+<a name="l00129"></a>00129         memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">owner_APP</a> = appID;
+<a name="l00130"></a>00130         memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">state</a> = <a class="code" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9a929f0327e17604ce9713b2a6117bd603">CLOSED</a>;
+<a name="l00131"></a>00131         memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a997c69015870109b28461bfe0936cae9">original_permission</a> = pageAttribute;
+<a name="l00132"></a>00132         memory_ownership_table[index].<a class="code" href="structmemory__ownership__table__entry__t.html#a20729fd7e2a7b883cf27718596f2263a">original_page_address</a> = 0;
+<a name="l00133"></a>00133         
+<a name="l00134"></a>00134         <span class="keywordflow">return</span> 1;
+<a name="l00135"></a>00135     }
+<a name="l00136"></a>00136     <span class="keywordflow">return</span> 0;
+<a name="l00137"></a>00137 }
+<a name="l00138"></a>00138 
+<a name="l00139"></a><a class="code" href="memory__ownership__table_8c.html#ae90bcf6f70a70e565b7b941019874566">00139</a> <span class="keyword">struct </span><a class="code" href="structmemory__ownership__table__entry__t.html" title="A structure-type definition for one memory ownership table entry.">memory_ownership_table_entry_t</a> <a class="code" href="memory__ownership__table_8h.html#ae90bcf6f70a70e565b7b941019874566" title="A function which is used to get an entry of memory ownership table.">getMemoryOwnershipTableEntry</a>(const <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> index)
+<a name="l00140"></a>00140 {
+<a name="l00141"></a>00141     <span class="keywordflow">return</span> memory_ownership_table[index];
+<a name="l00142"></a>00142 }
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 4월 4 2014 00:46:47, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

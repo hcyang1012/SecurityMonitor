@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Security Monitor: include/monitor_types.h 소스 파일</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 다음에 의해 생성됨 :  Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">include/monitor_types.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="monitor__types_8h.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00045"></a>00045 <span class="preprocessor">#ifndef __MONITOR_TYPES_h__</span>
+<a name="l00046"></a>00046 <span class="preprocessor"></span><span class="preprocessor">#define __MONITOR_TYPES_h__</span>
+<a name="l00047"></a>00047 <span class="preprocessor"></span>
+<a name="l00048"></a><a class="code" href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef">00048</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>   <a class="code" href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef" title="A type definition for a unsigned 8-bits data.">U8_t</a>;
+<a name="l00049"></a><a class="code" href="monitor__types_8h.html#a94a9bed88b9d616fb24861d14ecc8c97">00049</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>  <a class="code" href="monitor__types_8h.html#a94a9bed88b9d616fb24861d14ecc8c97" title="A type definition for a unsigned 16-bits data.">U16_t</a>;
+<a name="l00050"></a><a class="code" href="monitor__types_8h.html#a7d95b1a68a8959f02a82e7b360cd2d2a">00050</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>   <a class="code" href="monitor__types_8h.html#a7d95b1a68a8959f02a82e7b360cd2d2a" title="A type definition for a unsigned 32-bits data.">U32_t</a>;
+<a name="l00051"></a><a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617">00051</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>  <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>;
+<a name="l00052"></a>00052 
+<a name="l00053"></a><a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">00053</a> <span class="keyword">typedef</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>   <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a>;
+<a name="l00054"></a><a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">00054</a> <span class="keyword">typedef</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>   <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a>;
+<a name="l00055"></a><a class="code" href="monitor__types_8h.html#ac907eebb79dda7ef9e53c39e1b4a721e">00055</a> <span class="keyword">typedef</span> <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a>   <a class="code" href="monitor__types_8h.html#ac907eebb79dda7ef9e53c39e1b4a721e" title="A type definition for EPT Pointer (HPA). &gt; Note : EPTP_t is equal to HPA.">EPTP_t</a>;
+<a name="l00056"></a>00056 
+<a name="l00057"></a><a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">00057</a> <span class="keyword">typedef</span> <a class="code" href="monitor__types_8h.html#ac907eebb79dda7ef9e53c39e1b4a721e" title="A type definition for EPT Pointer (HPA). &gt; Note : EPTP_t is equal to HPA.">EPTP_t</a>  <a class="code" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02" title="A type definition for ID of a virtual machine. &gt; In this implementation, this type is equal to EPTP_t...">VMID_t</a>;
+<a name="l00058"></a><a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">00058</a> <span class="keyword">typedef</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a>   <a class="code" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d" title="A type definition for ID of a application in a virtual machine. &gt; In this implmentation, this type is equal to GPA_t.">APPID_t</a>;
+<a name="l00059"></a>00059 
+<a name="l00060"></a><a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0">00060</a> <span class="keyword">typedef</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>   <a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>;
+<a name="l00061"></a><a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d">00061</a> <span class="keyword">typedef</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a>   <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>;
+<a name="l00062"></a>00062 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 4월 4 2014 00:46:47, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

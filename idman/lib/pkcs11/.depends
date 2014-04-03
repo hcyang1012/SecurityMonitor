@@ -1,0 +1,1 @@
+include idman/lib/pkcs11/IDMan_PKCardAccess.d idman/lib/pkcs11/IDMan_PKCardData.d idman/lib/pkcs11/IDMan_PKList.d idman/lib/pkcs11/IDMan_PKPkcs11.d

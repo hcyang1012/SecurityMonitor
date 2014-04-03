@@ -33,6 +33,12 @@
 	\enum page_state_t
 	\brief A enumeration for describing page state.
 
+	\enum  ownerAppID_t
+	\brief A enumeration for describing owner application of a page
+
+	\enum ownerVMID_t	
+	\brief A enumeration for describing owner virtual machine of a page
+
 	\struct memory_ownership_table_entry_t
 	\brief A structure-type definition for one memory ownership table entry.
 
@@ -114,6 +120,9 @@
 
 	\fn U64_t getMemoryOwnershipTableIndex(const HPA_t hpa)
 	\brief A function which is used to change HPA to index of the memory ownership table.
+
+	\fn struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(U64_t index)
+	\brief A function which is used to get an entry of memory ownership table
 */
 #ifndef __MEMORY_OWNERSHIP_TABLE_H__
 #define __MEMORY_OWNERSHIP_TABLE_H__
@@ -126,6 +135,15 @@ enum page_state_t{
 	OPENED,				/**< opened state */
 	PARTIAL,			/**< partialy-opened state */
 	ENCRYPTED			/**< encrypted state */
+};
+
+enum ownerAppID_t{
+	KERNEL = 0	/**< The owner is the guest kernel */
+};
+
+enum ownerVMID_t
+{
+	VMM = 0		/**< The owner is virtual machine monitor */
 };
 
 struct memory_ownership_table_entry_t
@@ -161,6 +179,6 @@ int changePageStatus(	const VMID_t vmid, /**< [in] owner VMID of the page to clo
 						);
 
 U64_t getMemoryOwnershipTableIndex(const HPA_t hpa /*<< [in] HPA to change */);
-struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(U64_t index);
+struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(const U64_t index /*<< [in] index to an entry of memory ownership table */);
 
 #endif

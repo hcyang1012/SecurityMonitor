@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Security Monitor: unit_test.c 소스 파일</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 다음에 의해 생성됨 :  Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">unit_test.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="unit__test_8c.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;<a class="code" href="monitor__util_8h.html" title="This file exists for supporting some uiility functions.">monitor_util.h</a>&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;<a class="code" href="guest__state_8h.html" title="High-level facilities to get guest VM&#39;s information.">guest_state.h</a>&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;<a class="code" href="monitor__types_8h.html" title="Definitions of types that are used in this project.">monitor_types.h</a>&gt;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;<a class="code" href="unit__test_8h.html" title="This file declares functions for unit test of functions in the security module.">unit_test.h</a>&gt;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;<a class="code" href="guest___i_a32e_page_8h.html" title="functions and constants to support IA32e paging mode of guest VM">guest_IA32ePage.h</a>&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#ifdef CONFIG_BITVISOR</span>
+<a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">    #include &lt;printf.h&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#endif</span>
+<a name="l00013"></a>00013 <span class="preprocessor"></span>
+<a name="l00014"></a><a class="code" href="unit__test_8c.html#a4b454bbf54829d209850a8efa639b942">00014</a> <span class="keywordtype">void</span> <a class="code" href="unit__test_8h.html#a4b454bbf54829d209850a8efa639b942" title="A function to start unit test.">test_start</a>()
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016     <span class="keywordtype">int</span> result;
+<a name="l00017"></a>00017     <span class="keywordflow">if</span>(<a class="code" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table.">get_page_table_base_GPA</a>())
+<a name="l00018"></a>00018     {
+<a name="l00019"></a>00019         printf(<span class="stringliteral">&quot;Unit test start\n&quot;</span>);
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021         printf(<span class="stringliteral">&quot;Test &#39;gpaToHPA()&#39;\n&quot;</span>);
+<a name="l00022"></a>00022         result = <a class="code" href="unit__test_8h.html#a9a5ea09666782de7674e77cb9211aa9f" title="A testing function for [gpaToHPA](gpaToHPA)">test_gpaToHPA</a>();
+<a name="l00023"></a>00023         printf(<span class="stringliteral">&quot;Test &#39;gpaToHPA()&#39; end; result : %s\n&quot;</span>,result?<span class="stringliteral">&quot;success&quot;</span>:<span class="stringliteral">&quot;fail&quot;</span>);     
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="comment">/*      printf(&quot;Test &#39;test_logicalCPUStatus()&#39;\n&quot;);</span>
+<a name="l00026"></a>00026 <span class="comment">        result = test_logicalCPUStatus();</span>
+<a name="l00027"></a>00027 <span class="comment">        printf(&quot;Test &#39;test_logicalCPUStatus()&#39; end; result : %s\n&quot;,result?&quot;success&quot;:&quot;fail&quot;);                */</span>
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029         printf(<span class="stringliteral">&quot;Test &#39;test_traverseGuestPages()&#39;\n&quot;</span>);
+<a name="l00030"></a>00030         result = <a class="code" href="unit__test_8h.html#a086ccec56f0e0c8b7a62d3166a3f3aa4" title="A testing function for [traverseGuestPages](traverseGuestPages)">test_traverseGuestPages</a>();
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032         printf(<span class="stringliteral">&quot;Test &#39;test_traverseGuestPages()&#39; end; result : %s\n&quot;</span>,result?<span class="stringliteral">&quot;success&quot;</span>:<span class="stringliteral">&quot;fail&quot;</span>);
+<a name="l00033"></a>00033     }
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 }
+<a name="l00036"></a>00036 
+<a name="l00037"></a><a class="code" href="unit__test_8c.html#a9a5ea09666782de7674e77cb9211aa9f">00037</a> <span class="keywordtype">int</span> <a class="code" href="unit__test_8h.html#a9a5ea09666782de7674e77cb9211aa9f" title="A testing function for [gpaToHPA](gpaToHPA)">test_gpaToHPA</a>()
+<a name="l00038"></a>00038 {
+<a name="l00039"></a>00039     <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> input;
+<a name="l00040"></a>00040     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> output;
+<a name="l00041"></a>00041     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> expected;
+<a name="l00042"></a>00042     input = (<a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a>)<a class="code" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table.">get_page_table_base_GPA</a>();
+<a name="l00043"></a>00043     input |= 0xCDE;
+<a name="l00044"></a>00044     output = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(input, 0);
+<a name="l00045"></a>00045 <span class="preprocessor">#ifdef CONFIG_BITVISOR</span>
+<a name="l00046"></a>00046 <span class="preprocessor"></span>    expected = input;
+<a name="l00047"></a>00047     <span class="keywordflow">return</span> expected == output;
+<a name="l00048"></a>00048 <span class="preprocessor">#else</span>
+<a name="l00049"></a>00049 <span class="preprocessor"></span>    expected = 0;
+<a name="l00050"></a>00050     <span class="keywordflow">return</span> 0;
+<a name="l00051"></a>00051 <span class="preprocessor">#endif</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span>}
+<a name="l00053"></a>00053 
+<a name="l00054"></a><a class="code" href="unit__test_8c.html#a086ccec56f0e0c8b7a62d3166a3f3aa4">00054</a> <span class="keywordtype">int</span> <a class="code" href="unit__test_8h.html#a086ccec56f0e0c8b7a62d3166a3f3aa4" title="A testing function for [traverseGuestPages](traverseGuestPages)">test_traverseGuestPages</a>()
+<a name="l00055"></a>00055 {
+<a name="l00056"></a>00056     <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> cr3GPA;
+<a name="l00057"></a>00057     cr3GPA = <a class="code" href="guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table.">get_page_table_base_GPA</a>();
+<a name="l00058"></a>00058     printf(<span class="stringliteral">&quot;Guest CR3 : %llx\n&quot;</span>,cr3GPA);
+<a name="l00059"></a>00059     printf(<span class="stringliteral">&quot;EPT_PML4_ENTRY_MASK : %llx\n&quot;</span>,<a class="code" href="guest___i_a32e_page_8h.html#a71ab36e768a6cf0cff31a9e288abe306" title="A mask that is used to extract base HPA of EPT PDP from EPT PML4 entry.">EPT_PML4_ENTRY_MASK</a>);
+<a name="l00060"></a>00060     <span class="comment">//traverseGuestPages(cr3GPA, 0);    </span>
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062     <span class="keywordflow">return</span> 1;
+<a name="l00063"></a>00063 }
+<a name="l00064"></a>00064 
+<a name="l00065"></a><a class="code" href="unit__test_8c.html#a3156e95cd80005f4c6f3f70e9914e135">00065</a> <span class="keywordtype">int</span> <a class="code" href="unit__test_8h.html#a3156e95cd80005f4c6f3f70e9914e135" title="A testing function to see the logical CPU configuration.">test_logicalCPUStatus</a>()
+<a name="l00066"></a>00066 {
+<a name="l00067"></a>00067     <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> value_IA32_EFER = 0xFD;
+<a name="l00068"></a>00068     value_IA32_EFER = <a class="code" href="vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS">monitor_vmcs_read</a>(<a class="code" href="vmcs_8h.html#a0df456d45752487755b05fb421a43c4b" title="GUEST IA32_EFER (full) encoding.">FIELD_ENCODING_IA32_EFER</a>);
+<a name="l00069"></a>00069     printf(<span class="stringliteral">&quot;IA32_EFER value : %llx\n&quot;</span>,value_IA32_EFER);
+<a name="l00070"></a>00070     <span class="keywordflow">return</span> 1;
+<a name="l00071"></a>00071 }
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 4월 4 2014 00:46:48, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

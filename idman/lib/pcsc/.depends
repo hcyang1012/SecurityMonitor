@@ -1,0 +1,1 @@
+include idman/lib/pcsc/IDMan_PcEventhandler.d idman/lib/pcsc/IDMan_PcHotplug_libusb.d idman/lib/pcsc/IDMan_PcProthandler.d idman/lib/pcsc/IDMan_PcReaderfactory.d idman/lib/pcsc/IDMan_PcWinscard.d

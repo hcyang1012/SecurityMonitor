@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Security Monitor: memory_ownership_table_entry_t 구조체 참조</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 다음에 의해 생성됨 :  Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li class="current"><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li><a href="classes.html"><span>데이타&#160;구조&#160;색인</span></a></li>
+      <li><a href="functions.html"><span>데이타&#160;필드</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">데이타 필드</a>  </div>
+  <div class="headertitle">
+<div class="title">memory_ownership_table_entry_t 구조체 참조</div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="memory_ownership_table_entry_t" -->
+<p>A structure-type definition for one memory ownership table entry.  
+ <a href="structmemory__ownership__table__entry__t.html#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+데이타 필드</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">owner_VM</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">owner_APP</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">page_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">state</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef">U8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmemory__ownership__table__entry__t.html#a997c69015870109b28461bfe0936cae9">original_permission</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmemory__ownership__table__entry__t.html#a20729fd7e2a7b883cf27718596f2263a">original_page_address</a></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>상세한 설명</h2>
+<div class="textblock"><p>A structure-type definition for one memory ownership table entry. </p>
+
+<p><a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a> 파일의 <a class="el" href="memory__ownership__table_8h_source.html#l00149">149</a> 번째 라인에서 정의되었습니다.</p>
+</div><hr/><h2>필드 문서화</h2>
+<a class="anchor" id="a20729fd7e2a7b883cf27718596f2263a"></a><!-- doxytag: member="memory_ownership_table_entry_t::original_page_address" ref="a20729fd7e2a7b883cf27718596f2263a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac">HPA_t</a> <a class="el" href="structmemory__ownership__table__entry__t.html#a20729fd7e2a7b883cf27718596f2263a">original_page_address</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The back-upped original page address storage for partialy-opened state </p>
+
+<p><a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a> 파일의 <a class="el" href="memory__ownership__table_8h_source.html#l00155">155</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a class="anchor" id="a997c69015870109b28461bfe0936cae9"></a><!-- doxytag: member="memory_ownership_table_entry_t::original_permission" ref="a997c69015870109b28461bfe0936cae9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="monitor__types_8h.html#a5e335338bb0cb66eca6ae05e61c526ef">U8_t</a> <a class="el" href="structmemory__ownership__table__entry__t.html#a997c69015870109b28461bfe0936cae9">original_permission</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Original permission of the page in the corresponding EPT entry </p>
+
+<p><a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a> 파일의 <a class="el" href="memory__ownership__table_8h_source.html#l00154">154</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8f52b1707f086d4e06056414cf0cadd4"></a><!-- doxytag: member="memory_ownership_table_entry_t::owner_APP" ref="a8f52b1707f086d4e06056414cf0cadd4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> <a class="el" href="structmemory__ownership__table__entry__t.html#a8f52b1707f086d4e06056414cf0cadd4">owner_APP</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ID of the owner application of the page </p>
+
+<p><a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a> 파일의 <a class="el" href="memory__ownership__table_8h_source.html#l00152">152</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a class="anchor" id="a51da83c62e5656f11f5539fa4345fc1b"></a><!-- doxytag: member="memory_ownership_table_entry_t::owner_VM" ref="a51da83c62e5656f11f5539fa4345fc1b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> <a class="el" href="structmemory__ownership__table__entry__t.html#a51da83c62e5656f11f5539fa4345fc1b">owner_VM</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>ID of VM that the owner application of the page is running on </p>
+
+<p><a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a> 파일의 <a class="el" href="memory__ownership__table_8h_source.html#l00151">151</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae737ccf446b6f6c963e6621c88b267f5"></a><!-- doxytag: member="memory_ownership_table_entry_t::state" ref="ae737ccf446b6f6c963e6621c88b267f5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="memory__ownership__table_8h.html#a762dbb1b87d732bb043fdaebe9fa73a9">page_state_t</a> <a class="el" href="structmemory__ownership__table__entry__t.html#ae737ccf446b6f6c963e6621c88b267f5">state</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Page state </p>
+
+<p><a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a> 파일의 <a class="el" href="memory__ownership__table_8h_source.html#l00153">153</a> 번째 라인에서 정의되었습니다.</p>
+
+</div>
+</div>
+<hr/>이 구조체에 대한 문서화 페이지는 다음의 파일로부터 생성되었습니다.:<ul>
+<li>include/<a class="el" href="memory__ownership__table_8h_source.html">memory_ownership_table.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 4월 4 2014 00:46:48, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

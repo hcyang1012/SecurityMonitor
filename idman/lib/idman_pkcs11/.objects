@@ -1,0 +1,1 @@
+idman/lib/idman_pkcs11/IDMan_IPCommon.o idman/lib/idman_pkcs11/IDMan_IPgenerateSignature.o idman/lib/idman_pkcs11/IDMan_IPgetCertificate.o idman/lib/idman_pkcs11/IDMan_IPgetStaticPassword.o idman/lib/idman_pkcs11/IDMan_IPuserAuthPKCS11.o idman/lib/idman_pkcs11/IDMan_IPverifySignature.o

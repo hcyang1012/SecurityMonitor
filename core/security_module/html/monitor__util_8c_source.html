@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Security Monitor: monitor_util.c 소스 파일</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 다음에 의해 생성됨 :  Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">monitor_util.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="monitor__util_8c.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;<a class="code" href="monitor__util_8h.html" title="This file exists for supporting some uiility functions.">monitor_util.h</a>&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;<a class="code" href="monitor__ept_8h.html" title="This file declares some EPT-related functions and defines EPT-related constants.">monitor_ept.h</a>&gt;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;<a class="code" href="guest__state_8h.html" title="High-level facilities to get guest VM&#39;s information.">guest_state.h</a>&gt;</span>
+<a name="l00009"></a>00009 
+<a name="l00010"></a>00010 <span class="preprocessor">#ifdef CONFIG_BITVISOR</span>
+<a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">    #include &lt;mm.h&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#endif</span>
+<a name="l00013"></a>00013 <span class="preprocessor"></span>
+<a name="l00014"></a><a class="code" href="monitor__util_8c.html#a19ca3fbdba02a8a291fbf56b030e7323">00014</a> <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> gpa, <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> *eptEntryHPA)
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> eptBaseHPA;
+<a name="l00017"></a>00017     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentEPT_PML4_Entry_HPA;
+<a name="l00018"></a>00018     <a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a> *pCurrentEPT_PML4_Entry, currentEPT_PML4_Entry;
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> eptBase_PDP_HPA;
+<a name="l00021"></a>00021     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentEPT_PDP_Entry_HPA;
+<a name="l00022"></a>00022     <a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a> *pCurrentEPT_PDP_Entry, currentEPT_PDP_Entry;
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> eptBase_PD_HPA;
+<a name="l00025"></a>00025     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentEPT_PD_Entry_HPA;
+<a name="l00026"></a>00026     <a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a> *pCurrentEPT_PD_Entry, currentEPT_PD_Entry; 
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> eptBase_PT_HPA;
+<a name="l00029"></a>00029     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentEPT_PT_Entry_HPA;
+<a name="l00030"></a>00030     <a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a> *pCurrentEPT_PT_Entry, currentEPT_PT_Entry;     
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032     <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> pageFrameHPA;
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034     <span class="keywordflow">if</span>(eptEntryHPA)
+<a name="l00035"></a>00035     {
+<a name="l00036"></a>00036         *eptEntryHPA = 0;
+<a name="l00037"></a>00037     }
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039     eptBaseHPA = <a class="code" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table.">get_ept_base_HPA</a>();
+<a name="l00040"></a>00040     currentEPT_PML4_Entry_HPA = eptBaseHPA | ((gpa &amp; <a class="code" href="monitor__ept_8h.html#ace14d38a20945cb7618b39812883005c" title="A mask used to extract HPA of EPT entry from GPA.">EPT_PML4_GPA_MASK</a>) &gt;&gt; <a class="code" href="monitor__ept_8h.html#a3ce3f0ab82d640f2e804b9731ad40372" title="A right-shift value for EPT-PML4 entry address calculation.">EPT_PML4_GPA_SHIFT</a>);
+<a name="l00041"></a>00041     pCurrentEPT_PML4_Entry = (<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentEPT_PML4_Entry_HPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00042"></a>00042     <span class="keywordflow">if</span>(!pCurrentEPT_PML4_Entry)
+<a name="l00043"></a>00043     {
+<a name="l00044"></a>00044         <span class="keywordflow">return</span> 0;
+<a name="l00045"></a>00045     }
+<a name="l00046"></a>00046     currentEPT_PML4_Entry = *pCurrentEPT_PML4_Entry;
+<a name="l00047"></a>00047     <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentEPT_PML4_Entry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00048"></a>00048     <span class="keywordflow">if</span>(!currentEPT_PML4_Entry)
+<a name="l00049"></a>00049     {
+<a name="l00050"></a>00050         <span class="keywordflow">return</span> 0;
+<a name="l00051"></a>00051     }
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053     eptBase_PDP_HPA = currentEPT_PML4_Entry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a71ab36e768a6cf0cff31a9e288abe306" title="A mask that is used to extract base HPA of EPT PDP from EPT PML4 entry.">EPT_PML4_ENTRY_MASK</a>;
+<a name="l00054"></a>00054     currentEPT_PDP_Entry_HPA = eptBase_PDP_HPA | ((gpa &amp; <a class="code" href="monitor__ept_8h.html#a2cc4d274ab4b1835614390ec864191fe" title="A mask used to extract HPA of EPT entry from GPA.">EPT_PDP_GPA_MASK</a>) &gt;&gt; <a class="code" href="monitor__ept_8h.html#a945351fadae2a2f125144db6a7e943c0" title="A right-shift value for EPT-PDP entry address calculation.">EPT_PDP_GPA_SHIFT</a>);
+<a name="l00055"></a>00055     pCurrentEPT_PDP_Entry = (<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentEPT_PDP_Entry_HPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00056"></a>00056     <span class="keywordflow">if</span>(!pCurrentEPT_PDP_Entry)
+<a name="l00057"></a>00057     {
+<a name="l00058"></a>00058         <span class="keywordflow">return</span> 0;
+<a name="l00059"></a>00059     }
+<a name="l00060"></a>00060     currentEPT_PDP_Entry = *pCurrentEPT_PDP_Entry;
+<a name="l00061"></a>00061     <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentEPT_PDP_Entry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00062"></a>00062     <span class="keywordflow">if</span>(!currentEPT_PDP_Entry)
+<a name="l00063"></a>00063     {
+<a name="l00064"></a>00064         <span class="keywordflow">return</span> 0;
+<a name="l00065"></a>00065     }   
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067     eptBase_PD_HPA = currentEPT_PDP_Entry &amp; <a class="code" href="guest___i_a32e_page_8h.html#aca4d6718af5283d4aa065fac24e64e54" title="A mask that is used to extract base HPA of EPT PDP from EPT PDP table entry.">EPT_PDP_ENTRY_MASK</a>;
+<a name="l00068"></a>00068     currentEPT_PD_Entry_HPA = eptBase_PD_HPA | ((gpa &amp; <a class="code" href="monitor__ept_8h.html#abf806e0ba2ec2f5405e3ef9701d8a737" title="A mask used to extract HPA of EPT entry from GPA.">EPT_PD_GPA_MASK</a>) &gt;&gt; <a class="code" href="monitor__ept_8h.html#aa06a29042c653e73fca00adc8fd7d663" title="A right-shift value for EPT-PD entry address calculation.">EPT_PD_GPA_SHIFT</a>);
+<a name="l00069"></a>00069     pCurrentEPT_PD_Entry = (<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentEPT_PD_Entry_HPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00070"></a>00070     <span class="keywordflow">if</span>(!pCurrentEPT_PD_Entry)
+<a name="l00071"></a>00071     {
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> 0;
+<a name="l00073"></a>00073     }   
+<a name="l00074"></a>00074     currentEPT_PD_Entry = *pCurrentEPT_PD_Entry;
+<a name="l00075"></a>00075     <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentEPT_PD_Entry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00076"></a>00076     <span class="keywordflow">if</span>(!currentEPT_PD_Entry)
+<a name="l00077"></a>00077     {
+<a name="l00078"></a>00078         <span class="keywordflow">return</span> 0;
+<a name="l00079"></a>00079     }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081     eptBase_PT_HPA = currentEPT_PD_Entry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a23ff1894aab21877ab61e8d453aacaec" title="A mask that is used to extract base HPA of EPT PT from EPT PD table entry.">EPT_PD_ENTRY_MASK</a>;
+<a name="l00082"></a>00082     currentEPT_PT_Entry_HPA = eptBase_PT_HPA | ((gpa &amp; <a class="code" href="monitor__ept_8h.html#a6f24b0fd49793bb5746899f709fbf171" title="A mask used to extract HPA of EPT entry from GPA.">EPT_PT_GPA_MASK</a>) &gt;&gt; <a class="code" href="monitor__ept_8h.html#a95ef0343cf64ff4f5c3a519d24d131dc" title="A right-shift value for EPT-PT entry address calculation.">EPT_PT_GPA_SHIFT</a>);
+<a name="l00083"></a>00083     pCurrentEPT_PT_Entry = (<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentEPT_PT_Entry_HPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00084"></a>00084     <span class="keywordflow">if</span>(!pCurrentEPT_PT_Entry)
+<a name="l00085"></a>00085     {
+<a name="l00086"></a>00086         <span class="keywordflow">return</span> 0;
+<a name="l00087"></a>00087     }
+<a name="l00088"></a>00088     currentEPT_PT_Entry = *pCurrentEPT_PT_Entry;
+<a name="l00089"></a>00089     <span class="keywordflow">if</span>(eptEntryHPA)
+<a name="l00090"></a>00090     {
+<a name="l00091"></a>00091         *eptEntryHPA = currentEPT_PT_Entry_HPA; 
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093     <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentEPT_PT_Entry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#ae2a9c06a03ebe51122eda7315fbeb5b0" title="A type definition for EPT entry.">EPT_ENTRY_t</a>));
+<a name="l00094"></a>00094     <span class="keywordflow">if</span>(!currentEPT_PT_Entry)
+<a name="l00095"></a>00095     {
+<a name="l00096"></a>00096         <span class="keywordflow">return</span> 0;
+<a name="l00097"></a>00097     }
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099     pageFrameHPA = ((currentEPT_PT_Entry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a369c8c91c392e3da4f0368c4640563df" title="A mask that is used to extract base HPA of page from EPT page table entry.">EPT_PT_ENTRY_MASK</a>) | (gpa &amp; <a class="code" href="monitor__ept_8h.html#a666c4ed20e984021f4fd95a52bd2144f" title="A mask used to extract HPA of EPT entry from GPA.">EPT_GPA_MASK</a>));
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101     <span class="keywordflow">return</span> pageFrameHPA;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 }
+<a name="l00104"></a>00104 
+<a name="l00105"></a><a class="code" href="monitor__util_8c.html#a5c5054946f567612d0ad5878def288f3">00105</a> <span class="keywordtype">void</span> *<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(<span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> hpa, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> size)
+<a name="l00106"></a>00106 {
+<a name="l00107"></a>00107 <span class="preprocessor">    #ifdef CONFIG_BITVISOR</span>
+<a name="l00108"></a>00108 <span class="preprocessor"></span>    <span class="keywordtype">void</span> *hva = 0;
+<a name="l00109"></a>00109     <span class="keywordflow">while</span>(!hva)
+<a name="l00110"></a>00110     {
+<a name="l00111"></a>00111         hva = mapmem_hphys (hpa, size, 0);
+<a name="l00112"></a>00112     }
+<a name="l00113"></a>00113     <span class="keywordflow">return</span> hva;
+<a name="l00114"></a>00114 <span class="preprocessor">    #else</span>
+<a name="l00115"></a>00115 <span class="preprocessor"></span>        <span class="keywordflow">return</span> 0;
+<a name="l00116"></a>00116 <span class="preprocessor">    #endif</span>
+<a name="l00117"></a>00117 <span class="preprocessor"></span>}
+<a name="l00118"></a>00118 
+<a name="l00119"></a><a class="code" href="monitor__util_8c.html#ae5b8234f7d553177a9d3f932fe1c112b">00119</a> <span class="keywordtype">void</span> <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>(<span class="keywordtype">void</span>* hva, <span class="keyword">const</span> <a class="code" href="monitor__types_8h.html#a822913f05423d4a8faac6dfec8bc1617" title="A type definition for a unsigned 64-bits data.">U64_t</a> size)
+<a name="l00120"></a>00120 {
+<a name="l00121"></a>00121 <span class="preprocessor">    #ifdef CONFIG_BITVISOR</span>
+<a name="l00122"></a>00122 <span class="preprocessor"></span>        unmapmem (hva, size);
+<a name="l00123"></a>00123 <span class="preprocessor">    #else</span>
+<a name="l00124"></a>00124 <span class="preprocessor"></span>        <span class="comment">//Noop</span>
+<a name="l00125"></a>00125 <span class="preprocessor">    #endif</span>
+<a name="l00126"></a>00126 <span class="preprocessor"></span>}
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 4월 4 2014 00:46:48, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

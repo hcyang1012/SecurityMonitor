@@ -1,0 +1,1 @@
+CFLAGS=-m64 -mno-red-zone -mno-sse -nostdinc -g -O -ffreestanding -fno-builtin -fno-stack-protector -fno-omit-frame-pointer -fno-strict-aliasing -Wall -DENABLE_ASSERT -Istorage -Iinclude -I./core/security_module/include ASFLAGS=-m64 -g -Wa,-I,storage LDFLAGS=-m64 -g -nostdlib

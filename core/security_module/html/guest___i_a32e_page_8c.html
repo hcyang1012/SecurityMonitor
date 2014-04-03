@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Security Monitor: guest_IA32ePage.c 파일 참조</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Security Monitor
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 다음에 의해 생성됨 :  Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>메인&#160;페이지</span></a></li>
+      <li><a href="annotated.html"><span>데이타&#160;구조</span></a></li>
+      <li class="current"><a href="files.html"><span>파일들</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>파일&#160;목록</span></a></li>
+      <li><a href="globals.html"><span>전역</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#func-members">함수</a>  </div>
+  <div class="headertitle">
+<div class="title">guest_IA32ePage.c 파일 참조</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>defines functions that are related to IA32e paging mode (for guest)  
+<a href="#details">더 자세히 ...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="guest___i_a32e_page_8h_source.html">guest_IA32ePage.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="monitor__util_8h_source.html">monitor_util.h</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="monitor__types_8h_source.html">monitor_types.h</a>&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+guest_IA32ePage.c에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c__incl.png" border="0" usemap="#guest___i_a32e_page_8c" alt=""/></div>
+<map name="guest___i_a32e_page_8c" id="guest___i_a32e_page_8c">
+<area shape="rect" id="node3" href="guest___i_a32e_page_8h.html" title="functions and constants to support IA32e paging mode of guest VM" alt="" coords="5,83,141,112"/><area shape="rect" id="node5" href="monitor__types_8h.html" title="Definitions of types that are used in this project." alt="" coords="121,160,236,189"/><area shape="rect" id="node7" href="monitor__util_8h.html" title="This file exists for supporting some uiility functions." alt="" coords="216,83,315,112"/></map>
+</div>
+</div>
+<p><a href="guest___i_a32e_page_8c_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="func-members"></a>
+함수</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="guest___i_a32e_page_8c.html#af233f3d87b0a388e0c534d928167e20a">traverseIA32ePages</a> (const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmid, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> startGPAofPageTable, void *(*do_something)(const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa))</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse all pages based on IA32e paging mode. It traverse at PML4 level.  <a href="#af233f3d87b0a388e0c534d928167e20a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="guest___i_a32e_page_8c.html#acc5be7aa7fcf4568891e6620f0b94141">traverseIA32ePDPT</a> (const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmid, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> startGPAofPDPT, void *(*do_something)(const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa))</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level.  <a href="#acc5be7aa7fcf4568891e6620f0b94141"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="guest___i_a32e_page_8c.html#a7253467a3aa5a9560748b75c4b7c57d5">traverseIA32ePDT</a> (const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmid, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> startGPAofPDT, void *(*do_something)(const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa))</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level.  <a href="#a7253467a3aa5a9560748b75c4b7c57d5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="guest___i_a32e_page_8c.html#ab5dc18fd91ff94f88a941b35972f43ad">traverseIA32ePT</a> (const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmid, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> startGPAofPT, void *(*do_something)(const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa))</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level.  <a href="#ab5dc18fd91ff94f88a941b35972f43ad"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>상세한 설명</h2>
+<div class="textblock"><p>defines functions that are related to IA32e paging mode (for guest) </p>
+
+<p><a class="el" href="guest___i_a32e_page_8c_source.html">guest_IA32ePage.c</a> 파일에서 정의되었습니다.</p>
+</div><hr/><h2>함수 문서화</h2>
+<a class="anchor" id="af233f3d87b0a388e0c534d928167e20a"></a><!-- doxytag: member="guest_IA32ePage.c::traverseIA32ePages" ref="af233f3d87b0a388e0c534d928167e20a" args="(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPageTable, void *(*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="guest___i_a32e_page_8h.html#af233f3d87b0a388e0c534d928167e20a">traverseIA32ePages</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a>&#160;</td>
+          <td class="paramname"><em>vmid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a>&#160;</td>
+          <td class="paramname"><em>appID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a>&#160;</td>
+          <td class="paramname"><em>startGPAofPageTable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *(*)(const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa)&#160;</td>
+          <td class="paramname"><em>do_something</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Traverse all pages based on IA32e paging mode. It traverse at PML4 level. </p>
+<p>Details.</p>
+<p>This function travers a process's all pages based on IA32e paging mode. For the purpose of input parameters, see the [traverseGuestPages](<a class="el" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6">traverseGuestPages</a>) function.<br/>
+ This function especially exists for traversing PML4 page table entries. The GPA of each PML4 entry is calculated as followings: 1. Bits 51:12 are from CR3. ( This value is from the parameter,startGPAofPageTable, and has been extracted by the function [get_page_table_base_GPA](<a class="el" href="guest__state_8h.html#a4fe3391f0854e7d1c8b553adb4284436">get_page_table_base_GPA</a>) ). 2. Bits 11:3 are bit 47:39 of the GPA. 3. Bits 2:0 are all 0 </p>
+<dl class="params"><dt><b>매개변수:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vmid</td><td>VM ID to be passed to the do_something() </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">appID</td><td>APP ID to be passed to the do_something() </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">startGPAofPageTable</td><td>start GPA of a process's PML4 table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">do_something</td><td>a function pointer that will be invoked for each page </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="guest___i_a32e_page_8c_source.html">guest_IA32ePage.c</a> 파일의 <a class="el" href="guest___i_a32e_page_8c_source.html#l00009">9</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><pre class="fragment">{
+    <span class="keywordtype">int</span> pml4Index;
+    <span class="keywordflow">for</span>(pml4Index = 0 ; pml4Index &lt; <a class="code" href="guest___i_a32e_page_8h.html#a95899c079745b0d248c7999db30739ce" title="The maximum number of guest PML4 entries.">MAX_GUEST_PML4_INDEX</a> ; pml4Index++)
+    {
+        <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> currentPML4EntryGPA;
+        <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentPML4EntryHPA;
+        <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a> *pCurrentPML4Entry, currentPML4Entry;
+        <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPDPT;
+
+        currentPML4EntryGPA = (startGPAofPageTable | (pml4Index &lt;&lt; <a class="code" href="guest___i_a32e_page_8h.html#a4f9f11d3f1d992b8d528dc6ce8702000" title="The left-shift value for PML4 entry.">GUEST_PML4_INDEX_SHIFT</a>));
+        currentPML4EntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPML4EntryGPA, 0);
+        <span class="keywordflow">if</span>(!currentPML4EntryHPA)
+        {
+            <span class="keywordflow">continue</span>;
+        }
+        pCurrentPML4Entry = (<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentPML4EntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+        <span class="keywordflow">if</span>(!pCurrentPML4Entry)
+        {
+            <span class="keywordflow">continue</span>;
+        }
+        currentPML4Entry = *pCurrentPML4Entry;
+        <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentPML4Entry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+
+        startGPAofPDPT = currentPML4Entry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a71ab36e768a6cf0cff31a9e288abe306" title="A mask that is used to extract base HPA of EPT PDP from EPT PML4 entry.">EPT_PML4_ENTRY_MASK</a>;
+        
+        <span class="keywordflow">if</span>(startGPAofPDPT &amp;&amp; (currentPML4Entry &amp; 0x01) &amp;&amp; !(currentPML4Entry &amp; 0x80))
+        {
+            printf(<span class="stringliteral">&quot;%llx\n&quot;</span>,currentPML4Entry);
+            <a class="code" href="guest___i_a32e_page_8c.html#acc5be7aa7fcf4568891e6620f0b94141" title="Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level...">traverseIA32ePDPT</a>(vmid, appID, startGPAofPDPT,do_something);
+        }
+    }
+}
+</pre></div>
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c_af233f3d87b0a388e0c534d928167e20a_cgraph.png" border="0" usemap="#guest___i_a32e_page_8c_af233f3d87b0a388e0c534d928167e20a_cgraph" alt=""/></div>
+<map name="guest___i_a32e_page_8c_af233f3d87b0a388e0c534d928167e20a_cgraph" id="guest___i_a32e_page_8c_af233f3d87b0a388e0c534d928167e20a_cgraph">
+<area shape="rect" id="node3" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address." alt="" coords="729,269,815,299"/><area shape="rect" id="node12" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="872,92,995,121"/><area shape="rect" id="node14" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="864,323,1003,352"/><area shape="rect" id="node18" href="guest___i_a32e_page_8c.html#acc5be7aa7fcf4568891e6620f0b94141" title="Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level..." alt="" coords="195,269,333,299"/><area shape="rect" id="node6" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table." alt="" coords="867,269,1000,299"/><area shape="rect" id="node8" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS" alt="" coords="1051,269,1200,299"/><area shape="rect" id="node10" href="vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS" alt="" coords="1248,269,1384,299"/><area shape="rect" id="node23" href="guest___i_a32e_page_8c.html#a7253467a3aa5a9560748b75c4b7c57d5" title="Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level..." alt="" coords="381,217,512,247"/><area shape="rect" id="node28" href="guest___i_a32e_page_8c.html#ab5dc18fd91ff94f88a941b35972f43ad" title="Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level." alt="" coords="560,167,680,196"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c_af233f3d87b0a388e0c534d928167e20a_icgraph.png" border="0" usemap="#guest___i_a32e_page_8c_af233f3d87b0a388e0c534d928167e20a_icgraph" alt=""/></div>
+<map name="guest___i_a32e_page_8c_af233f3d87b0a388e0c534d928167e20a_icgraph" id="guest___i_a32e_page_8c_af233f3d87b0a388e0c534d928167e20a_icgraph">
+<area shape="rect" id="node3" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6" title="Traverse all pages that start from startGPAofPageTable and do something for each page." alt="" coords="195,5,336,35"/><area shape="rect" id="node5" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages." alt="" coords="385,5,553,35"/><area shape="rect" id="node7" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. &#160;The goal of this function is to star..." alt="" coords="603,5,725,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="acc5be7aa7fcf4568891e6620f0b94141"></a><!-- doxytag: member="guest_IA32ePage.c::traverseIA32ePDPT" ref="acc5be7aa7fcf4568891e6620f0b94141" args="(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPDPT, void *(*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="guest___i_a32e_page_8h.html#acc5be7aa7fcf4568891e6620f0b94141">traverseIA32ePDPT</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a>&#160;</td>
+          <td class="paramname"><em>vmid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a>&#160;</td>
+          <td class="paramname"><em>appID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a>&#160;</td>
+          <td class="paramname"><em>startGPAofPDPT</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *(*)(const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa)&#160;</td>
+          <td class="paramname"><em>do_something</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level. </p>
+<p>Details.</p>
+<p>This function travers a process's all pages based on IA32e paging mode. For the purpose of input parameters, see the [traverseGuestPages](<a class="el" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6">traverseGuestPages</a>) function.<br/>
+ This function especially exists for traversing PDP table entries. The GPA of each PDP table entry is calculated as followings: 1. Bits 51:12 are from PML4 entry. ( This value is from the parameter,startGPAofPDPT). 2. Bits 11:3 are bit 38:30 of the GPA. 3. Bits 2:0 are all 0 </p>
+<dl class="params"><dt><b>매개변수:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vmid</td><td>VM ID to be passed to the do_something() </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">appID</td><td>APP ID to be passed to the do_something() </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">startGPAofPDPT</td><td>start GPA of a PDP table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">do_something</td><td>a function pointer that will be invoked for each page </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="guest___i_a32e_page_8c_source.html">guest_IA32ePage.c</a> 파일의 <a class="el" href="guest___i_a32e_page_8c_source.html#l00043">43</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><pre class="fragment">{
+    <span class="keywordtype">int</span> pdpIndex;
+    <span class="keywordflow">for</span>(pdpIndex = 0 ; pdpIndex &lt; <a class="code" href="guest___i_a32e_page_8h.html#aea301bb20ba8cf3d3c28e8153142c4e7" title="The maximum number of guest PDP table entries.">MAX_GUEST_PDP_INDEX</a> ; pdpIndex++)
+    {
+        <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> currentPDPTEntryGPA;
+        <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentPDPTEntryHPA;
+        <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a> *pCurrentPDPTEntry, currentPDPTEntry;
+        <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPDT;
+
+        currentPDPTEntryGPA = (startGPAofPDPT | (pdpIndex &lt;&lt; <a class="code" href="guest___i_a32e_page_8h.html#a97220f3f7ecb24472d9d17523e5a5b3c" title="The left-shift value for PDP table entry.">GUEST_PDP_INDEX_SHIFT</a>));
+        currentPDPTEntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPDPTEntryGPA, 0);
+        <span class="keywordflow">if</span>(!currentPDPTEntryHPA)
+        {
+            <span class="keywordflow">continue</span>;
+        }
+        pCurrentPDPTEntry = (<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentPDPTEntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+        <span class="keywordflow">if</span>(!pCurrentPDPTEntry)
+        {
+            <span class="keywordflow">continue</span>;
+        }
+        currentPDPTEntry = *pCurrentPDPTEntry;
+        <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentPDPTEntry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+
+        startGPAofPDT = currentPDPTEntry &amp; <a class="code" href="guest___i_a32e_page_8h.html#aca4d6718af5283d4aa065fac24e64e54" title="A mask that is used to extract base HPA of EPT PDP from EPT PDP table entry.">EPT_PDP_ENTRY_MASK</a>;  
+
+        <span class="keywordflow">if</span>(startGPAofPDT &amp;&amp; (currentPDPTEntry &amp; 0x01) &amp;&amp; !(currentPDPTEntry &amp; 0x80))
+        {
+            <a class="code" href="guest___i_a32e_page_8c.html#a7253467a3aa5a9560748b75c4b7c57d5" title="Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level...">traverseIA32ePDT</a>(vmid, appID, startGPAofPDT, do_something);
+        }
+    }
+}
+</pre></div>
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c_acc5be7aa7fcf4568891e6620f0b94141_cgraph.png" border="0" usemap="#guest___i_a32e_page_8c_acc5be7aa7fcf4568891e6620f0b94141_cgraph" alt=""/></div>
+<map name="guest___i_a32e_page_8c_acc5be7aa7fcf4568891e6620f0b94141_cgraph" id="guest___i_a32e_page_8c_acc5be7aa7fcf4568891e6620f0b94141_cgraph">
+<area shape="rect" id="node3" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address." alt="" coords="540,107,625,136"/><area shape="rect" id="node12" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="683,5,805,35"/><area shape="rect" id="node14" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="675,185,813,215"/><area shape="rect" id="node18" href="guest___i_a32e_page_8c.html#a7253467a3aa5a9560748b75c4b7c57d5" title="Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level..." alt="" coords="192,132,323,161"/><area shape="rect" id="node6" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table." alt="" coords="677,107,811,136"/><area shape="rect" id="node8" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS" alt="" coords="861,107,1011,136"/><area shape="rect" id="node10" href="vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS" alt="" coords="1059,107,1195,136"/><area shape="rect" id="node23" href="guest___i_a32e_page_8c.html#ab5dc18fd91ff94f88a941b35972f43ad" title="Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level." alt="" coords="371,132,491,161"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c_acc5be7aa7fcf4568891e6620f0b94141_icgraph.png" border="0" usemap="#guest___i_a32e_page_8c_acc5be7aa7fcf4568891e6620f0b94141_icgraph" alt=""/></div>
+<map name="guest___i_a32e_page_8c_acc5be7aa7fcf4568891e6620f0b94141_icgraph" id="guest___i_a32e_page_8c_acc5be7aa7fcf4568891e6620f0b94141_icgraph">
+<area shape="rect" id="node3" href="guest___i_a32e_page_8h.html#af233f3d87b0a388e0c534d928167e20a" title="Traverse all pages based on IA32e paging mode. It traverse at PML4 level." alt="" coords="193,5,332,35"/><area shape="rect" id="node5" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6" title="Traverse all pages that start from startGPAofPageTable and do something for each page." alt="" coords="381,5,523,35"/><area shape="rect" id="node7" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages." alt="" coords="572,5,740,35"/><area shape="rect" id="node9" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. &#160;The goal of this function is to star..." alt="" coords="789,5,912,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7253467a3aa5a9560748b75c4b7c57d5"></a><!-- doxytag: member="guest_IA32ePage.c::traverseIA32ePDT" ref="a7253467a3aa5a9560748b75c4b7c57d5" args="(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPDT, void *(*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="guest___i_a32e_page_8h.html#a7253467a3aa5a9560748b75c4b7c57d5">traverseIA32ePDT</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a>&#160;</td>
+          <td class="paramname"><em>vmid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a>&#160;</td>
+          <td class="paramname"><em>appID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a>&#160;</td>
+          <td class="paramname"><em>startGPAofPDT</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *(*)(const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa)&#160;</td>
+          <td class="paramname"><em>do_something</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level. </p>
+<p>Details.</p>
+<p>This function travers a process's all pages based on IA32e paging mode. For the purpose of input parameters, see the [traverseGuestPages](<a class="el" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6">traverseGuestPages</a>) function.<br/>
+ This function especially exists for traversing PD table entries. The GPA of each PD table entry is calculated as followings: 1. Bits 51:12 are from PDP table entry. ( This value is from the parameter,startGPAofPDT). 2. Bits 11:3 are bit 29:21 of the GPA. 3. Bits 2:0 are all 0 </p>
+<dl class="params"><dt><b>매개변수:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vmid</td><td>VM ID to be passed to the do_something() </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">appID</td><td>APP ID to be passed to the do_something() </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">startGPAofPDT</td><td>start GPA of a process's PD table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">do_something</td><td>a function pointer that will be invoked for each page </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="guest___i_a32e_page_8c_source.html">guest_IA32ePage.c</a> 파일의 <a class="el" href="guest___i_a32e_page_8c_source.html#l00077">77</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><pre class="fragment">{
+    <span class="keywordtype">int</span> pdIndex;
+    <span class="keywordflow">for</span>(pdIndex = 0 ; pdIndex &lt; <a class="code" href="guest___i_a32e_page_8h.html#a614095969a102b7d4637860c27460e35" title="The maximum number of guest page directory (PD) entries.">MAX_GUEST_PD_INDEX</a> ; pdIndex++)
+    {
+        <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> currentPDTEntryGPA;
+        <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentPDTEntryHPA;
+        <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a> *pCurrentPDTEntry, currentPDTEntry;
+        <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> startGPAofPT;
+
+        currentPDTEntryGPA = (startGPAofPDT | (pdIndex &lt;&lt; <a class="code" href="guest___i_a32e_page_8h.html#aebfd7bdceef07644bb6ddb5d9f647d7b" title="The left-shift value for PD table entry.">GUEST_PD_INDEX_SHIFT</a>));
+        currentPDTEntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPDTEntryGPA, 0);
+        <span class="keywordflow">if</span>(!currentPDTEntryHPA)
+        {
+            <span class="keywordflow">continue</span>;
+        }
+        pCurrentPDTEntry = (<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentPDTEntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+        <span class="keywordflow">if</span>(!pCurrentPDTEntry)
+        {
+            <span class="keywordflow">continue</span>;
+        }
+        currentPDTEntry = *pCurrentPDTEntry;
+        <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentPDTEntry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+
+        startGPAofPT = currentPDTEntry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a23ff1894aab21877ab61e8d453aacaec" title="A mask that is used to extract base HPA of EPT PT from EPT PD table entry.">EPT_PD_ENTRY_MASK</a>;
+        
+        <span class="keywordflow">if</span>(startGPAofPT &amp;&amp; (currentPDTEntry &amp; 0x01) &amp;&amp; !(currentPDTEntry &amp; 0x80))
+        {
+            <a class="code" href="guest___i_a32e_page_8c.html#ab5dc18fd91ff94f88a941b35972f43ad" title="Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level.">traverseIA32ePT</a>(vmid, appID, startGPAofPT,do_something);            
+        }
+
+    }
+}
+</pre></div>
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c_a7253467a3aa5a9560748b75c4b7c57d5_cgraph.png" border="0" usemap="#guest___i_a32e_page_8c_a7253467a3aa5a9560748b75c4b7c57d5_cgraph" alt=""/></div>
+<map name="guest___i_a32e_page_8c_a7253467a3aa5a9560748b75c4b7c57d5_cgraph" id="guest___i_a32e_page_8c_a7253467a3aa5a9560748b75c4b7c57d5_cgraph">
+<area shape="rect" id="node3" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address." alt="" coords="353,81,439,111"/><area shape="rect" id="node12" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="496,135,619,164"/><area shape="rect" id="node14" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="488,5,627,35"/><area shape="rect" id="node18" href="guest___i_a32e_page_8c.html#ab5dc18fd91ff94f88a941b35972f43ad" title="Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level." alt="" coords="184,56,304,85"/><area shape="rect" id="node6" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table." alt="" coords="491,81,624,111"/><area shape="rect" id="node8" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS" alt="" coords="675,81,824,111"/><area shape="rect" id="node10" href="vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS" alt="" coords="872,81,1008,111"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c_a7253467a3aa5a9560748b75c4b7c57d5_icgraph.png" border="0" usemap="#guest___i_a32e_page_8c_a7253467a3aa5a9560748b75c4b7c57d5_icgraph" alt=""/></div>
+<map name="guest___i_a32e_page_8c_a7253467a3aa5a9560748b75c4b7c57d5_icgraph" id="guest___i_a32e_page_8c_a7253467a3aa5a9560748b75c4b7c57d5_icgraph">
+<area shape="rect" id="node3" href="guest___i_a32e_page_8h.html#acc5be7aa7fcf4568891e6620f0b94141" title="Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level..." alt="" coords="184,5,323,35"/><area shape="rect" id="node5" href="guest___i_a32e_page_8h.html#af233f3d87b0a388e0c534d928167e20a" title="Traverse all pages based on IA32e paging mode. It traverse at PML4 level." alt="" coords="372,5,511,35"/><area shape="rect" id="node7" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6" title="Traverse all pages that start from startGPAofPageTable and do something for each page." alt="" coords="560,5,701,35"/><area shape="rect" id="node9" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages." alt="" coords="751,5,919,35"/><area shape="rect" id="node11" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. &#160;The goal of this function is to star..." alt="" coords="968,5,1091,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab5dc18fd91ff94f88a941b35972f43ad"></a><!-- doxytag: member="guest_IA32ePage.c::traverseIA32ePT" ref="ab5dc18fd91ff94f88a941b35972f43ad" args="(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPT, void *(*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="guest___i_a32e_page_8h.html#ab5dc18fd91ff94f88a941b35972f43ad">traverseIA32ePT</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a>&#160;</td>
+          <td class="paramname"><em>vmid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a>&#160;</td>
+          <td class="paramname"><em>appID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a>&#160;</td>
+          <td class="paramname"><em>startGPAofPT</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *(*)(const <a class="el" href="monitor__types_8h.html#aa4f8aee9bf87a1628e71d07f40352e02">VMID_t</a> vmID, const <a class="el" href="monitor__types_8h.html#ab2e39b8d4a768ded7be5450cc2bffe9d">APPID_t</a> appID, <a class="el" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c">GPA_t</a> gpa)&#160;</td>
+          <td class="paramname"><em>do_something</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Traverse all pages based on IA32e paging mode. It traverse at page table (PT) level. </p>
+<p>Details.</p>
+<p>This function travers a process's all pages based on IA32e paging mode. For the purpose of input parameters, see the [traverseGuestPages](<a class="el" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6">traverseGuestPages</a>) function.<br/>
+ This function especially exists for traversing page table entries. The GPA of each page table entry is calculated as followings: 1. Bits 51:12 are from PD table entry. ( This value is from the parameter,startGPAofPT). 2. Bits 11:3 are bit 20:12 of the GPA. 3. Bits 2:0 are all 0</p>
+<p>After traverse, this function also calls ,if exist, the function do_something. This called function will do something using the input parameter, GPA of each page. </p>
+<dl class="params"><dt><b>매개변수:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vmid</td><td>VM ID to be passed to the do_something() </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">appID</td><td>APP ID to be passed to the do_something() </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">startGPAofPT</td><td>start GPA of a process's page table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">do_something</td><td>a function pointer that will be invoked for each page </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="guest___i_a32e_page_8c_source.html">guest_IA32ePage.c</a> 파일의 <a class="el" href="guest___i_a32e_page_8c_source.html#l00111">111</a> 번째 라인에서 정의되었습니다.</p>
+<div class="fragment"><pre class="fragment">{
+    <span class="keywordtype">int</span> ptIndex;
+    <span class="keywordflow">for</span>(ptIndex = 0 ; ptIndex &lt; <a class="code" href="guest___i_a32e_page_8h.html#a865a49bc90d4a6ea369beaf5337b215d" title="The maximum number of guest page table (PT) entries.">MAX_GUEST_PT_INDEX</a> ; ptIndex++)
+    {
+        <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> currentPTEntryGPA;
+        <a class="code" href="monitor__types_8h.html#a35e867d4f252496befeb6d260a03acac" title="A type definition for a host physical address. &gt; Note : The size of this type is __architecture-depen...">HPA_t</a> currentPTEntryHPA;
+        <a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a> *pCurrentPTEntry, currentPTEntry;
+        <a class="code" href="monitor__types_8h.html#a25ec30a201a5e2d4bdd7b40a89014d5c" title="A type definition for a guest physical address. &gt; Note : The size of this type is __architecture-depe...">GPA_t</a> pageGPA;
+
+        currentPTEntryGPA = (startGPAofPT | (ptIndex &lt;&lt; <a class="code" href="guest___i_a32e_page_8h.html#abe8d240c883a8cac849d53fd22590794" title="The left-shift value for page table entry.">GUEST_PT_INDEX_SHIFT</a>));
+        currentPTEntryHPA = <a class="code" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address.">gpaToHPA</a>(currentPTEntryGPA, 0);
+        <span class="keywordflow">if</span>(!currentPTEntryHPA)
+        {
+            <span class="keywordflow">continue</span>;
+        }
+        pCurrentPTEntry = (<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>*)<a class="code" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory.">mapHPAintoHVA</a>(currentPTEntryHPA,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+        <span class="keywordflow">if</span>(!pCurrentPTEntry)
+        {
+            <span class="keywordflow">continue</span>;
+        }
+        currentPTEntry = *pCurrentPTEntry;
+        <a class="code" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory.">unmapHPAintoHVA</a>((<span class="keywordtype">void</span>*)pCurrentPTEntry,<span class="keyword">sizeof</span>(<a class="code" href="monitor__types_8h.html#a0c8a2300d54b9380cad96861cc51469d" title="A type definition for guest page table entry.">PGT_ENTRY_t</a>));
+
+        pageGPA = currentPTEntry &amp; <a class="code" href="guest___i_a32e_page_8h.html#a369c8c91c392e3da4f0368c4640563df" title="A mask that is used to extract base HPA of page from EPT page table entry.">EPT_PT_ENTRY_MASK</a>;
+        <span class="keywordflow">if</span>(do_something &amp;&amp; (currentPTEntry &amp; 0x01))
+        {
+
+            (*do_something)(vmid, appID, pageGPA);          
+        }
+
+    }
+}</pre></div>
+<p><div class="dynheader">
+이 함수 내부에서 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c_ab5dc18fd91ff94f88a941b35972f43ad_cgraph.png" border="0" usemap="#guest___i_a32e_page_8c_ab5dc18fd91ff94f88a941b35972f43ad_cgraph" alt=""/></div>
+<map name="guest___i_a32e_page_8c_ab5dc18fd91ff94f88a941b35972f43ad_cgraph" id="guest___i_a32e_page_8c_ab5dc18fd91ff94f88a941b35972f43ad_cgraph">
+<area shape="rect" id="node3" href="monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address." alt="" coords="175,71,260,100"/><area shape="rect" id="node12" href="monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="317,5,440,35"/><area shape="rect" id="node14" href="monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="309,123,448,152"/><area shape="rect" id="node6" href="guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table." alt="" coords="312,69,445,99"/><area shape="rect" id="node8" href="vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS" alt="" coords="496,69,645,99"/><area shape="rect" id="node10" href="vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS" alt="" coords="693,69,829,99"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+이 함수를 호출하는 함수들에 대한 그래프입니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="guest___i_a32e_page_8c_ab5dc18fd91ff94f88a941b35972f43ad_icgraph.png" border="0" usemap="#guest___i_a32e_page_8c_ab5dc18fd91ff94f88a941b35972f43ad_icgraph" alt=""/></div>
+<map name="guest___i_a32e_page_8c_ab5dc18fd91ff94f88a941b35972f43ad_icgraph" id="guest___i_a32e_page_8c_ab5dc18fd91ff94f88a941b35972f43ad_icgraph">
+<area shape="rect" id="node3" href="guest___i_a32e_page_8h.html#a7253467a3aa5a9560748b75c4b7c57d5" title="Traverse all pages based on IA32e paging mode. It traverse at page directory (PD) level..." alt="" coords="173,5,304,35"/><area shape="rect" id="node5" href="guest___i_a32e_page_8h.html#acc5be7aa7fcf4568891e6620f0b94141" title="Traverse all pages based on IA32e paging mode. It traverse at page directory pointer (PDP) level..." alt="" coords="352,5,491,35"/><area shape="rect" id="node7" href="guest___i_a32e_page_8h.html#af233f3d87b0a388e0c534d928167e20a" title="Traverse all pages based on IA32e paging mode. It traverse at PML4 level." alt="" coords="540,5,679,35"/><area shape="rect" id="node9" href="guest__state_8h.html#a3d8f41db587aed7fce30c4edcd4aaaf6" title="Traverse all pages that start from startGPAofPageTable and do something for each page." alt="" coords="728,5,869,35"/><area shape="rect" id="node11" href="memory__ownership__table_8c.html#aa0e8340e3e2dc314a25b0c93fdfd54ab" title="Start to protect of currently running process&#39;s pages." alt="" coords="919,5,1087,35"/><area shape="rect" id="node13" href="event_handler_8h.html#a89bbf08a67ab2dc3c540ee1cb1904535" title="This function handles hypercall invoked from guest application. &#160;The goal of this function is to star..." alt="" coords="1136,5,1259,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>모두</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>데이타 구조</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>파일들</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>함수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>변수</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>타입정의</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>열거형 타입</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>열거형 멤버</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>매크로</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+생성시간 : 금 4월 4 2014 00:46:48, 프로젝트명 : Security Monitor, 생성자 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

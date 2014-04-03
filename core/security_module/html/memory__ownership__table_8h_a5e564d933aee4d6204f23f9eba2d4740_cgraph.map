@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$guest__state_8c.html#a4fe3391f0854e7d1c8b553adb4284436" title="Get the start address of page table." alt="" coords="185,5,364,35"/>
+<area shape="rect" id="node5" href="$vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac" title="get the value of the guest CR3 control register" alt="" coords="415,5,556,35"/>
+<area shape="rect" id="node7" href="$vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS" alt="" coords="605,5,741,35"/>
+</map>

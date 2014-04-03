@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$vmcs_8h.html#a78803919617e6c9fb6020ede0a20efac" title="get the value of the guest CR3 control register" alt="" coords="236,5,377,35"/>
+<area shape="rect" id="node5" href="$vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS" alt="" coords="427,5,563,35"/>
+</map>

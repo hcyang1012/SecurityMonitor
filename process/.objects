@@ -1,0 +1,1 @@
+process/lib/output.a process/debug.o process/help.o process/init.o process/log.o process/panic.o process/recvexample.o process/sendexample.o process/sendint.o process/serialtest.o process/shell.o process/idman.o process/storage.o process/vpn.o

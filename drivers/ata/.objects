@@ -1,0 +1,1 @@
+drivers/ata/ata_debug.o drivers/ata/ahci.o drivers/ata/ata_bm.o drivers/ata/ata_cmd.o drivers/ata/ata_core.o drivers/ata/ata_init.o drivers/ata/ata_pci.o drivers/ata/ata_vendor.o drivers/ata/atapi.o drivers/ata/packet.o

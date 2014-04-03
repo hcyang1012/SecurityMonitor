@@ -1,0 +1,1 @@
+include process/debug.d process/help.d process/init.d process/log.d process/panic.d process/recvexample.d process/sendexample.d process/sendint.d process/serialtest.d process/shell.d process/idman.d process/storage.d process/vpn.d

@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$monitor__util_8h.html#a19ca3fbdba02a8a291fbf56b030e7323" title="This function converts guest physical address to host physical address." alt="" coords="381,135,467,164"/>
+<area shape="rect" id="node12" href="$monitor__util_8h.html#ac66e271532851a5737a7968ddc1390e4" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="587,5,709,35"/>
+<area shape="rect" id="node14" href="$monitor__util_8h.html#ae5b8234f7d553177a9d3f932fe1c112b" title="This function maps host physical address into hypervisor&#39;s virtual memory." alt="" coords="579,188,717,217"/>
+<area shape="rect" id="node17" href="$memory__ownership__table_8h.html#a59d1447dba2fa1b312cae249d379ccf9" title="change a page&#39;s status" alt="" coords="137,83,268,112"/>
+<area shape="rect" id="node6" href="$guest__state_8c.html#a33fb594e7472da1af81f2abf272a64b2" title="Get the start address of extended page table." alt="" coords="581,135,715,164"/>
+<area shape="rect" id="node8" href="$vmcs_8h.html#a5c020f2b6689be533301e18f9b9061ae" title="get the value of guest&#39;s EPTP field in the VMCS" alt="" coords="765,135,915,164"/>
+<area shape="rect" id="node10" href="$vmcs_8h.html#a38c7d96da94cf9b3fe630936e1c11c0b" title="get a value in the VMCS" alt="" coords="963,135,1099,164"/>
+<area shape="rect" id="node20" href="$memory__ownership__table_8h.html#a072c0b2cb03e68adb03689dffe34aa4c" title="A function which is used to change HPA to index of the memory ownership table." alt="" coords="317,57,531,87"/>
+</map>

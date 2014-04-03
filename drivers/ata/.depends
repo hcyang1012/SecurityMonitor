@@ -1,0 +1,1 @@
+include drivers/ata/ata_debug.d drivers/ata/ahci.d drivers/ata/ata_bm.d drivers/ata/ata_cmd.d drivers/ata/ata_core.d drivers/ata/ata_init.d drivers/ata/ata_pci.d drivers/ata/ata_vendor.d drivers/ata/atapi.d drivers/ata/packet.d
