@@ -33,12 +33,6 @@
 	\enum page_state_t
 	\brief A enumeration for describing page state.
 
-	\enum  ownerAppID_t
-	\brief A enumeration for describing owner application of a page
-
-	\enum ownerVMID_t	
-	\brief A enumeration for describing owner virtual machine of a page
-
 	\struct memory_ownership_table_entry_t
 	\brief A structure-type definition for one memory ownership table entry.
 
@@ -55,6 +49,12 @@
 
 	\def HPA_TO_INDEX_SHIFT
 	\brief A constant which is used to change HPA to index of the memory ownership table.
+
+	\def OWNER_OTHER
+	\brief A constant which indicates that none of protected applications is running.
+
+	\def OWNER_VMM
+	\brief A constant which indicates that VMM is scheduled.
 
 	\fn	void protectCurrentApplication()
 	\brief Start to protect of currently running process's pages.
@@ -94,7 +94,7 @@
 
 	Details.
 
-	\note In this implementation, VM ID is equal to start address of VM's EPT. Therefore, this function extracts it from EPTP field in the VMCS.	
+	\note In this implementation, VM ID is always set to 1.	
 
 	\fn VMID_t allocateNewAppID()
 	\brief This function returns currently running process's ID. For new process, this function allocates new one and returns it.
@@ -102,7 +102,7 @@
 
 	Details.
 
-	\note In this implementation, the APP ID is equal to start GPA of VM's page table. Therefore, this function extracts it from guest's current CR3 value.
+	\note In this implementation, the APP ID is an integer that increases linearly.
 
 	\fn void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 	\brief Set the a frame to closed state
@@ -137,14 +137,8 @@ enum page_state_t{
 	ENCRYPTED			/**< encrypted state */
 };
 
-enum ownerAppID_t{
-	KERNEL = 0	/**< The owner is the guest kernel */
-};
-
-enum ownerVMID_t
-{
-	VMM = 0		/**< The owner is virtual machine monitor */
-};
+#define OWNER_OTHER	0
+#define OWNER_VMM	0
 
 struct memory_ownership_table_entry_t
 {
@@ -153,6 +147,13 @@ struct memory_ownership_table_entry_t
 	enum page_state_t state;		/**< Page state */
 	U8_t original_permission;		/**< Original permission of the page in the corresponding EPT entry */
 	HPA_t original_page_address;	/**< The back-upped original page address storage for partialy-opened state */
+};
+
+struct protected_application_t
+{
+	VMID_t owner_VM;				/**< ID of VM of the application */
+	APPID_t owner_APP;				/**< ID of the application*/
+	struct guest_sensitive_stats_t guest_sensitive_stats;
 };
 
 #define PAGE_SIZE 4096

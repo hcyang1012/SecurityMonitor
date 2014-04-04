@@ -20,6 +20,10 @@
 
 static struct memory_ownership_table_entry_t memory_ownership_table[NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY];
 
+APPID_t currentRunningApplication = OWNER_OTHER;
+APPID_t numberOfProtectedApplications = 0;
+VMID_t numberOfVMs = 0;
+
 void protectCurrentApplication()
 {
 	VMID_t newVMID;
@@ -27,6 +31,7 @@ void protectCurrentApplication()
 	GPA_t cr3GPA;
 
 	allocateNewApplicationIdentifiers(&newVMID,&newAPPID);
+	initializeNewProtectedApplication(&newVMID,&newAPPID);
 	cr3GPA = get_page_table_base_GPA();
 	traverseGuestPages(newVMID, newAPPID, cr3GPA, closePage);
 }
@@ -46,14 +51,15 @@ void allocateNewApplicationIdentifiers(VMID_t *new_VMID, APPID_t *new_APPID)
 VMID_t allocateNewVMID()
 {
 	VMID_t newVMID;
-	newVMID = get_ept_base_HPA();
+	newVMID = 1;
+	numberOfVMs = 1;
 	return newVMID;
 }
 
 APPID_t allocateNewAppID()
 {
 	APPID_t newAppID;
-	newAppID = get_page_table_base_GPA();	
+	newAppID = ++numberOfProtectedApplications;	
 	return newAppID;
 }
 
@@ -138,4 +144,9 @@ int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, co
 struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(const U64_t index)
 {
 	return memory_ownership_table[index];
+}
+
+void initializeNewProtectedApplication(const VMID_t vmid, const APPID_t appID)
+{
+	
 }

@@ -38,6 +38,30 @@
 #define CR3_MASK (~((U64_t)0xFFF))
 #define EPTP_MASK (~((U64_t)0xFFF))
 
+struct guest_sensitive_stats
+{
+	/* General purpose registers */
+	U64_t RAX;
+	U64_t RBX;
+	U64_t RCX;
+	U64_t RDX;
+	U64_t RDI;
+	U64_t RSI;
+	U64_t RBP;
+	U64_t RSP;
+	U64_t R8;
+	U64_t R9;
+	U64_t R10;
+	U64_t R11;
+	U64_t R12;
+	U64_t R13;
+	U64_t R14;
+	U64_t R15;
+
+	U64_t RFLAGS;
+	U64_t RIP;
+	U64_t RIP_HPA;
+};
 
 GPA_t get_page_table_base_GPA();
 HPA_t get_ept_base_HPA();
