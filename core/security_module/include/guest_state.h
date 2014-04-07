@@ -47,8 +47,8 @@ struct guest_sensitive_stats
 	U64_t RDX;
 	U64_t RDI;
 	U64_t RSI; 
-	U64_t RBP; /* Stack base pointer */
-	U64_t RSP; /* Stack pointer */
+	U64_t RBP; /* Stack base pointer (User) */
+	U64_t RSP; /* Stack pointer (User) */
 	U64_t R8;
 	U64_t R9;
 	U64_t R10;
