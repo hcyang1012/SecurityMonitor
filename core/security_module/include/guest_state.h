@@ -70,8 +70,8 @@ struct guest_sensitive_stats
 	U64_t RFLAGS;	/* Flag registers */
 	U64_t RIP;		/* Program counter */
 
-	/* For identifying process */
-	U64_t RIP_HPA;
+	/* For identifying this structure */
+	U64_t ID;
 
 };
 
