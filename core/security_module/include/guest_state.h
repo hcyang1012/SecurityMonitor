@@ -46,8 +46,8 @@ struct guest_sensitive_stats
 	U64_t RCX;
 	U64_t RDX;
 	U64_t RDI;
-	U64_t RSI;
-	U64_t RBP;
+	U64_t RSI; /* Stack pointer */
+	U64_t RBP; /* Stack base pointer */
 	U64_t RSP;
 	U64_t R8;
 	U64_t R9;
@@ -58,9 +58,17 @@ struct guest_sensitive_stats
 	U64_t R14;
 	U64_t R15;
 
+	/* Segment registers are always 
+	regarded as 0 in 64bit environment */
+	U64_t CS;
+	U64_t DS;
+	U64_t ES;
+	U64_t FS;
+	U64_t GS;
+
+	/* Special-purpose registers */
 	U64_t RFLAGS;
 	U64_t RIP;
-	U64_t RIP_HPA;
 };
 
 GPA_t get_page_table_base_GPA();
