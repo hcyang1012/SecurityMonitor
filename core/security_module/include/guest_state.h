@@ -68,10 +68,10 @@ struct guest_sensitive_stats
 
 	/* 2 Special-purpose registers */
 	U64_t RFLAGS;	/* Flag registers */
-	U64_t RIP;		/* Program counter */
+	U64_t RIP;	/* Program counter */
 
 	/* For identifying this structure */
-	U64_t ID;
+	U64_t SP_Kernel;	/*Kernel mode ESP in TSS->RSP */
 
 };
 
