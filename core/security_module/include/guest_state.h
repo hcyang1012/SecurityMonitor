@@ -71,7 +71,8 @@ struct guest_sensitive_stats
 	U64_t RIP;	/* Program counter */
 
 	/* For identifying this structure */
-	U64_t SP_Kernel;/*Kernel mode RSP in TSS->RSP */
+	U64_t SP_Kernel;	/* Kernel mode RSP in TSS->RSP */
+	APPID_t ownerAPPID;
 
 };
 
