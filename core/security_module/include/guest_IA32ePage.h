@@ -215,4 +215,6 @@ inline void traverseIA32ePT(const VMID_t vmid, 				/**< [in] VM ID to be passed 
 						const GPA_t startGPAofPT, /**< [in] start GPA of a process's page table */
 						void* (*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa) /**< [in] a function pointer that will be invoked for each page */
 						);
+
+GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable);
 #endif

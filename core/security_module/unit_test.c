@@ -16,20 +16,22 @@ void test_start()
 	int result;
 	if(get_page_table_base_GPA())
 	{
-		printf("Unit test start\n");
+		printf("Unit test : %llx\n",gvaToGPA(0xffffffff810c7590,get_page_table_base_GPA()));
+	// 	printf("Unit test start\n");
 
-		printf("Test 'gpaToHPA()'\n");
-		result = test_gpaToHPA();
-		printf("Test 'gpaToHPA()' end; result : %s\n",result?"success":"fail");		
+	// 	printf("Test 'gpaToHPA()'\n");
+	// 	result = test_gpaToHPA();
+	// 	printf("Test 'gpaToHPA()' end; result : %s\n",result?"success":"fail");		
 
-/*		printf("Test 'test_logicalCPUStatus()'\n");
-		result = test_logicalCPUStatus();
-		printf("Test 'test_logicalCPUStatus()' end; result : %s\n",result?"success":"fail");				*/
+	// 	printf("Test 'test_logicalCPUStatus()'\n");
+	// 	result = test_logicalCPUStatus();
+	// 	printf("Test 'test_logicalCPUStatus()' end; result : %s\n",result?"success":"fail");				
 
-		printf("Test 'test_traverseGuestPages()'\n");
-		result = test_traverseGuestPages();
+	// 	printf("Test 'test_traverseGuestPages()'\n");
+	// 	result = test_traverseGuestPages();
 
-		printf("Test 'test_traverseGuestPages()' end; result : %s\n",result?"success":"fail");
+	// 	printf("Test 'test_traverseGuestPages()' end; result : %s\n",result?"success":"fail");
+	// 
 	}
 
 }

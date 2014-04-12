@@ -85,6 +85,7 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 
 		if(changePageStatus(vmID, appID, gpa, CLOSED))
 		{
+			printf("Close %llx\n",gpa);
 			targetEPTEntry = *pTargetEPTEntry;
 			targetEPTEntry &= (~(EPT_ATTRIBUTE_MASK));
 			*pTargetEPTEntry = targetEPTEntry;
@@ -94,6 +95,32 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 		{
 			//printf("Fail\n");
 		}
+	}
+
+	return 0;
+}
+
+void* openPage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
+{
+	HPA_t targetEPTEntryHPA = 0;
+	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
+	U8_t original_permission;
+	gpaToHPA(gpa, &targetEPTEntryHPA);
+	if(targetEPTEntryHPA)
+	{
+		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
+		if(!pTargetEPTEntry)
+		{
+			printf("Error\n");
+			return 0;
+		}
+
+		original_permission = changePageStatus(vmID, appID, gpa, OPENED);
+
+		targetEPTEntry = *pTargetEPTEntry;
+		targetEPTEntry |= (original_permission);
+		*pTargetEPTEntry = targetEPTEntry;
+		unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));			
 	}
 
 	return 0;
@@ -132,13 +159,17 @@ int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, co
 	{
 		memory_ownership_table[index].owner_VM = vmID;
 		memory_ownership_table[index].owner_APP = appID;
-		memory_ownership_table[index].state = CLOSED;
-		memory_ownership_table[index].original_permission = pageAttribute;
-		memory_ownership_table[index].original_page_address = 0;
-		
-		return 1;
 	}
-	return 0;
+	memory_ownership_table[index].state = state;
+	memory_ownership_table[index].original_page_address = 0;
+	if(state == CLOSED)
+	{
+		memory_ownership_table[index].original_permission = pageAttribute;
+		
+	}
+
+	return memory_ownership_table[index].original_permission;
+
 }
 
 struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(const U64_t index)

@@ -34,7 +34,7 @@
 #include "serial.h"
 #include "types.h"
 
-#define PORT			0xd000 /* COM1, ttyS0 */
+#define PORT			0xc000 /* COM1, ttyS0 */
 #define NUM_OF_PORT		8
 #define PORT_DATA		0x0
 #define PORT_RATELSB		0x0

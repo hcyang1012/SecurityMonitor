@@ -325,7 +325,7 @@ static enum vt__status
 call_vt__vmlaunch (void)
 {
 	#ifdef CONFIG_SSLAB
-		printf("SSLAB : Launch launch of a virtual machine\n");
+		//printf("SSLAB : Launch launch of a virtual machine\n");
 		//updateOwnershipTable();		
 	#endif		
 	if (asm_vmlaunch_regs (&current->u.vt.vr))

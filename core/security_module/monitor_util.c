@@ -102,6 +102,7 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
 
 }
 
+
 void *mapHPAintoHVA(const HPA_t hpa, const U64_t size)
 {
 	#ifdef CONFIG_BITVISOR
@@ -124,3 +125,4 @@ void unmapHPAintoHVA(void* hva, const U64_t size)
 		//Noop
 	#endif
 }
+

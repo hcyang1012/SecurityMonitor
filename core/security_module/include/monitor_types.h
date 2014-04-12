@@ -50,6 +50,7 @@ typedef unsigned short	U16_t;
 typedef unsigned long	U32_t;
 typedef unsigned long long	U64_t;
 
+typedef U64_t	GVA_t;
 typedef U64_t	GPA_t;
 typedef U64_t	HPA_t;
 typedef HPA_t	EPTP_t;

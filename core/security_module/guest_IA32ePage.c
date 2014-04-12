@@ -133,11 +133,126 @@ inline void traverseIA32ePT(const VMID_t vmid, const APPID_t appID, const GPA_t 
 		unmapHPAintoHVA((void*)pCurrentPTEntry,sizeof(PGT_ENTRY_t));
 
 		pageGPA = currentPTEntry & EPT_PT_ENTRY_MASK;
-		if(do_something && (currentPTEntry & 0x01))
+		if(do_something && (currentPTEntry & 0x01) && (currentPTEntry & (1 << 2)))
 		{
 
 			(*do_something)(vmid, appID, pageGPA);			
 		}
 
 	}
+}
+
+GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
+{
+	GPA_t currentPML4EntryGPA;
+	HPA_t currentPML4EntryHPA;
+	PGT_ENTRY_t *pCurrentPML4Entry, currentPML4Entry;
+	GPA_t startGPAofPDPT;
+
+
+	currentPML4EntryGPA = (startGPAofPageTable | ((gva & (((U64_t)0x1FF) << 39)) >> (39 - 3)));
+	currentPML4EntryHPA = gpaToHPA(currentPML4EntryGPA, 0);
+	if(!currentPML4EntryHPA)
+	{
+
+		return 0;
+	}
+	pCurrentPML4Entry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPML4EntryHPA,sizeof(PGT_ENTRY_t));
+	if(!pCurrentPML4Entry)
+	{
+		return 0;
+	}
+	currentPML4Entry = *pCurrentPML4Entry;
+	unmapHPAintoHVA((void*)pCurrentPML4Entry,sizeof(PGT_ENTRY_t));
+
+	startGPAofPDPT = currentPML4Entry & EPT_PML4_ENTRY_MASK;
+	printf("currentPML4EntryGPA : %llx\n", currentPML4EntryGPA);
+	if(startGPAofPDPT && (currentPML4Entry & 0x01) && !(currentPML4Entry & 0x80))
+	{
+		GPA_t currentPDPTEntryGPA;
+		HPA_t currentPDPTEntryHPA;
+		PGT_ENTRY_t *pCurrentPDPTEntry, currentPDPTEntry;
+		GPA_t startGPAofPDT;
+
+		currentPDPTEntryGPA = (startGPAofPDPT | ((gva & (((U64_t)0x1FF) << 30)) >> (30 - 3)));
+		currentPDPTEntryHPA = gpaToHPA(currentPDPTEntryGPA, 0);
+		if(!currentPDPTEntryHPA)
+		{
+			return 0;
+		}
+		pCurrentPDPTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPDPTEntryHPA,sizeof(PGT_ENTRY_t));
+		if(!pCurrentPDPTEntry)
+		{
+			return 0;
+		}
+		currentPDPTEntry = *pCurrentPDPTEntry;
+		unmapHPAintoHVA((void*)pCurrentPDPTEntry,sizeof(PGT_ENTRY_t));
+
+		startGPAofPDT = currentPDPTEntry & EPT_PDP_ENTRY_MASK;	
+		printf("startGPAofPDT : %llx\n", startGPAofPDT);
+		if(startGPAofPDT && (currentPDPTEntry & 0x01) && !(currentPDPTEntry & 0x80))
+		{
+			GPA_t currentPDTEntryGPA;
+			HPA_t currentPDTEntryHPA;
+			PGT_ENTRY_t *pCurrentPDTEntry, currentPDTEntry;
+			GPA_t startGPAofPT;
+
+			currentPDTEntryGPA = (startGPAofPDT | ((gva & (((U64_t)0x1FF) << 21)) >> (21 - 3)));
+			currentPDTEntryHPA = gpaToHPA(currentPDTEntryGPA, 0);
+			if(!currentPDTEntryHPA)
+			{
+				return 0;
+			}
+			pCurrentPDTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPDTEntryHPA,sizeof(PGT_ENTRY_t));
+			if(!pCurrentPDTEntry)
+			{
+				return 0;
+			}
+			currentPDTEntry = *pCurrentPDTEntry;
+			unmapHPAintoHVA((void*)pCurrentPDTEntry,sizeof(PGT_ENTRY_t));
+
+			startGPAofPT = currentPDTEntry & EPT_PD_ENTRY_MASK;
+			printf("startGPAofPT : %llx\n", startGPAofPT);
+			printf("currentPDTEntry : %llx\n", currentPDTEntry);
+			if(startGPAofPT && (currentPDTEntry & 0x01) && !(currentPDTEntry & 0x80))
+			{
+				GPA_t currentPTEntryGPA;
+				HPA_t currentPTEntryHPA;
+				PGT_ENTRY_t *pCurrentPTEntry, currentPTEntry;
+				GPA_t pageGPA;
+
+				currentPTEntryGPA = (startGPAofPT | ((gva & (((U64_t)0x1FF) << 12)) >> (12 - 3)));
+				currentPTEntryHPA = gpaToHPA(currentPTEntryGPA, 0);
+				printf("currentPTEntryGPA : %llx\n",currentPTEntryGPA);
+				if(!currentPTEntryHPA)
+				{
+					return 0;
+				}
+				pCurrentPTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPTEntryHPA,sizeof(PGT_ENTRY_t));
+				if(!pCurrentPTEntry)
+				{
+					return 0;
+				}
+				currentPTEntry = *pCurrentPTEntry;
+				unmapHPAintoHVA((void*)pCurrentPTEntry,sizeof(PGT_ENTRY_t));
+
+				pageGPA = currentPTEntry & EPT_PT_ENTRY_MASK;
+				printf("pageGPA : %llx\n", pageGPA);
+				if((currentPTEntry & 0x01))
+				{
+					return pageGPA | (gva & 0xFFF);			
+				}	
+			}
+			else
+			{
+				printf("Here1 : %llx %llx\n", (currentPDTEntry & 0x01), (currentPDTEntry & 0x80));
+				if(startGPAofPT && (currentPDTEntry & 0x01) && (currentPDTEntry & 0x80))
+				{
+					printf("Here2 : %llx, %llx\n",currentPDTEntry,(currentPDTEntry & (~(U64_t)(0x1FFFFF))));
+					return (currentPDTEntry & (~(U64_t)(0x1FFFFF))) | (gva & 0x1FFFFF);
+				}
+			}
+		}
+	}	
+	return 0;
 }

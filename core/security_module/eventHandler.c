@@ -7,7 +7,11 @@
 #include <monitor_types.h>
 #include <guest_state.h>
 #include <memory_ownership_table.h>
+#include <unit_test.h>
 
+ #ifdef CONFIG_BITVISOR
+
+ #endif
 void hypercall_handler()
 {
 	GPA_t pagetable_start_GPA;
@@ -16,7 +20,21 @@ void hypercall_handler()
 	if(pagetable_start_GPA)
 	{
 		protectCurrentApplication();
+		
 	}
 }
 
+void syscall_handler()
+{
 
+}
+
+void close_syscall_page()
+{
+
+}
+
+void open_syscall_page()
+{
+
+}

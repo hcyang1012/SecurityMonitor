@@ -39,7 +39,6 @@ build-all : $(CONFIG) defconfig
 	''): >> $(DIR)/$(depends);; esac
 	$(MAKE) $(V-makeopt-$(V)) -f Makefile.build build-dir DIR=$(DIR) V=$(V)
 	$(SIZE) $(dir)$(elf)
-	scp /home/hcyang/work/SecurityModule/bitvisor.elf  root@141.223.121.75:/boot
 
 .PHONY : clean-all
 clean-all :

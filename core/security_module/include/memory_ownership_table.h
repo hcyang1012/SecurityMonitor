@@ -128,6 +128,7 @@
 #define __MEMORY_OWNERSHIP_TABLE_H__
 
 #include <monitor_types.h>
+#include <guest_state.h>
 
 enum page_state_t{
 	UNPROTECTED = 0,	/**< unprotectd state */
@@ -153,7 +154,7 @@ struct protected_application_t
 {
 	VMID_t owner_VM;				/**< ID of VM of the application */
 	APPID_t owner_APP;				/**< ID of the application*/
-	struct guest_sensitive_stats_t guest_sensitive_stats;
+	struct guest_sensitive_stats guest_sensitive_stats;
 };
 
 #define PAGE_SIZE 4096
@@ -173,6 +174,7 @@ APPID_t allocateNewAppID();
 void* closePage(const VMID_t vmid, /**< [in] owner VMID of the page to close */
 				const VMID_t appID, /**< [in] owner app ID of the page to close */
 				GPA_t gpa /**< [in] GPA of page frame to close*/);
+void* openPage(const VMID_t vmID, const APPID_t appID, GPA_t gpa);
 int changePageStatus(	const VMID_t vmid, /**< [in] owner VMID of the page to close */
 						const VMID_t appID, /**< [in] owner app ID of the page to close */
 						const GPA_t gpa,	/**< [in] GPA of page frame to change */

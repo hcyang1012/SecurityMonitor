@@ -47,7 +47,7 @@
 #include "string.h"
 
 #ifdef CONFIG_SSLAB
-#define VMMSIZE_ALL		((1024*1024*1024))
+#define VMMSIZE_ALL		((256*1024*1024))
 #else
 #define VMMSIZE_ALL		(128 * 1024 * 1024)
 #endif
