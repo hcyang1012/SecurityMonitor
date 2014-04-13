@@ -145,6 +145,10 @@ vt_ept_violation (bool write, u64 gphys)
 			entry = getMemoryOwnershipTableEntry(index);
 			if(entry.state == CLOSED)
 			{
+				if(gphys == getSystemCallHandlerGPA())
+				{
+					printf("Syscall Enter\n");	
+				}
 				openPage(entry.owner_VM, entry.owner_APP, gphys);
 			}
 			mmio_unlock ();

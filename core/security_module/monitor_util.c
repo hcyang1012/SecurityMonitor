@@ -31,7 +31,7 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
 
 	HPA_t pageFrameHPA;
 
-	if(eptEntryHPA)
+	if(eptEntryHPA) 
 	{
 		*eptEntryHPA = 0;
 	}
@@ -77,7 +77,6 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
 	{
 		return 0;
 	}
-
 	eptBase_PT_HPA = currentEPT_PD_Entry & EPT_PD_ENTRY_MASK;
 	currentEPT_PT_Entry_HPA = eptBase_PT_HPA | ((gpa & EPT_PT_GPA_MASK) >> EPT_PT_GPA_SHIFT);
 	pCurrentEPT_PT_Entry = (EPT_ENTRY_t*)mapHPAintoHVA(currentEPT_PT_Entry_HPA,sizeof(EPT_ENTRY_t));
@@ -97,7 +96,6 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
 	}
 
 	pageFrameHPA = ((currentEPT_PT_Entry & EPT_PT_ENTRY_MASK) | (gpa & EPT_GPA_MASK));
-
 	return pageFrameHPA;
 
 }

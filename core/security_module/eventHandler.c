@@ -19,22 +19,9 @@ void hypercall_handler()
 
 	if(pagetable_start_GPA)
 	{
-		protectCurrentApplication();
+		test_start();
+		//protectCurrentApplication();
 		
 	}
 }
 
-void syscall_handler()
-{
-
-}
-
-void close_syscall_page()
-{
-
-}
-
-void open_syscall_page()
-{
-
-}

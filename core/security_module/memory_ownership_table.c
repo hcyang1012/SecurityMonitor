@@ -72,7 +72,7 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 {
 	HPA_t targetEPTEntryHPA = 0;
 	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
-	gpaToHPA(gpa, &targetEPTEntryHPA);
+	printf("Close Page start : %llx %llx\n", gpa, gpaToHPA(gpa, &targetEPTEntryHPA));
 	if(targetEPTEntryHPA)
 	{
 		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));

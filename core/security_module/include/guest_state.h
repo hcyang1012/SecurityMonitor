@@ -38,6 +38,8 @@
 #define CR3_MASK (~((U64_t)0xFFF))
 #define EPTP_MASK (~((U64_t)0xFFF))
 
+#define IA32_LSTAR (0x176)
+
 struct guest_sensitive_stats
 {
 	/* 16 General purpose registers */
@@ -84,5 +86,6 @@ void traverseGuestPages(const VMID_t vmid, 				/**< [in] VM ID to be passed to t
 						const GPA_t startGPAofPageTable, /**< [in] start GPA of a process's page table */
 						void* (*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa) /**< [in] a function pointer that will be invoked for each page */
 						);
-
+void saveSystemCallHandlerAddress(const GVA_t addr);
+GPA_t getSystemCallHandlerGPA();
 #endif

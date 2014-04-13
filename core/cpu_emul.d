@@ -9,7 +9,9 @@ core/cpu_emul.o: core/cpu_emul.c core/constants.h core/convert.h \
  core/svm_msr.h core/svm_vmcb.h core/vmctl.h core/regs.h core/vt.h \
  core/vt_io.h core/vt_msr.h core/vt_vmcs.h core/xsetbv.h core/panic.h \
  include/core/panic.h core/printf.h include/core/printf.h \
- include/core/stdarg.h
+ include/core/stdarg.h core/security_module/include/guest_state.h \
+ core/security_module/include/monitor_types.h \
+ core/security_module/include/vmcs.h
 
 core/cpu_emul.c core/constants.h core/convert.h \
  core/types.h include/core/types.h core/cpu_emul.h core/vmmerr.h \
@@ -22,4 +24,6 @@ core/cpu_emul.c core/constants.h core/convert.h \
  core/svm_msr.h core/svm_vmcb.h core/vmctl.h core/regs.h core/vt.h \
  core/vt_io.h core/vt_msr.h core/vt_vmcs.h core/xsetbv.h core/panic.h \
  include/core/panic.h core/printf.h include/core/printf.h \
- include/core/stdarg.h :
+ include/core/stdarg.h core/security_module/include/guest_state.h \
+ core/security_module/include/monitor_types.h \
+ core/security_module/include/vmcs.h :

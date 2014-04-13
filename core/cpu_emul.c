@@ -36,6 +36,10 @@
 #include "panic.h"
 #include "printf.h"
 
+#ifdef CONFIG_SSLAB
+ #include <guest_state.h>
+#endif
+
 void
 cpu_emul_cpuid (void)
 {
@@ -78,11 +82,12 @@ cpu_emul_wrmsr (void)
 	u64 msrdata;
 	bool err;
 
+
 	/* FIXME: Privilege check */
-	current->vmctl.read_general_reg (GENERAL_REG_RCX, &ic);
 	current->vmctl.read_general_reg (GENERAL_REG_RAX, &ia);
-	current->vmctl.read_general_reg (GENERAL_REG_RDX, &id);
+	current->vmctl.read_general_reg (GENERAL_REG_RDX, &id);	
 	conv32to64 (ia, id, &msrdata);
+	current->vmctl.read_general_reg (GENERAL_REG_RCX, &ic);
 	err = current->vmctl.write_msr (ic, msrdata);
 	return err;
 }

@@ -166,7 +166,6 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 	unmapHPAintoHVA((void*)pCurrentPML4Entry,sizeof(PGT_ENTRY_t));
 
 	startGPAofPDPT = currentPML4Entry & EPT_PML4_ENTRY_MASK;
-	printf("currentPML4EntryGPA : %llx\n", currentPML4EntryGPA);
 	if(startGPAofPDPT && (currentPML4Entry & 0x01) && !(currentPML4Entry & 0x80))
 	{
 		GPA_t currentPDPTEntryGPA;
@@ -189,7 +188,6 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 		unmapHPAintoHVA((void*)pCurrentPDPTEntry,sizeof(PGT_ENTRY_t));
 
 		startGPAofPDT = currentPDPTEntry & EPT_PDP_ENTRY_MASK;	
-		printf("startGPAofPDT : %llx\n", startGPAofPDT);
 		if(startGPAofPDT && (currentPDPTEntry & 0x01) && !(currentPDPTEntry & 0x80))
 		{
 			GPA_t currentPDTEntryGPA;
@@ -212,8 +210,6 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 			unmapHPAintoHVA((void*)pCurrentPDTEntry,sizeof(PGT_ENTRY_t));
 
 			startGPAofPT = currentPDTEntry & EPT_PD_ENTRY_MASK;
-			printf("startGPAofPT : %llx\n", startGPAofPT);
-			printf("currentPDTEntry : %llx\n", currentPDTEntry);
 			if(startGPAofPT && (currentPDTEntry & 0x01) && !(currentPDTEntry & 0x80))
 			{
 				GPA_t currentPTEntryGPA;
@@ -223,7 +219,6 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 
 				currentPTEntryGPA = (startGPAofPT | ((gva & (((U64_t)0x1FF) << 12)) >> (12 - 3)));
 				currentPTEntryHPA = gpaToHPA(currentPTEntryGPA, 0);
-				printf("currentPTEntryGPA : %llx\n",currentPTEntryGPA);
 				if(!currentPTEntryHPA)
 				{
 					return 0;
@@ -237,7 +232,6 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 				unmapHPAintoHVA((void*)pCurrentPTEntry,sizeof(PGT_ENTRY_t));
 
 				pageGPA = currentPTEntry & EPT_PT_ENTRY_MASK;
-				printf("pageGPA : %llx\n", pageGPA);
 				if((currentPTEntry & 0x01))
 				{
 					return pageGPA | (gva & 0xFFF);			
@@ -245,10 +239,8 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 			}
 			else
 			{
-				printf("Here1 : %llx %llx\n", (currentPDTEntry & 0x01), (currentPDTEntry & 0x80));
 				if(startGPAofPT && (currentPDTEntry & 0x01) && (currentPDTEntry & 0x80))
 				{
-					printf("Here2 : %llx, %llx\n",currentPDTEntry,(currentPDTEntry & (~(U64_t)(0x1FFFFF))));
 					return (currentPDTEntry & (~(U64_t)(0x1FFFFF))) | (gva & 0x1FFFFF);
 				}
 			}

@@ -8,6 +8,7 @@
 #include <unit_test.h>
 #include <guest_IA32ePage.h>
 #ifdef CONFIG_BITVISOR
+	#include <current.h>
 	#include <printf.h>
 #endif
 
@@ -16,7 +17,16 @@ void test_start()
 	int result;
 	if(get_page_table_base_GPA())
 	{
-		printf("Unit test : %llx\n",gvaToGPA(0xffffffff810c7590,get_page_table_base_GPA()));
+		#ifdef CONFIG_BITVISOR
+		{
+			U64_t msrData;
+			current->vmctl.read_msr (IA32_LSTAR, &msrData);
+			printf("System call define.. %llx\n", msrData);
+			saveSystemCallHandlerAddress(msrData);
+		
+		}
+		#endif			
+	//	printf("Unit test : %llx\n",gvaToGPA(0xffffffff810c7590,get_page_table_base_GPA()));
 	// 	printf("Unit test start\n");
 
 	// 	printf("Test 'gpaToHPA()'\n");
