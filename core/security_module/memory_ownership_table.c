@@ -19,7 +19,7 @@
 #endif
 
 static struct memory_ownership_table_entry_t memory_ownership_table[NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY];
-
+static struct protected_application_t protected_application_table[NUMBER_OF_PROTECTED_APPLICATIONS];
 APPID_t currentRunningApplication = OWNER_OTHER;
 APPID_t numberOfProtectedApplications = 0;
 VMID_t numberOfVMs = 0;
@@ -31,9 +31,10 @@ void protectCurrentApplication()
 	GPA_t cr3GPA;
 
 	allocateNewApplicationIdentifiers(&newVMID,&newAPPID);
-	initializeNewProtectedApplication(&newVMID,&newAPPID);
+	initializeNewProtectedApplication(newVMID,newAPPID);
 	cr3GPA = get_page_table_base_GPA();
 	traverseGuestPages(newVMID, newAPPID, cr3GPA, closePage);
+	traverseGuestPages(newVMID, newAPPID, cr3GPA, openPage);
 }
 
 void allocateNewApplicationIdentifiers(VMID_t *new_VMID, APPID_t *new_APPID)
@@ -72,20 +73,17 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 {
 	HPA_t targetEPTEntryHPA = 0;
 	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
-	printf("Close Page start : %llx %llx\n", gpa, gpaToHPA(gpa, &targetEPTEntryHPA));
 	if(targetEPTEntryHPA)
 	{
 		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
 		if(!pTargetEPTEntry)
 		{
-			printf("Error\n");
 			return 0;
 		}
 
 
 		if(changePageStatus(vmID, appID, gpa, CLOSED))
 		{
-			printf("Close %llx\n",gpa);
 			targetEPTEntry = *pTargetEPTEntry;
 			targetEPTEntry &= (~(EPT_ATTRIBUTE_MASK));
 			*pTargetEPTEntry = targetEPTEntry;
@@ -111,7 +109,6 @@ void* openPage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
 		if(!pTargetEPTEntry)
 		{
-			printf("Error\n");
 			return 0;
 		}
 
@@ -140,7 +137,6 @@ int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, co
 	pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
 	if(!pTargetEPTEntry)
 	{
-		printf("Error : %s(%d)\n",__FILE__, __LINE__);
 		return 0;
 	}
 	targetEPTEntry = *pTargetEPTEntry;
@@ -151,7 +147,8 @@ int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, co
 
 	if(index >= NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY)
 	{
-		printf("%s(%d) - Overflow : %d(%llx) / %d \n",__FILE__,__LINE__,index,hpa,NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY);
+		//Overflow
+		return 0;
 	}
 
 	if(	memory_ownership_table[index].owner_VM == 0 &&
@@ -179,5 +176,23 @@ struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(const U64_t i
 
 void initializeNewProtectedApplication(const VMID_t vmid, const APPID_t appID)
 {
+	protected_application_table[appID].owner_VM = vmid;
+	protected_application_table[appID].owner_APP = appID;
+	protected_application_table[appID].guest_sensitive_stats.SP_Kernel = getTSSGVA();
+}
+
+struct protected_application_t *getCurrentProtectedApplication()
+{
+	int index;
+	GVA_t currentTSSGVA = getTSSGVA();
 	
+	for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
+	{
+		if(protected_application_table[index].guest_sensitive_stats.SP_Kernel == currentTSSGVA)
+		{
+			return &(protected_application_table[index]);
+		}
+	}
+	return 0;
+
 }

@@ -55,6 +55,10 @@
 #include "vt_regs.h"
 #include "vt_vmcs.h"
 
+#ifdef CONFIG_SSLAB
+ #include <guest_state.h>
+ #include <memory_ownership_table.h>
+#endif
 
 
 #define EPT_VIOLATION_EXIT_QUAL_WRITE_BIT 0x2
@@ -85,10 +89,7 @@ do_mov_cr (void)
 	switch (eqc.s.type) {
 	case EXIT_QUAL_CR_TYPE_MOV_TO_CR:
 		vt_read_general_reg (eqc.s.reg, &val);
-		vt_write_control_reg (eqc.s.num, val);	
-	#ifdef CONFIG_SSLAB
-	
-	#endif				
+		vt_write_control_reg (eqc.s.num, val);					
 		break;
 	case EXIT_QUAL_CR_TYPE_MOV_FROM_CR:
 		vt_read_control_reg (eqc.s.num, &val);
@@ -174,6 +175,19 @@ do_exception (void)
 	ulong len;
 	enum vmmerr err;
 	ulong errc;
+
+	#ifdef CONFIG_SSLAB
+	int isUserToKernel = 0;
+	U64_t csSelector;
+	char privilegeLevel;
+	csSelector = monitor_vmcs_read(FIELD_ENCODING_GUEST_CS_SELECTOR);
+	privilegeLevel = csSelector & 0x3;
+	if(privilegeLevel > 0)
+	{
+		printf("User to kernel\n");
+		isUserToKernel = 1;
+	}
+	#endif
 
 	asm_vmread (VMCS_VMEXIT_INTR_INFO, &vii.v);
 	if (vii.s.valid == INTR_INFO_VALID_VALID) {
@@ -266,6 +280,20 @@ do_exception (void)
 			       vii.s.type);
 		}
 	}
+	#ifdef CONFIG_SSLAB
+	if(isUserToKernel){
+		struct protected_application_t *currentProtectedApplication;
+		currentProtectedApplication = getCurrentProtectedApplication();
+		if(currentProtectedApplication)
+		{
+			GPA_t cr3GPA;
+			save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));	
+			clear_guest_status();
+			cr3GPA = get_page_table_base_GPA();
+			traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, closePage);		
+		}
+	}
+	#endif
 }
 
 static void
@@ -729,7 +757,6 @@ static void
 vt__exit_reason (void)
 {
 	ulong exit_reason;
-
 	asm_vmread (VMCS_EXIT_REASON, &exit_reason);
 	if (exit_reason & EXIT_REASON_VMENTRY_FAILURE_BIT)
 		panic ("Fatal error: VM Entry failure.");

@@ -31,3 +31,11 @@ U64_t monitor_vmcs_read(const U64_t field)
 		      : "cc");
 	return value;	
 }
+
+void monitor_vmcs_write(const U64_t field, const U32_t value)
+{
+	asm volatile ("vmwrite %1,%0"
+		      :
+		      : "r" (field), "rm" (value)
+		      : "cc");	
+}

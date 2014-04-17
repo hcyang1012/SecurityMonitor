@@ -14,7 +14,11 @@ core/vt_main.o: core/vt_main.c core/asm.h core/desc.h core/types.h \
  include/core/printf.h include/core/stdarg.h core/reboot.h core/string.h \
  include/core/string.h core/vmmcall.h core/vmmcall_status.h \
  core/vt_addip.h core/vt_exitreason.h core/vt_init.h core/vt_main.h \
- core/vt_paging.h core/vt_regs.h
+ core/vt_paging.h core/vt_regs.h \
+ core/security_module/include/guest_state.h \
+ core/security_module/include/monitor_types.h \
+ core/security_module/include/vmcs.h \
+ core/security_module/include/memory_ownership_table.h
 
 core/vt_main.c core/asm.h core/desc.h core/types.h \
  include/core/types.h core/linkage.h include/core/linkage.h \
@@ -32,4 +36,8 @@ core/vt_main.c core/asm.h core/desc.h core/types.h \
  include/core/printf.h include/core/stdarg.h core/reboot.h core/string.h \
  include/core/string.h core/vmmcall.h core/vmmcall_status.h \
  core/vt_addip.h core/vt_exitreason.h core/vt_init.h core/vt_main.h \
- core/vt_paging.h core/vt_regs.h :
+ core/vt_paging.h core/vt_regs.h \
+ core/security_module/include/guest_state.h \
+ core/security_module/include/monitor_types.h \
+ core/security_module/include/vmcs.h \
+ core/security_module/include/memory_ownership_table.h :

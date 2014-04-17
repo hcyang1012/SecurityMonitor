@@ -62,19 +62,40 @@ struct guest_sensitive_stats
 
 	/* 6 Segment registers are always 
 	regarded as 0 in 64bit environment */
-	U64_t CS;
-	U64_t DS;
-	U64_t ES;
-	U64_t FS;
-	U64_t GS;
+	U64_t CS_selector;
+	U64_t DS_selector;
+	U64_t ES_selector;
+	U64_t FS_selector;
+	U64_t GS_selector;
+	U64_t SS_selector;
+
+	U64_t CS_limit;
+	U64_t DS_limit;
+	U64_t ES_limit;
+	U64_t FS_limit;
+	U64_t GS_limit;
+	U64_t SS_limit;
+
+	U64_t CS_access_right;
+	U64_t DS_access_right;
+	U64_t ES_access_right;
+	U64_t FS_access_right;
+	U64_t GS_access_right;
+	U64_t SS_access_right;
+
+	U64_t CS_base;
+	U64_t DS_base;
+	U64_t ES_base;
+	U64_t FS_base;
+	U64_t GS_base;
+	U64_t SS_base;
 
 	/* 2 Special-purpose registers */
 	U64_t RFLAGS;	/* Flag registers */
 	U64_t RIP;	/* Program counter */
 
 	/* For identifying this structure */
-	U64_t SP_Kernel;	/* Kernel mode RSP in TSS->RSP */
-	APPID_t ownerAPPID;
+	GVA_t SP_Kernel;	/* Kernel mode RSP in TSS->RSP */
 
 };
 
@@ -88,4 +109,7 @@ void traverseGuestPages(const VMID_t vmid, 				/**< [in] VM ID to be passed to t
 						);
 void saveSystemCallHandlerAddress(const GVA_t addr);
 GPA_t getSystemCallHandlerGPA();
+void save_guest_status(struct guest_sensitive_stats *guest_status);
+void clear_guest_status();
+GVA_t getTSSGVA();
 #endif

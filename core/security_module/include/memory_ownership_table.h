@@ -130,6 +130,7 @@
 #include <monitor_types.h>
 #include <guest_state.h>
 
+
 enum page_state_t{
 	UNPROTECTED = 0,	/**< unprotectd state */
 	CLOSED,				/**< closed state */
@@ -140,6 +141,7 @@ enum page_state_t{
 
 #define OWNER_OTHER	0
 #define OWNER_VMM	0
+
 
 struct memory_ownership_table_entry_t
 {
@@ -163,10 +165,13 @@ struct protected_application_t
 #define HPA_TO_INDEX_SHIFT 12
 
 
+#define NUMBER_OF_PROTECTED_APPLICATIONS 5
+
 void protectCurrentApplication();
 void allocateNewApplicationIdentifiers(	VMID_t *new_VMID, /**< [out] The newly allocated VM ID will be stored in this parameter. */
 										APPID_t *new_APPID/**< [out] The newly allocated application ID will be stored in this parameter. */
 										);
+void initializeNewProtectedApplication(const VMID_t vmid, const APPID_t appID);
 
 VMID_t allocateNewVMID();
 APPID_t allocateNewAppID();
@@ -183,5 +188,5 @@ int changePageStatus(	const VMID_t vmid, /**< [in] owner VMID of the page to clo
 
 U64_t getMemoryOwnershipTableIndex(const HPA_t hpa /*<< [in] HPA to change */);
 struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(const U64_t index /*<< [in] index to an entry of memory ownership table */);
-
+struct protected_application_t *getCurrentProtectedApplication();
 #endif

@@ -9,6 +9,7 @@
 
 #ifdef CONFIG_BITVISOR
 	#include <mm.h>
+	#include <printf.h>
 #endif
 
 HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
@@ -123,4 +124,3 @@ void unmapHPAintoHVA(void* hva, const U64_t size)
 		//Noop
 	#endif
 }
-
