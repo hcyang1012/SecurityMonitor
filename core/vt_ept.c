@@ -143,19 +143,52 @@ vt_ept_violation (bool write, u64 gphys)
 		{
 			index = getMemoryOwnershipTableIndex(hpa);
 			entry = getMemoryOwnershipTableEntry(index);
-			if(entry.state == CLOSED)
+			struct protected_application_t *currentProtectedApplication = getCurrentProtectedApplication();
+			if(currentProtectedApplication)
 			{
-				if(gphys == getSystemCallHandlerGPA())
+				VMID_t currentVMID;
+				APPID_t currentAPPID;
+
+				currentVMID = currentProtectedApplication->owner_VM;
+				currentAPPID = currentProtectedApplication->owner_APP;
+
+				if(entry.state != UNPROTECTED)
 				{
-					printf("Syscall Enter\n");	
+					switch(entry.state)
+					{
+						CLOSED:
+							// Calling system call : user to kernel
+							if(gphys == getSystemCallHandlerGPA())
+							{
+								//Close all pages
+								GPA_t cr3GPA;
+								cr3GPA = get_page_table_base_GPA();
+								traverseGuestPages(currentVMID, currentAPPID, cr3GPA, closePage);						
+
+								//Open system call page
+								openPage(entry.owner_VM, entry.owner_APP, gphys);
+								save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
+								clear_guest_status();
+							}
+							// Kernel to User due to IRET or syscall return
+							else if(gphys == currentProtectedApplication->guest_sensitive_stats.RIP)
+							{
+								//Recover context
+								restore_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
+								openPage(entry.owner_VM, entry.owner_APP, gphys);
+							}
+							break;
+						OPENED:
+							openPage(entry.owner_VM, entry.owner_APP, gphys);
+							break;
+						default:
+							break;
+					}
+					mmio_unlock ();
+					return;
 				}
-				openPage(entry.owner_VM, entry.owner_APP, gphys);
-			}
-			mmio_unlock ();
-			return;				
+			}				
 		}
-
-
 	}
 	#endif
 	if (!mmio_access_page (gphys, true))

@@ -39,9 +39,6 @@ void traverseGuestPages(const VMID_t vmid, const APPID_t appID, const GPA_t star
 void saveSystemCallHandlerAddress(const GVA_t addr)
 {
 	GPA_t syscallHandlerAddressGPA;
-	HPA_t syscallHandlerAddressHPA;
-	
-
 	syscallHandlerAddressGPA = gvaToGPA(addr, get_page_table_base_GPA());
 	syscallHandlerAddress = syscallHandlerAddressGPA;	
 	closePage(0,0, syscallHandlerAddress);
@@ -153,7 +150,68 @@ void clear_guest_status()
 	#endif	
 }
 
+void restore_guest_status(struct guest_sensitive_stats *guest_status)
+{
+	#ifdef CONFIG_BITVISOR
+	current->vmctl.write_general_reg (GENERAL_REG_RAX, (guest_status->RAX));
+	current->vmctl.write_general_reg (GENERAL_REG_RBX, (guest_status->RBX));
+	current->vmctl.write_general_reg (GENERAL_REG_RCX, (guest_status->RCX));
+	current->vmctl.write_general_reg (GENERAL_REG_RDX, (guest_status->RDX));
+	current->vmctl.write_general_reg (GENERAL_REG_RDI, (guest_status->RDI)); 
+	current->vmctl.write_general_reg (GENERAL_REG_RSI, (guest_status->RSI));
+	current->vmctl.write_general_reg (GENERAL_REG_RBP, (guest_status->RBP));
+	current->vmctl.write_general_reg (GENERAL_REG_RSP, (guest_status->RSP));
+	current->vmctl.write_general_reg (GENERAL_REG_R8,  (guest_status->R8));
+	current->vmctl.write_general_reg (GENERAL_REG_R9,  (guest_status->R9));
+	current->vmctl.write_general_reg (GENERAL_REG_R10, (guest_status->R10));
+	current->vmctl.write_general_reg (GENERAL_REG_R11, (guest_status->R11));
+	current->vmctl.write_general_reg (GENERAL_REG_R12, (guest_status->R12));
+	current->vmctl.write_general_reg (GENERAL_REG_R13, (guest_status->R13));
+	current->vmctl.write_general_reg (GENERAL_REG_R14, (guest_status->R14));
+	current->vmctl.write_general_reg (GENERAL_REG_R15, (guest_status->R15));
+
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_ES_SELECTOR, guest_status->ES_selector);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_CS_SELECTOR, guest_status->CS_selector);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_SS_SELECTOR, guest_status->SS_selector);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_DS_SELECTOR, guest_status->DS_selector);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_FS_SELECTOR, guest_status->FS_selector);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_GS_SELECTOR, guest_status->GS_selector);
+
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_ES_LIMIT, guest_status->ES_limit);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_CS_LIMIT, guest_status->CS_limit);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_SS_LIMIT, guest_status->SS_limit);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_DS_LIMIT, guest_status->DS_limit);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_FS_LIMIT, guest_status->FS_limit);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_GS_LIMIT, guest_status->GS_limit);
+
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_ES_ACCESS_RIGHT, guest_status->ES_access_right);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_CS_ACCESS_RIGHT, guest_status->CS_access_right);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_SS_ACCESS_RIGHT, guest_status->SS_access_right);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_DS_ACCESS_RIGHT, guest_status->DS_access_right);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_FS_ACCESS_RIGHT, guest_status->FS_access_right);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_GS_ACCESS_RIGHT, guest_status->GS_access_right);
+
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_ES_BASE, guest_status->ES_base);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_CS_BASE, guest_status->CS_base);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_SS_BASE, guest_status->SS_base);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_DS_BASE, guest_status->DS_base);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_FS_BASE, guest_status->FS_base);
+	monitor_vmcs_write(FIELD_ENCODING_GUEST_GS_BASE, guest_status->GS_base);
+	#endif	
+}
+
 GVA_t getTSSGVA()
 {
 	return monitor_vmcs_read(FIELD_ENCODING_GUEST_TR_BASE);
+}
+
+GVA_t getKernelESPGVA()
+{
+	GVA_t tssGVA = getTSSGVA();
+	GPA_t tssGPA = gvaToGPA(tssGVA, get_page_table_base_GPA());
+	HPA_t tssHPA = gpaToHPA(tssGPA, 0);
+	GVA_t *pTSS = mapHPAintoHVA(tssHPA,sizeof(HPA_t));
+	GVA_t kernelESPGVA = *pTSS;
+	unmapHPAintoHVA(pTSS,sizeof(HPA_t));
+	return kernelESPGVA;
 }

@@ -110,6 +110,8 @@ void traverseGuestPages(const VMID_t vmid, 				/**< [in] VM ID to be passed to t
 void saveSystemCallHandlerAddress(const GVA_t addr);
 GPA_t getSystemCallHandlerGPA();
 void save_guest_status(struct guest_sensitive_stats *guest_status);
+void restore_guest_status(struct guest_sensitive_stats *guest_status);
 void clear_guest_status();
-GVA_t getTSSGVA();
+GVA_t getKernelESPGVA();
+
 #endif
