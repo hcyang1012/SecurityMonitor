@@ -178,7 +178,6 @@ void initializeNewProtectedApplication(const VMID_t vmid, const APPID_t appID)
 {
 	protected_application_table[appID].owner_VM = vmid;
 	protected_application_table[appID].owner_APP = appID;
-	protected_application_table[appID].guest_sensitive_stats.SP_Kernel = getKernelESPGVA();
 }
 
 struct protected_application_t *getCurrentProtectedApplication()
@@ -188,7 +187,7 @@ struct protected_application_t *getCurrentProtectedApplication()
 	
 	for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
 	{
-		if(protected_application_table[index].guest_sensitive_stats.SP_Kernel == currentKernelESP)
+		if(protected_application_table[index].guest_sensitive_stats.SP_User == currentKernelESP)
 		{
 			return &(protected_application_table[index]);
 		}

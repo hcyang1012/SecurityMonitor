@@ -96,7 +96,14 @@ void save_guest_status(struct guest_sensitive_stats *guest_status)
 	guest_status->SS_base = monitor_vmcs_read(FIELD_ENCODING_GUEST_SS_BASE);
 	guest_status->DS_base = monitor_vmcs_read(FIELD_ENCODING_GUEST_DS_BASE);
 	guest_status->FS_base = monitor_vmcs_read(FIELD_ENCODING_GUEST_FS_BASE);
-	guest_status->GS_base = monitor_vmcs_read(FIELD_ENCODING_GUEST_GS_BASE);	
+	guest_status->GS_base = monitor_vmcs_read(FIELD_ENCODING_GUEST_GS_BASE);
+
+	/* 2 Special-purpose registers */
+	current->vmctl.read_general_reg (GENERAL_REG_R11, (unsigned long*)&(guest_status->RFLAGS)); /* R11 contains user Flag registers */
+	current->vmctl.read_general_reg (GENERAL_REG_RCX, (unsigned long*)&(guest_status->RIP)); /* RCX containts program counter indicating next instruction after return to user*/
+
+	/* For identifying this structure */
+	guest_status->SP_User = gvaToGPA(guest_status->RSP, get_page_table_base_GPA());	/* Kernel mode RSP in TSS->RSP */		
 	#endif
 }
 

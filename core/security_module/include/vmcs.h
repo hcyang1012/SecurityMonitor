@@ -81,6 +81,7 @@
 
 
 #define FIELD_ENCODING_GUEST_TR_BASE		((U64_t) 0x00006814)
+#define FIELD_ENCODING_GUEST_RFLAGS		((U64_t) 0x00006820)
 
 U64_t get_guest_cr3_value();
 U64_t get_guest_eptp_value();

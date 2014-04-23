@@ -92,10 +92,10 @@ struct guest_sensitive_stats
 
 	/* 2 Special-purpose registers */
 	U64_t RFLAGS;	/* Flag registers */
-	U64_t RIP;	/* Program counter */
+	U64_t RIP;	/* Program counter indicating next instruction after return to user*/
 
 	/* For identifying this structure */
-	GVA_t SP_Kernel;	/* Kernel mode RSP in TSS->RSP */
+	GVA_t SP_User;
 
 };
 

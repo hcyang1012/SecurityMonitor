@@ -290,7 +290,7 @@ do_exception (void)
 			save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));	
 			clear_guest_status();
 			cr3GPA = get_page_table_base_GPA();
-			traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, closePage);		
+			traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, closePage);
 		}
 	}
 	#endif
