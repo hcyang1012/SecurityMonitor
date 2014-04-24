@@ -171,6 +171,7 @@ vt_ept_violation (bool write, u64 gphys)
 								save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
 								clear_guest_status();
 								setCurrentProtectedApplication(NULL);
+								//Handler System call
 							}
 						}
 						else 
