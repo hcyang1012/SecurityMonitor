@@ -92,10 +92,11 @@ struct guest_sensitive_stats
 
 	/* 2 Special-purpose registers */
 	U64_t RFLAGS;	/* Flag registers */
-	U64_t RIP;	/* Program counter indicating next instruction after return to user*/
+	GVA_t RIP;	/* Program counter indicating next instruction after return to user*/
+	GPA_t RIP_GPA;
 
 	/* For identifying this structure */
-	GVA_t SP_User;
+	GPA_t SP_User;
 
 };
 
@@ -112,6 +113,6 @@ GPA_t getSystemCallHandlerGPA();
 void save_guest_status(struct guest_sensitive_stats *guest_status);
 void restore_guest_status(struct guest_sensitive_stats *guest_status);
 void clear_guest_status();
-GVA_t getKernelESPGVA();
+GPA_t getGuestRSP();
 
 #endif

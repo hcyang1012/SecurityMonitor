@@ -101,9 +101,10 @@ void save_guest_status(struct guest_sensitive_stats *guest_status)
 	/* 2 Special-purpose registers */
 	current->vmctl.read_general_reg (GENERAL_REG_R11, (unsigned long*)&(guest_status->RFLAGS)); /* R11 contains user Flag registers */
 	current->vmctl.read_general_reg (GENERAL_REG_RCX, (unsigned long*)&(guest_status->RIP)); /* RCX containts program counter indicating next instruction after return to user*/
+	guest_status->RIP_GPA = gvaToGPA(guest_status->RIP, get_page_table_base_GPA());
 
 	/* For identifying this structure */
-	guest_status->SP_User = gvaToGPA(guest_status->RSP, get_page_table_base_GPA());	/* Kernel mode RSP in TSS->RSP */		
+	guest_status->SP_User = gvaToGPA(guest_status->RSP, get_page_table_base_GPA());
 	#endif
 }
 
@@ -212,13 +213,13 @@ GVA_t getTSSGVA()
 	return monitor_vmcs_read(FIELD_ENCODING_GUEST_TR_BASE);
 }
 
-GVA_t getKernelESPGVA()
+GPA_t getGuestRSP()
 {
-	GVA_t tssGVA = getTSSGVA();
-	GPA_t tssGPA = gvaToGPA(tssGVA, get_page_table_base_GPA());
-	HPA_t tssHPA = gpaToHPA(tssGPA, 0);
-	GVA_t *pTSS = mapHPAintoHVA(tssHPA,sizeof(HPA_t));
-	GVA_t kernelESPGVA = *pTSS;
-	unmapHPAintoHVA(pTSS,sizeof(HPA_t));
-	return kernelESPGVA;
+	GPA_t currentGuestRSP;
+	#ifdef CONFIG_BITVISOR
+	current->vmctl.read_general_reg (GENERAL_REG_RSP, (unsigned long*)&(currentGuestRSP));
+	#else
+	currentGuestRSP = 0;
+	#endif
+	return currentGuestRSP;
 }

@@ -189,4 +189,6 @@ int changePageStatus(	const VMID_t vmid, /**< [in] owner VMID of the page to clo
 U64_t getMemoryOwnershipTableIndex(const HPA_t hpa /*<< [in] HPA to change */);
 struct memory_ownership_table_entry_t getMemoryOwnershipTableEntry(const U64_t index /*<< [in] index to an entry of memory ownership table */);
 struct protected_application_t *getCurrentProtectedApplication();
+void setCurrentProtectedApplication(struct protected_application_t *application);
+struct protected_application_t *findProtectedApplicationFromRIP(const GPA_t source);
 #endif

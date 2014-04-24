@@ -136,30 +136,29 @@ vt_ept_violation (bool write, u64 gphys)
 	mmio_lock ();
 	#ifdef CONFIG_SSLAB
 	{
-		U64_t index;
+		U64_t index; 
 		struct memory_ownership_table_entry_t entry;
 		HPA_t hpa = gpaToHPA(gphys, 0);
 		if(hpa)
 		{
 			index = getMemoryOwnershipTableIndex(hpa);
 			entry = getMemoryOwnershipTableEntry(index);
-			struct protected_application_t *currentProtectedApplication = getCurrentProtectedApplication();
-			if(currentProtectedApplication)
+			if(entry.state != UNPROTECTED)
 			{
-				VMID_t currentVMID;
-				APPID_t currentAPPID;
-
-				currentVMID = currentProtectedApplication->owner_VM;
-				currentAPPID = currentProtectedApplication->owner_APP;
-
-				if(entry.state != UNPROTECTED)
+				switch(entry.state)
 				{
-					switch(entry.state)
-					{
-						CLOSED:
-							// Calling system call : user to kernel
-							if(gphys == getSystemCallHandlerGPA())
+					case CLOSED:
+						// Calling system call : user to kernel
+						if(gphys == getSystemCallHandlerGPA())
+						{
+							struct protected_application_t *currentProtectedApplication = getCurrentProtectedApplication();
+							if(currentProtectedApplication)
 							{
+								VMID_t currentVMID;
+								APPID_t currentAPPID;
+
+								currentVMID = currentProtectedApplication->owner_VM;
+								currentAPPID = currentProtectedApplication->owner_APP;							
 								//Close all pages
 								GPA_t cr3GPA;
 								cr3GPA = get_page_table_base_GPA();
@@ -167,27 +166,44 @@ vt_ept_violation (bool write, u64 gphys)
 
 								//Open system call page
 								openPage(entry.owner_VM, entry.owner_APP, gphys);
+
+								//Save & clear guest state
 								save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
 								clear_guest_status();
+								setCurrentProtectedApplication(NULL);
 							}
+						}
+						else 
+						{
 							// Kernel to User due to IRET or syscall return
-							else if(gphys == currentProtectedApplication->guest_sensitive_stats.RIP)
+							struct protected_application_t *currentProtectedApplication = findProtectedApplicationFromRIP(gphys);
+							if(currentProtectedApplication)
 							{
-								//Recover context
-								restore_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
-								openPage(entry.owner_VM, entry.owner_APP, gphys);
+								//Is in user mode?
+								U64_t csSelector;
+								char privilegeLevel;
+								csSelector = monitor_vmcs_read(FIELD_ENCODING_GUEST_CS_SELECTOR);
+								privilegeLevel = csSelector & 0x3;								
+								if(privilegeLevel > 0)
+								{
+									//Recover context
+									restore_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
+									openPage(entry.owner_VM, entry.owner_APP, gphys);
+									setCurrentProtectedApplication(currentProtectedApplication);
+								}								
 							}
-							break;
-						OPENED:
-							openPage(entry.owner_VM, entry.owner_APP, gphys);
-							break;
-						default:
-							break;
-					}
-					mmio_unlock ();
-					return;
+						}
+					break;
+						case OPENED:
+						openPage(entry.owner_VM, entry.owner_APP, gphys);
+						break;
+					default:
+						break;
 				}
-			}				
+				mmio_unlock ();
+				return;
+			}
+
 		}
 	}
 	#endif

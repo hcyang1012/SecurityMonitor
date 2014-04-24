@@ -24,6 +24,8 @@ APPID_t currentRunningApplication = OWNER_OTHER;
 APPID_t numberOfProtectedApplications = 0;
 VMID_t numberOfVMs = 0;
 
+struct protected_application_t *currentProtectedApplication = NULL;
+
 void protectCurrentApplication()
 {
 	VMID_t newVMID;
@@ -183,15 +185,46 @@ void initializeNewProtectedApplication(const VMID_t vmid, const APPID_t appID)
 struct protected_application_t *getCurrentProtectedApplication()
 {
 	int index;
-	GVA_t currentKernelESP = getKernelESPGVA();
-	
+	if(currentProtectedApplication != NULL)
+	{
+		return currentProtectedApplication;
+	}
+	else
+	{
+		GPA_t currentESP = getGuestRSP();
+		
+		for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
+		{
+			if(protected_application_table[index].guest_sensitive_stats.SP_User == currentESP)
+			{
+				return &(protected_application_table[index]);
+			}
+		}
+		return 0;
+	}
+}
+
+
+struct protected_application_t *findProtectedApplicationFromRIP(const GPA_t source)
+{
+	int index;
+	GPA_t currentRSP = getGuestRSP();
+
 	for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
 	{
-		if(protected_application_table[index].guest_sensitive_stats.SP_User == currentKernelESP)
+		GPA_t currentProtectedApplicationRIPGPA;
+		currentProtectedApplicationRIPGPA = protected_application_table[index].guest_sensitive_stats.RIP_GPA;
+
+		if(	currentProtectedApplicationRIPGPA == source &&
+			currentRSP == protected_application_table[index].guest_sensitive_stats.SP_User)
 		{
 			return &(protected_application_table[index]);
 		}
 	}
-	return 0;
+	return 0;		
+}
 
+void setCurrentProtectedApplication(struct protected_application_t *application)
+{
+	currentProtectedApplication = application;
 }
