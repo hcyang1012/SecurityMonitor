@@ -46,4 +46,4 @@ objs-1 += $(c:$(dir)%.c=%.o) $(s:$(dir)%.s=%.o)
 
 
 #subdirs-$(CONFIG_SSLAB) += security_module
-objs-$(CONFIG_SSLAB) += security_module/vmcs.o security_module/eventHandler.o security_module/guest_state.o security_module/memory_ownership_table.o security_module/guest_IA32ePage.o security_module/monitor_util.o security_module/unit_test.o security_module/system_call.o
+objs-$(CONFIG_SSLAB) += security_module/vmcs.o security_module/eventHandler.o security_module/guest_state.o security_module/memory_ownership_table.o security_module/guest_IA32ePage.o security_module/monitor_util.o security_module/unit_test.o security_module/system_call.o security_module/zeropage_allocator.o

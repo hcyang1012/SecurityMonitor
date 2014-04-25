@@ -124,3 +124,12 @@ void unmapHPAintoHVA(void* hva, const U64_t size)
 		//Noop
 	#endif
 }
+
+void monitor_memset(char *src, const int size, const char value)
+{
+	int index;
+	for(index = 0 ; index < size ; index++)
+	{
+		src[index] = value;
+	}
+}

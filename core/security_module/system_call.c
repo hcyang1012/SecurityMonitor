@@ -36,7 +36,7 @@ void handleSystemCall(const int syscall_number, struct guest_sensitive_stats *gu
 }
 
 
-/* From (linux)/arch/x86/kernel/entry_64.S
+/*  (linux)/arch/x86/kernel/entry_64.S
  * Register setup:
  * rax  system call number
  * rdi  arg0

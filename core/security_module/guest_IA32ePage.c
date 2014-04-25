@@ -34,7 +34,6 @@ void traverseIA32ePages(const VMID_t vmid, const APPID_t appID, const GPA_t star
 		
 		if(startGPAofPDPT && (currentPML4Entry & 0x01) && !(currentPML4Entry & 0x80))
 		{
-			printf("%llx\n",currentPML4Entry);
 			traverseIA32ePDPT(vmid, appID, startGPAofPDPT,do_something);
 		}
 	}

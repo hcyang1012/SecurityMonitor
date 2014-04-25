@@ -32,6 +32,12 @@ SECTIONS {
 		*(COMMON)
 		. = ALIGN (4096);
 	}
+
+
+	/* Page pool */
+	. = ALIGN(4096);
+	PAGE_POOL_START = .;
+	. = PAGE_POOL_START + 4096*1024;
 	end = .;
 	/DISCARD/ : {
 		*(.gomi)

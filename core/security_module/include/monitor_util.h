@@ -50,4 +50,5 @@ HPA_t gpaToHPA(const GPA_t gpa, /**< [in] Guest physical address to convert */
 				HPA_t *eptEntryHPA /**< [out] HPA of EPT entry of the returned HPA */
 				);
 
+void monitor_memset(char *src, const int size, const char value);
 #endif

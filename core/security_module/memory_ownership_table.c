@@ -125,6 +125,31 @@ void* openPage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 	return 0;
 }
 
+void remapPage(const GPA_t gpa, void *newPage)
+{
+	HPA_t targetEPTEntryHPA = 0;
+	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
+	U8_t original_permission;
+	gpaToHPA(gpa, &targetEPTEntryHPA);
+	if(targetEPTEntryHPA)
+	{
+		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
+		if(!pTargetEPTEntry)
+		{
+			return 0;
+		}
+
+		original_permission = changePageStatus(vmID, appID, gpa, PARTIAL);
+
+		targetEPTEntry = *pTargetEPTEntry;
+		targetEPTEntry |= (original_permission);
+		*pTargetEPTEntry = targetEPTEntry;
+		unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));			
+	}
+
+	return 0;
+}
+
 int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, const enum page_state_t state)
 {
 	HPA_t targetEPTEntryHPA;
