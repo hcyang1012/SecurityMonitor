@@ -19,9 +19,7 @@ void hypercall_handler()
 
 	if(pagetable_start_GPA)
 	{
-		test_start();
-		//protectCurrentApplication();
-		
+		protectCurrentApplication();	
 	}
 }
 

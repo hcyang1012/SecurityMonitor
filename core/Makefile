@@ -36,6 +36,7 @@ CONSTANTS-$(CONFIG_SSLAB) += -DCONFIG_BITVISOR
 CONSTANTS-1 += -DUSE_PAE
 
 CFLAGS += -Ivpn/lib
+CFLAGS += -Ilinux/include
 
 c!=echo $(dir)*.c
 c += $(wildcard $(dir)*.c)

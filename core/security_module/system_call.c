@@ -1,12 +1,13 @@
 #include <system_call.h>
 #include <guest_state.h>
 
+
 #ifdef CONFIG_BITVISOR
 #include <current.h>
 #endif
 struct syscall_metadata syscall_metatata_table[] = 
 {
-{0,},
+	0,
 };
 
 
@@ -15,14 +16,15 @@ void handleSystemCall(const int syscall_number, struct guest_sensitive_stats *gu
 	struct syscall_metadata *targetSystemCall = &(syscall_metatata_table[syscall_number]);
 	int number_of_args;
 	int index;
-	number_of_args = targetSystemCall->number_of_args;
-
+	// number_of_args = targetSystemCall->number_of_args;
+	number_of_args = MAX_SYSCALL_ARGS;
 	for(index = 0 ; index < number_of_args ; index++)
 	{
 		int currentArgument = targetSystemCall->args_size[index];
+		restore_register(index, guest_status);		
 		if(currentArgument == 0)
 		{
-			restore_register(index, guest_status);
+
 		}
 		else if(currentArgument == -1)
 		{
