@@ -46,9 +46,9 @@ void unmapHPAintoHVA(void* hva, /**< [in] Host virtual address to unmap */
 					const U64_t size  /**< [in] The size of the allocated virtual memory speficied in the [mapHPAintoHVA](@ref mapHPAintoHVA) function.*/
 					);
 
-HPA_t gpaToHPA(const GPA_t gpa, /**< [in] Guest physical address to convert */
-				HPA_t *eptEntryHPA /**< [out] HPA of EPT entry of the returned HPA */
-				);
+HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, HPA_t *eptPDEntryHPA, HPA_t *eptEntryHPA);
 
 void monitor_memset(char *src, const int size, const char value);
+
+HPA_t virt_to_phys(const void* hva);
 #endif

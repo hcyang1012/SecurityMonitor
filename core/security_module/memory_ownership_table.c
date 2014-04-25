@@ -105,7 +105,7 @@ void* openPage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 	HPA_t targetEPTEntryHPA = 0;
 	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
 	U8_t original_permission;
-	gpaToHPA(gpa, &targetEPTEntryHPA);
+	gpaToHPA(gpa, 0, 0, 0, &targetEPTEntryHPA);
 	if(targetEPTEntryHPA)
 	{
 		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
@@ -127,34 +127,57 @@ void* openPage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 
 void remapPage(const GPA_t gpa, void *newPage)
 {
-	HPA_t targetEPTEntryHPA = 0;
-	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
-	U8_t original_permission;
-	gpaToHPA(gpa, &targetEPTEntryHPA);
-	if(targetEPTEntryHPA)
+	HPA_t 	targetEPTPML4EntryHPA = 0,
+			targetEPTPDPEntryHPA = 0,
+			targetEPTPDEntryHPA = 0,
+			targetEPTEntryHPA = 0;
+
+
+	HPA_t newPageHPA;
+	newPageHPA = virt_to_phys(newPage);
+	gpaToHPA(gpa, &targetEPTPML4EntryHPA, &targetEPTPDPEntryHPA, &targetEPTPDPEntryHPA, &targetEPTEntryHPA);
+
+	if(	targetEPTPML4EntryHPA && 
+		targetEPTPDPEntryHPA &&
+		targetEPTPDEntryHPA &&
+		targetEPTEntryHPA)
 	{
+		EPT_ENTRY_t *pTargetEPTPML4Entry, 
+					*pTargetEPTPDPEntry,
+					*pTargetEPTPDEntry,
+					*pTargetEPTEntry,
+					*targetEPTPML4Entry, 
+					*targetEPTPDPEntry,
+					*targetEPTPDEntry,
+					*targetEPTEntry;
+
+		pTargetEPTPML4Entry = mapHPAintoHVA(targetEPTPML4EntryHPA, sizeof(EPT_ENTRY_t));
+		pTargetEPTPDPEntry = mapHPAintoHVA(targetEPTPDPEntryHPA, sizeof(EPT_ENTRY_t));
+		pTargetEPTPDEntry = mapHPAintoHVA(targetEPTPDEntryHPA, sizeof(EPT_ENTRY_t));
 		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
+
 		if(!pTargetEPTEntry)
 		{
-			return 0;
+			return;
 		}
 
-		original_permission = changePageStatus(vmID, appID, gpa, PARTIAL);
+		changePageStatus(0, 0, gpa, PARTIAL);
 
-		targetEPTEntry = *pTargetEPTEntry;
-		targetEPTEntry |= (original_permission);
-		*pTargetEPTEntry = targetEPTEntry;
-		unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));			
+		unmapHPAintoHVA((void*)targetEPTPML4Entry, sizeof(EPT_ENTRY_t));
+		unmapHPAintoHVA((void*)targetEPTPDPEntry, sizeof(EPT_ENTRY_t));
+		unmapHPAintoHVA((void*)targetEPTPDEntry, sizeof(EPT_ENTRY_t));
+		unmapHPAintoHVA((void*)targetEPTEntry, sizeof(EPT_ENTRY_t));		
+		
 	}
 
-	return 0;
+	return;
 }
 
 int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, const enum page_state_t state)
 {
 	HPA_t targetEPTEntryHPA;
 	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
-	HPA_t hpa = gpaToHPA(gpa, &targetEPTEntryHPA);
+	HPA_t hpa = gpaToHPA(gpa, 0, 0, 0, &targetEPTEntryHPA);
 	U64_t index;
 	U8_t pageAttribute;
 

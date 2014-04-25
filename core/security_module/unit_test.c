@@ -53,7 +53,7 @@ int test_gpaToHPA()
 	HPA_t expected;
 	input = (GPA_t)get_page_table_base_GPA();
 	input |= 0xCDE;
-	output = gpaToHPA(input, 0);
+	output = gpaToHPA(input, 0, 0, 0, 0);
 #ifdef CONFIG_BITVISOR
 	expected = input;
 	return expected == output;

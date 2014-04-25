@@ -17,7 +17,7 @@ void traverseIA32ePages(const VMID_t vmid, const APPID_t appID, const GPA_t star
 		GPA_t startGPAofPDPT;
 
 		currentPML4EntryGPA = (startGPAofPageTable | (pml4Index << GUEST_PML4_INDEX_SHIFT));
-		currentPML4EntryHPA = gpaToHPA(currentPML4EntryGPA, 0);
+		currentPML4EntryHPA = gpaToHPA(currentPML4EntryGPA, 0, 0, 0, 0);
 		if(!currentPML4EntryHPA)
 		{
 			continue;
@@ -50,7 +50,7 @@ inline void traverseIA32ePDPT(const VMID_t vmid, const APPID_t appID, const GPA_
 		GPA_t startGPAofPDT;
 
 		currentPDPTEntryGPA = (startGPAofPDPT | (pdpIndex << GUEST_PDP_INDEX_SHIFT));
-		currentPDPTEntryHPA = gpaToHPA(currentPDPTEntryGPA, 0);
+		currentPDPTEntryHPA = gpaToHPA(currentPDPTEntryGPA, 0, 0, 0, 0);
 		if(!currentPDPTEntryHPA)
 		{
 			continue;
@@ -84,7 +84,7 @@ inline void traverseIA32ePDT(const VMID_t vmid, const APPID_t appID, const GPA_t
 		GPA_t startGPAofPT;
 
 		currentPDTEntryGPA = (startGPAofPDT | (pdIndex << GUEST_PD_INDEX_SHIFT));
-		currentPDTEntryHPA = gpaToHPA(currentPDTEntryGPA, 0);
+		currentPDTEntryHPA = gpaToHPA(currentPDTEntryGPA, 0, 0, 0, 0);
 		if(!currentPDTEntryHPA)
 		{
 			continue;
@@ -118,7 +118,7 @@ inline void traverseIA32ePT(const VMID_t vmid, const APPID_t appID, const GPA_t 
 		GPA_t pageGPA;
 
 		currentPTEntryGPA = (startGPAofPT | (ptIndex << GUEST_PT_INDEX_SHIFT));
-		currentPTEntryHPA = gpaToHPA(currentPTEntryGPA, 0);
+		currentPTEntryHPA = gpaToHPA(currentPTEntryGPA, 0, 0, 0, 0);
 		if(!currentPTEntryHPA)
 		{
 			continue;
@@ -150,7 +150,7 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 
 
 	currentPML4EntryGPA = (startGPAofPageTable | ((gva & (((U64_t)0x1FF) << 39)) >> (39 - 3)));
-	currentPML4EntryHPA = gpaToHPA(currentPML4EntryGPA, 0);
+	currentPML4EntryHPA = gpaToHPA(currentPML4EntryGPA, 0, 0, 0, 0);
 	if(!currentPML4EntryHPA)
 	{
 
@@ -173,7 +173,7 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 		GPA_t startGPAofPDT;
 
 		currentPDPTEntryGPA = (startGPAofPDPT | ((gva & (((U64_t)0x1FF) << 30)) >> (30 - 3)));
-		currentPDPTEntryHPA = gpaToHPA(currentPDPTEntryGPA, 0);
+		currentPDPTEntryHPA = gpaToHPA(currentPDPTEntryGPA, 0, 0, 0, 0);
 		if(!currentPDPTEntryHPA)
 		{
 			return 0;
@@ -195,7 +195,7 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 			GPA_t startGPAofPT;
 
 			currentPDTEntryGPA = (startGPAofPDT | ((gva & (((U64_t)0x1FF) << 21)) >> (21 - 3)));
-			currentPDTEntryHPA = gpaToHPA(currentPDTEntryGPA, 0);
+			currentPDTEntryHPA = gpaToHPA(currentPDTEntryGPA, 0, 0, 0, 0);
 			if(!currentPDTEntryHPA)
 			{
 				return 0;
@@ -217,7 +217,7 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 				GPA_t pageGPA;
 
 				currentPTEntryGPA = (startGPAofPT | ((gva & (((U64_t)0x1FF) << 12)) >> (12 - 3)));
-				currentPTEntryHPA = gpaToHPA(currentPTEntryGPA, 0);
+				currentPTEntryHPA = gpaToHPA(currentPTEntryGPA, 0, 0, 0, 0);
 				if(!currentPTEntryHPA)
 				{
 					return 0;

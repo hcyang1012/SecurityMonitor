@@ -12,7 +12,7 @@
 	#include <printf.h>
 #endif
 
-HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
+HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, HPA_t *eptPDEntryHPA, HPA_t *eptEntryHPA)
 {
 	HPA_t eptBaseHPA;
 	HPA_t currentEPT_PML4_Entry_HPA;
@@ -32,10 +32,27 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
 
 	HPA_t pageFrameHPA;
 
+
+	if(eptPML4EntryHPA)
+	{
+		*eptPML4EntryHPA = 0;	
+	}
+
+	if(eptPDPEntryHPA)
+	{
+		*eptPDPEntryHPA = 0;	
+	}
+
+	if(eptPDEntryHPA)
+	{
+		*eptPDEntryHPA = 0;	
+	}
+
 	if(eptEntryHPA) 
 	{
 		*eptEntryHPA = 0;
 	}
+
 
 	eptBaseHPA = get_ept_base_HPA();
 	currentEPT_PML4_Entry_HPA = eptBaseHPA | ((gpa & EPT_PML4_GPA_MASK) >> EPT_PML4_GPA_SHIFT);
@@ -45,6 +62,10 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
 		return 0;
 	}
 	currentEPT_PML4_Entry = *pCurrentEPT_PML4_Entry;
+	if(eptPML4EntryHPA)
+	{
+		*eptPML4EntryHPA = currentEPT_PML4_Entry_HPA;	
+	}	
 	unmapHPAintoHVA((void*)pCurrentEPT_PML4_Entry,sizeof(EPT_ENTRY_t));
 	if(!currentEPT_PML4_Entry)
 	{
@@ -59,6 +80,10 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
 		return 0;
 	}
 	currentEPT_PDP_Entry = *pCurrentEPT_PDP_Entry;
+	if(eptPDPEntryHPA)
+	{
+		*eptPDPEntryHPA = currentEPT_PDP_Entry_HPA;	
+	}	
 	unmapHPAintoHVA((void*)pCurrentEPT_PDP_Entry,sizeof(EPT_ENTRY_t));
 	if(!currentEPT_PDP_Entry)
 	{
@@ -73,6 +98,10 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptEntryHPA)
 		return 0;
 	}	
 	currentEPT_PD_Entry = *pCurrentEPT_PD_Entry;
+	if(eptPDEntryHPA)
+	{
+		*eptPDEntryHPA = currentEPT_PD_Entry_HPA;	
+	}	
 	unmapHPAintoHVA((void*)pCurrentEPT_PD_Entry,sizeof(EPT_ENTRY_t));
 	if(!currentEPT_PD_Entry)
 	{
@@ -132,4 +161,13 @@ void monitor_memset(char *src, const int size, const char value)
 	{
 		src[index] = value;
 	}
+}
+
+HPA_t virt_to_phys(const void* hva)
+{
+	#ifdef CONFIG_BITVISOR
+	return (HPA_t)(hva - VMM_START_VIRT);
+	#else
+	return 0;
+	#endif
 }

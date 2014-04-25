@@ -138,7 +138,7 @@ vt_ept_violation (bool write, u64 gphys)
 	{
 		U64_t index; 
 		struct memory_ownership_table_entry_t entry;
-		HPA_t hpa = gpaToHPA(gphys, 0);
+		HPA_t hpa = gpaToHPA(gphys, 0,0,0,0);
 		if(hpa)
 		{
 			index = getMemoryOwnershipTableIndex(hpa);
