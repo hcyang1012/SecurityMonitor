@@ -51,4 +51,6 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, H
 void monitor_memset(char *src, const int size, const char value);
 
 HPA_t virt_to_phys(const void* hva);
+
+#define debug()	printf("%s : %d\n",__FILE__,__LINE__)
 #endif

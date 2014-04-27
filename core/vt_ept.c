@@ -133,21 +133,32 @@ vt_ept_map_page (bool write, u64 gphys)
 void
 vt_ept_violation (bool write, u64 gphys)
 {
-	mmio_lock ();
+	
 	#ifdef CONFIG_SSLAB
 	{
 		U64_t index; 
 		struct memory_ownership_table_entry_t entry;
 		HPA_t hpa = gpaToHPA(gphys, 0,0,0,0);
+		{
+			extern int protecting;
+			if(protecting == 1)
+			{
+				debug();
+				printf("gphys : %llx\n",gphys);
+			}		
+		}
 		if(hpa)
 		{
 			index = getMemoryOwnershipTableIndex(hpa);
 			entry = getMemoryOwnershipTableEntry(index);
+			debug();
 			if(entry.state != UNPROTECTED)
 			{
+				
 				switch(entry.state)
 				{
 					case CLOSED:
+					
 						// Calling system call : user to kernel
 						if(gphys == getSystemCallHandlerGPA())
 						{
@@ -172,6 +183,7 @@ vt_ept_violation (bool write, u64 gphys)
 								clear_guest_status();
 								setCurrentProtectedApplication(NULL);
 								//Handler System call
+								
 							}
 						}
 						else 
@@ -201,15 +213,18 @@ vt_ept_violation (bool write, u64 gphys)
 					default:
 						break;
 				}
-				mmio_unlock ();
+				
 				return;
 			}
 
 		}
 	}
 	#endif
+	mmio_lock ();
 	if (!mmio_access_page (gphys, true))
-		vt_ept_map_page (write, gphys);
+	{
+		vt_ept_map_page (write, gphys);		
+	}
 	mmio_unlock ();	
 }
 

@@ -17,7 +17,7 @@ void test_start()
 	int result;
 	if(get_page_table_base_GPA())
 	{
-		#ifdef CONFIG_BITVISOR
+/*		#ifdef CONFIG_BITVISOR
 		{
 			U64_t msrData;
 			current->vmctl.read_msr (IA32_LSTAR, &msrData);
@@ -25,13 +25,18 @@ void test_start()
 			saveSystemCallHandlerAddress(msrData);
 		
 		}
-		#endif			
-	//	printf("Unit test : %llx\n",gvaToGPA(0xffffffff810c7590,get_page_table_base_GPA()));
-	// 	printf("Unit test start\n");
+		#endif			*/
+/*		printf("Unit test : %llx\n",gvaToGPA(0xffffffff810c7590,get_page_table_base_GPA()));
+		printf("Unit test start\n");*/
 
-	// 	printf("Test 'gpaToHPA()'\n");
-	// 	result = test_gpaToHPA();
-	// 	printf("Test 'gpaToHPA()' end; result : %s\n",result?"success":"fail");		
+		int i;
+		for(i = 0 ; i < 10 ; i++)
+		{
+			printf("Test 'gpaToHPA()'\n");
+			result = test_gpaToHPA();
+			printf("Test 'gpaToHPA()' end; result : %s\n",result?"success":"fail");					
+		}
+
 
 	// 	printf("Test 'test_logicalCPUStatus()'\n");
 	// 	result = test_logicalCPUStatus();

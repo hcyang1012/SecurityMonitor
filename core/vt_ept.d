@@ -11,7 +11,7 @@ core/vt_ept.o: core/vt_ept.c core/asm.h core/desc.h core/types.h \
  include/core/mm.h core/panic.h include/core/panic.h core/string.h \
  include/core/string.h core/vt_ept.h core/vt_main.h core/vt_paging.h \
  core/vt_regs.h core/security_module/include/monitor_util.h \
- core/security_module/include/monitor_types.h \
+ core/security_module/include/monitor_types.h core/spinlock.h \
  core/security_module/include/memory_ownership_table.h \
  core/security_module/include/guest_state.h \
  core/security_module/include/vmcs.h core/printf.h include/core/printf.h \
@@ -30,7 +30,7 @@ core/vt_ept.c core/asm.h core/desc.h core/types.h \
  include/core/mm.h core/panic.h include/core/panic.h core/string.h \
  include/core/string.h core/vt_ept.h core/vt_main.h core/vt_paging.h \
  core/vt_regs.h core/security_module/include/monitor_util.h \
- core/security_module/include/monitor_types.h \
+ core/security_module/include/monitor_types.h core/spinlock.h \
  core/security_module/include/memory_ownership_table.h \
  core/security_module/include/guest_state.h \
  core/security_module/include/vmcs.h core/printf.h include/core/printf.h \

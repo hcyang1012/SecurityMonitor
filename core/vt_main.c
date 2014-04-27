@@ -184,7 +184,6 @@ do_exception (void)
 	privilegeLevel = csSelector & 0x3;
 	if(privilegeLevel > 0)
 	{
-		printf("User to kernel\n");
 		isUserToKernel = 1;
 	}
 	#endif

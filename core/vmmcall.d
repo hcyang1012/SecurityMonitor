@@ -11,7 +11,7 @@ core/vmmcall.o: core/vmmcall.c core/cpu_mmu.h core/types.h \
  core/panic.h include/core/panic.h core/printf.h include/core/printf.h \
  include/core/stdarg.h core/string.h include/core/string.h core/vmmcall.h \
  core/security_module/include/unit_test.h \
- core/security_module/include/monitor_types.h
+ core/security_module/include/monitor_types.h core/spinlock.h
 
 core/vmmcall.c core/cpu_mmu.h core/types.h \
  include/core/types.h core/vmmerr.h core/current.h core/vcpu.h \
@@ -26,4 +26,4 @@ core/vmmcall.c core/cpu_mmu.h core/types.h \
  core/panic.h include/core/panic.h core/printf.h include/core/printf.h \
  include/core/stdarg.h core/string.h include/core/string.h core/vmmcall.h \
  core/security_module/include/unit_test.h \
- core/security_module/include/monitor_types.h :
+ core/security_module/include/monitor_types.h core/spinlock.h :

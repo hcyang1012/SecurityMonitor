@@ -25,6 +25,7 @@ void traverseIA32ePages(const VMID_t vmid, const APPID_t appID, const GPA_t star
 		pCurrentPML4Entry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPML4EntryHPA,sizeof(PGT_ENTRY_t));
 		if(!pCurrentPML4Entry)
 		{
+			unmapHPAintoHVA((void*)pCurrentPML4Entry,sizeof(PGT_ENTRY_t));
 			continue;
 		}
 		currentPML4Entry = *pCurrentPML4Entry;
@@ -58,6 +59,7 @@ inline void traverseIA32ePDPT(const VMID_t vmid, const APPID_t appID, const GPA_
 		pCurrentPDPTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPDPTEntryHPA,sizeof(PGT_ENTRY_t));
 		if(!pCurrentPDPTEntry)
 		{
+			unmapHPAintoHVA((void*)pCurrentPDPTEntry,sizeof(PGT_ENTRY_t));
 			continue;
 		}
 		currentPDPTEntry = *pCurrentPDPTEntry;
@@ -92,6 +94,7 @@ inline void traverseIA32ePDT(const VMID_t vmid, const APPID_t appID, const GPA_t
 		pCurrentPDTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPDTEntryHPA,sizeof(PGT_ENTRY_t));
 		if(!pCurrentPDTEntry)
 		{
+			unmapHPAintoHVA((void*)pCurrentPDTEntry,sizeof(PGT_ENTRY_t));
 			continue;
 		}
 		currentPDTEntry = *pCurrentPDTEntry;
@@ -126,11 +129,15 @@ inline void traverseIA32ePT(const VMID_t vmid, const APPID_t appID, const GPA_t 
 		pCurrentPTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPTEntryHPA,sizeof(PGT_ENTRY_t));
 		if(!pCurrentPTEntry)
 		{
+			unmapHPAintoHVA((void*)pCurrentPTEntry,sizeof(PGT_ENTRY_t));
 			continue;
 		}
 		currentPTEntry = *pCurrentPTEntry;
 		unmapHPAintoHVA((void*)pCurrentPTEntry,sizeof(PGT_ENTRY_t));
-
+		if(!currentPTEntry)
+		{
+			continue;			
+		}
 		pageGPA = currentPTEntry & EPT_PT_ENTRY_MASK;
 		if(do_something && (currentPTEntry & 0x01) && (currentPTEntry & (1 << 2)))
 		{
@@ -159,6 +166,7 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 	pCurrentPML4Entry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPML4EntryHPA,sizeof(PGT_ENTRY_t));
 	if(!pCurrentPML4Entry)
 	{
+		unmapHPAintoHVA((void*)pCurrentPML4Entry,sizeof(PGT_ENTRY_t));
 		return 0;
 	}
 	currentPML4Entry = *pCurrentPML4Entry;
@@ -181,6 +189,7 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 		pCurrentPDPTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPDPTEntryHPA,sizeof(PGT_ENTRY_t));
 		if(!pCurrentPDPTEntry)
 		{
+			unmapHPAintoHVA((void*)pCurrentPDPTEntry,sizeof(PGT_ENTRY_t));
 			return 0;
 		}
 		currentPDPTEntry = *pCurrentPDPTEntry;
@@ -203,6 +212,7 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 			pCurrentPDTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPDTEntryHPA,sizeof(PGT_ENTRY_t));
 			if(!pCurrentPDTEntry)
 			{
+				unmapHPAintoHVA((void*)pCurrentPDTEntry,sizeof(PGT_ENTRY_t));
 				return 0;
 			}
 			currentPDTEntry = *pCurrentPDTEntry;
@@ -225,6 +235,7 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 				pCurrentPTEntry = (PGT_ENTRY_t*)mapHPAintoHVA(currentPTEntryHPA,sizeof(PGT_ENTRY_t));
 				if(!pCurrentPTEntry)
 				{
+					unmapHPAintoHVA((void*)pCurrentPTEntry,sizeof(PGT_ENTRY_t));
 					return 0;
 				}
 				currentPTEntry = *pCurrentPTEntry;

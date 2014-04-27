@@ -16,7 +16,7 @@ core/vt_main.o: core/vt_main.c core/asm.h core/desc.h core/types.h \
  core/vt_addip.h core/vt_exitreason.h core/vt_init.h core/vt_main.h \
  core/vt_paging.h core/vt_regs.h \
  core/security_module/include/guest_state.h \
- core/security_module/include/monitor_types.h \
+ core/security_module/include/monitor_types.h core/spinlock.h \
  core/security_module/include/vmcs.h \
  core/security_module/include/memory_ownership_table.h
 
@@ -38,6 +38,6 @@ core/vt_main.c core/asm.h core/desc.h core/types.h \
  core/vt_addip.h core/vt_exitreason.h core/vt_init.h core/vt_main.h \
  core/vt_paging.h core/vt_regs.h \
  core/security_module/include/guest_state.h \
- core/security_module/include/monitor_types.h \
+ core/security_module/include/monitor_types.h core/spinlock.h \
  core/security_module/include/vmcs.h \
  core/security_module/include/memory_ownership_table.h :

@@ -44,7 +44,9 @@
 */
 #ifndef __MONITOR_TYPES_h__
 #define __MONITOR_TYPES_h__
-
+#ifdef CONFIG_BITVISOR
+#include <spinlock.h>
+#endif
 typedef unsigned char	U8_t;
 typedef unsigned short	U16_t;
 typedef unsigned long	U32_t;
@@ -60,4 +62,8 @@ typedef GPA_t	APPID_t;
 
 typedef U64_t	EPT_ENTRY_t;
 typedef U64_t	PGT_ENTRY_t;
+
+#ifdef CONFIG_BITVISOR
+typedef rw_spinlock_t SPIN_LOCK_t;
+#endif
 #endif

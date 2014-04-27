@@ -24,6 +24,8 @@ APPID_t currentRunningApplication = OWNER_OTHER;
 APPID_t numberOfProtectedApplications = 0;
 VMID_t numberOfVMs = 0;
 
+U64_t target = 0;
+
 struct protected_application_t *currentProtectedApplication = NULL;
 
 void protectCurrentApplication()
@@ -75,27 +77,36 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 {
 	HPA_t targetEPTEntryHPA = 0;
 	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
+	gpaToHPA(gpa, 0, 0, 0, &targetEPTEntryHPA);
 	if(targetEPTEntryHPA)
 	{
 		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
 		if(!pTargetEPTEntry)
 		{
+			unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));
+			debug();
 			return 0;
 		}
-
 
 		if(changePageStatus(vmID, appID, gpa, CLOSED))
 		{
 			targetEPTEntry = *pTargetEPTEntry;
 			targetEPTEntry &= (~(EPT_ATTRIBUTE_MASK));
 			*pTargetEPTEntry = targetEPTEntry;
-			unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));			
+			printf("Closing  : %llx - %llx\n",gpa, *pTargetEPTEntry);
+			if(!target) target = gpa;
+			debug();
+			
 		}
 		else
 		{
 			//printf("Fail\n");
 		}
+		unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));			
+		return 0;
 	}
+	debug();
+	printf("Closing error %llx - %llx\n",gpa, targetEPTEntryHPA);
 
 	return 0;
 }
@@ -187,6 +198,8 @@ int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, co
 	pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
 	if(!pTargetEPTEntry)
 	{
+		debug();
+		unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));
 		return 0;
 	}
 	targetEPTEntry = *pTargetEPTEntry;
@@ -198,6 +211,7 @@ int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, co
 	if(index >= NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY)
 	{
 		//Overflow
+		debug();
 		return 0;
 	}
 
@@ -214,7 +228,6 @@ int changePageStatus(const VMID_t vmID, const APPID_t appID, const GPA_t gpa, co
 		memory_ownership_table[index].original_permission = pageAttribute;
 		
 	}
-
 	return memory_ownership_table[index].original_permission;
 
 }

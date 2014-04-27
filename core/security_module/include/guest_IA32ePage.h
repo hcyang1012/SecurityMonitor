@@ -178,7 +178,7 @@
 #define EPT_PML4_ENTRY_MASK		((U64_t)(~0xFFF))
 #define EPT_PDP_ENTRY_MASK		((U64_t)(~0xFFF))
 #define EPT_PD_ENTRY_MASK		((U64_t)(~0xFFF))
-#define EPT_PT_ENTRY_MASK		((U64_t)(~0xFFF))
+#define EPT_PT_ENTRY_MASK		((U64_t)(~0xFFF0000000000FFF))
 	
 #define MAX_GUEST_PML4_INDEX	(0x1FF + 1)
 #define MAX_GUEST_PDP_INDEX		(0x1FF + 1)

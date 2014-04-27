@@ -10,7 +10,7 @@
 #include <unit_test.h>
 
  #ifdef CONFIG_BITVISOR
-
+ int protecting = 0;
  #endif
 void hypercall_handler()
 {
@@ -19,7 +19,11 @@ void hypercall_handler()
 
 	if(pagetable_start_GPA)
 	{
+		printf("Start protection\n");
+		protecting = 1;
 		protectCurrentApplication();	
+		
+		//test_start();
 	}
 }
 
