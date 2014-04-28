@@ -5,10 +5,11 @@
 #include <guest_IA32ePage.h>
 #include <monitor_util.h>
 #include <monitor_types.h>
-
 void traverseIA32ePages(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPageTable, void* (*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))
 {
 	int pml4Index;
+
+	printf("startGPAofPageTable : %llx\n",startGPAofPageTable);
 	for(pml4Index = 0 ; pml4Index < MAX_GUEST_PML4_INDEX ; pml4Index++)
 	{
 		GPA_t currentPML4EntryGPA;
@@ -141,7 +142,6 @@ inline void traverseIA32ePT(const VMID_t vmid, const APPID_t appID, const GPA_t 
 		pageGPA = currentPTEntry & EPT_PT_ENTRY_MASK;
 		if(do_something && (currentPTEntry & 0x01) && (currentPTEntry & (1 << 2)))
 		{
-
 			(*do_something)(vmid, appID, pageGPA);			
 		}
 

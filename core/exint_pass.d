@@ -8,7 +8,13 @@ core/exint_pass.o: core/exint_pass.c core/asm.h core/desc.h core/types.h \
  core/svm_vmcb.h core/vmctl.h core/cpu_seg.h core/cpu_interpreter.h \
  core/regs.h core/vt.h core/vt_io.h core/vt_msr.h core/vt_vmcs.h \
  core/xsetbv.h core/exint_pass.h core/initfunc.h include/core/initfunc.h \
- core/int.h core/string.h include/core/string.h
+ core/int.h core/string.h include/core/string.h \
+ core/security_module/include/guest_IA32ePage.h \
+ core/security_module/include/monitor_types.h core/spinlock.h \
+ core/security_module/include/monitor_util.h \
+ core/security_module/include/memory_ownership_table.h \
+ core/security_module/include/guest_state.h \
+ core/security_module/include/vmcs.h
 
 core/exint_pass.c core/asm.h core/desc.h core/types.h \
  include/core/types.h core/linkage.h include/core/linkage.h \
@@ -20,4 +26,10 @@ core/exint_pass.c core/asm.h core/desc.h core/types.h \
  core/svm_vmcb.h core/vmctl.h core/cpu_seg.h core/cpu_interpreter.h \
  core/regs.h core/vt.h core/vt_io.h core/vt_msr.h core/vt_vmcs.h \
  core/xsetbv.h core/exint_pass.h core/initfunc.h include/core/initfunc.h \
- core/int.h core/string.h include/core/string.h :
+ core/int.h core/string.h include/core/string.h \
+ core/security_module/include/guest_IA32ePage.h \
+ core/security_module/include/monitor_types.h core/spinlock.h \
+ core/security_module/include/monitor_util.h \
+ core/security_module/include/memory_ownership_table.h \
+ core/security_module/include/guest_state.h \
+ core/security_module/include/vmcs.h :

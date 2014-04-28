@@ -85,9 +85,9 @@ main (int argc, char **argv)
 	} else {
 		fp = NULL;
 	}
-/*	vmcall_dbgsh (-1);
-	fd = open("/dev/hacks", O_RDONLY);
-/*	while(1)
+	vmcall_dbgsh (-1);
+//	fd = open("/dev/dump", O_RDONLY);
+	while(1)
 	{
 		int shm_id;
 		int *shm_addr;
@@ -117,7 +117,7 @@ main (int argc, char **argv)
 			printf("Contents of shared memory : %x\n",*shm_addr);
 			sleep(2);
 		}
-	}*/
+	}
 	if (vmcall_dbgsh (-1) == -1)
 		exit (1);
 	atexit (e);

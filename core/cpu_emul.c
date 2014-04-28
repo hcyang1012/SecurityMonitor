@@ -38,6 +38,7 @@
 
 #ifdef CONFIG_SSLAB
  #include <guest_state.h>
+ #include <monitor_util.h>
 #endif
 
 void
@@ -88,6 +89,15 @@ cpu_emul_wrmsr (void)
 	current->vmctl.read_general_reg (GENERAL_REG_RDX, &id);	
 	conv32to64 (ia, id, &msrdata);
 	current->vmctl.read_general_reg (GENERAL_REG_RCX, &ic);
+	#ifdef CONFIG_SSLAB
+	{
+		U64_t target = ic;
+		if(target == IA32_LSTAR)
+		{
+			saveSystemCallHandlerAddress(msrdata);
+		}
+	}
+	#endif
 	err = current->vmctl.write_msr (ic, msrdata);
 	return err;
 }

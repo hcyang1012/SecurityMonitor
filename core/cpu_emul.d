@@ -11,7 +11,8 @@ core/cpu_emul.o: core/cpu_emul.c core/constants.h core/convert.h \
  include/core/panic.h core/printf.h include/core/printf.h \
  include/core/stdarg.h core/security_module/include/guest_state.h \
  core/security_module/include/monitor_types.h core/spinlock.h \
- core/security_module/include/vmcs.h
+ core/security_module/include/vmcs.h \
+ core/security_module/include/monitor_util.h
 
 core/cpu_emul.c core/constants.h core/convert.h \
  core/types.h include/core/types.h core/cpu_emul.h core/vmmerr.h \
@@ -26,4 +27,5 @@ core/cpu_emul.c core/constants.h core/convert.h \
  include/core/panic.h core/printf.h include/core/printf.h \
  include/core/stdarg.h core/security_module/include/guest_state.h \
  core/security_module/include/monitor_types.h core/spinlock.h \
- core/security_module/include/vmcs.h :
+ core/security_module/include/vmcs.h \
+ core/security_module/include/monitor_util.h :

@@ -20,7 +20,7 @@ void hypercall_handler()
 	if(pagetable_start_GPA)
 	{
 		printf("Start protection\n");
-		protecting = 1;
+		//protecting = 1;
 		protectCurrentApplication();	
 		
 		//test_start();

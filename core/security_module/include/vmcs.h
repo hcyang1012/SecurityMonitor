@@ -83,6 +83,9 @@
 #define FIELD_ENCODING_GUEST_TR_BASE		((U64_t) 0x00006814)
 #define FIELD_ENCODING_GUEST_RFLAGS		((U64_t) 0x00006820)
 
+#define FIELD_ENCODING_GUEST_RIP		((U64_t) 0x0000681E)
+#define FIELD_ENCODING_GUEST_EXIT_QUALIFICATION ((U64_t) 0x00006400)
+
 U64_t get_guest_cr3_value();
 U64_t get_guest_eptp_value();
 U64_t monitor_vmcs_read(const U64_t field);

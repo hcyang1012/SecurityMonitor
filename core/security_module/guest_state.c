@@ -40,7 +40,9 @@ void saveSystemCallHandlerAddress(const GVA_t addr)
 {
 	GPA_t syscallHandlerAddressGPA;
 	syscallHandlerAddressGPA = gvaToGPA(addr, get_page_table_base_GPA());
-	syscallHandlerAddress = syscallHandlerAddressGPA;	
+	syscallHandlerAddress = syscallHandlerAddressGPA;
+	debug();
+	printf("System call define.. %llx\n", syscallHandlerAddress);
 	closePage(0,0, syscallHandlerAddress);
 }
 
@@ -77,7 +79,6 @@ void save_guest_status(struct guest_sensitive_stats *guest_status)
 	guest_status->FS_selector = monitor_vmcs_read(FIELD_ENCODING_GUEST_FS_SELECTOR);
 	guest_status->GS_selector = monitor_vmcs_read(FIELD_ENCODING_GUEST_GS_SELECTOR);
 
-	monitor_vmcs_read(FIELD_ENCODING_GUEST_ES_LIMIT);
 	guest_status->CS_limit = monitor_vmcs_read(FIELD_ENCODING_GUEST_CS_LIMIT);
 	guest_status->SS_limit = monitor_vmcs_read(FIELD_ENCODING_GUEST_SS_LIMIT);
 	guest_status->DS_limit = monitor_vmcs_read(FIELD_ENCODING_GUEST_DS_LIMIT);
@@ -111,16 +112,16 @@ void save_guest_status(struct guest_sensitive_stats *guest_status)
 void clear_guest_status()
 {
 	#ifdef CONFIG_BITVISOR
-	current->vmctl.write_general_reg (GENERAL_REG_RAX,0);
-	current->vmctl.write_general_reg (GENERAL_REG_RBX,0);
-	current->vmctl.write_general_reg (GENERAL_REG_RCX,0);
-	current->vmctl.write_general_reg (GENERAL_REG_RDX,0);
-	current->vmctl.write_general_reg (GENERAL_REG_RDI,0); 
-	current->vmctl.write_general_reg (GENERAL_REG_RSI,0);
-	current->vmctl.write_general_reg (GENERAL_REG_RBP,0);
-	current->vmctl.write_general_reg (GENERAL_REG_RSP,0);
-	current->vmctl.write_general_reg (GENERAL_REG_R8, 0);
-	current->vmctl.write_general_reg (GENERAL_REG_R9, 0);
+	current->vmctl.write_general_reg (GENERAL_REG_RAX,0xDF);
+	current->vmctl.write_general_reg (GENERAL_REG_RBX,0xDF);
+	current->vmctl.write_general_reg (GENERAL_REG_RCX,0xDF);
+	current->vmctl.write_general_reg (GENERAL_REG_RDX,0xDF);
+	current->vmctl.write_general_reg (GENERAL_REG_RDI,0xDF); 
+	current->vmctl.write_general_reg (GENERAL_REG_RSI,0xDF);
+	current->vmctl.write_general_reg (GENERAL_REG_RBP,0xDF);
+	current->vmctl.write_general_reg (GENERAL_REG_RSP,0xDF);
+	current->vmctl.write_general_reg (GENERAL_REG_R8, 0xDF);
+	current->vmctl.write_general_reg (GENERAL_REG_R9, 0xDF);
 	current->vmctl.write_general_reg (GENERAL_REG_R10,0);
 	current->vmctl.write_general_reg (GENERAL_REG_R11,0);
 	current->vmctl.write_general_reg (GENERAL_REG_R12,0);

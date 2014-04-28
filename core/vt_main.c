@@ -58,6 +58,7 @@
 #ifdef CONFIG_SSLAB
  #include <guest_state.h>
  #include <memory_ownership_table.h>
+ #include <monitor_util.h>
 #endif
 
 
@@ -175,7 +176,6 @@ do_exception (void)
 	ulong len;
 	enum vmmerr err;
 	ulong errc;
-
 	#ifdef CONFIG_SSLAB
 	int isUserToKernel = 0;
 	U64_t csSelector;
@@ -184,6 +184,7 @@ do_exception (void)
 	privilegeLevel = csSelector & 0x3;
 	if(privilegeLevel > 0)
 	{
+		debug();
 		isUserToKernel = 1;
 	}
 	#endif
@@ -281,6 +282,7 @@ do_exception (void)
 	}
 	#ifdef CONFIG_SSLAB
 	if(isUserToKernel){
+		debug();
 		struct protected_application_t *currentProtectedApplication;
 		currentProtectedApplication = getCurrentProtectedApplication();
 		if(currentProtectedApplication)

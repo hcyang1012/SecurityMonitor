@@ -139,19 +139,10 @@ vt_ept_violation (bool write, u64 gphys)
 		U64_t index; 
 		struct memory_ownership_table_entry_t entry;
 		HPA_t hpa = gpaToHPA(gphys, 0,0,0,0);
-		{
-			extern int protecting;
-			if(protecting == 1)
-			{
-				debug();
-				printf("gphys : %llx\n",gphys);
-			}		
-		}
 		if(hpa)
 		{
 			index = getMemoryOwnershipTableIndex(hpa);
 			entry = getMemoryOwnershipTableEntry(index);
-			debug();
 			if(entry.state != UNPROTECTED)
 			{
 				
@@ -163,6 +154,7 @@ vt_ept_violation (bool write, u64 gphys)
 						if(gphys == getSystemCallHandlerGPA())
 						{
 							struct protected_application_t *currentProtectedApplication = getCurrentProtectedApplication();
+							debug();
 							if(currentProtectedApplication)
 							{
 								VMID_t currentVMID;
@@ -189,22 +181,34 @@ vt_ept_violation (bool write, u64 gphys)
 						else 
 						{
 							// Kernel to User due to IRET or syscall return
-							struct protected_application_t *currentProtectedApplication = findProtectedApplicationFromRIP(gphys);
-							if(currentProtectedApplication)
+							U64_t exit_qualification;
+							exit_qualification = monitor_vmcs_read(FIELD_ENCODING_GUEST_EXIT_QUALIFICATION);
+
+							if((exit_qualification & (1 << 2)))
 							{
-								//Is in user mode?
-								U64_t csSelector;
-								char privilegeLevel;
-								csSelector = monitor_vmcs_read(FIELD_ENCODING_GUEST_CS_SELECTOR);
-								privilegeLevel = csSelector & 0x3;								
-								if(privilegeLevel > 0)
+								struct protected_application_t *currentProtectedApplication;
+								debug();
+								currentProtectedApplication = findProtectedApplicationFromRIP(gphys);
+								if(currentProtectedApplication)
 								{
-									//Recover context
-									restore_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
-									openPage(entry.owner_VM, entry.owner_APP, gphys);
-									setCurrentProtectedApplication(currentProtectedApplication);
-								}								
+									//Is in user mode?
+									U64_t csSelector;
+									char privilegeLevel;
+									csSelector = monitor_vmcs_read(FIELD_ENCODING_GUEST_CS_SELECTOR);
+									privilegeLevel = csSelector & 0x3;								
+									debug();
+									if(privilegeLevel > 0)
+									{
+										//Recover context
+										debug();
+										//restore_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
+										openPage(entry.owner_VM, entry.owner_APP, gphys);
+										setCurrentProtectedApplication(currentProtectedApplication);
+										debug();
+									}								
+								}
 							}
+							openPage(entry.owner_VM, entry.owner_APP, gphys);
 						}
 					break;
 						case OPENED:

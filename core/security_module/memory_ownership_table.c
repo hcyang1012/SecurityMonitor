@@ -77,7 +77,11 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 {
 	HPA_t targetEPTEntryHPA = 0;
 	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
-	gpaToHPA(gpa, 0, 0, 0, &targetEPTEntryHPA);
+	if(gpaToHPA(gpa, 0, 0, 0, &targetEPTEntryHPA))
+	{
+		debug();
+		printf("targetEPTEntryHPA : %llx\n",targetEPTEntryHPA);
+	}
 	if(targetEPTEntryHPA)
 	{
 		pTargetEPTEntry = mapHPAintoHVA(targetEPTEntryHPA, sizeof(EPT_ENTRY_t));
@@ -93,9 +97,7 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 			targetEPTEntry = *pTargetEPTEntry;
 			targetEPTEntry &= (~(EPT_ATTRIBUTE_MASK));
 			*pTargetEPTEntry = targetEPTEntry;
-			printf("Closing  : %llx - %llx\n",gpa, *pTargetEPTEntry);
 			if(!target) target = gpa;
-			debug();
 			
 		}
 		else
@@ -241,6 +243,7 @@ void initializeNewProtectedApplication(const VMID_t vmid, const APPID_t appID)
 {
 	protected_application_table[appID].owner_VM = vmid;
 	protected_application_table[appID].owner_APP = appID;
+	setCurrentProtectedApplication(&protected_application_table[appID]);
 }
 
 struct protected_application_t *getCurrentProtectedApplication()
@@ -253,11 +256,11 @@ struct protected_application_t *getCurrentProtectedApplication()
 	else
 	{
 		GPA_t currentESP = getGuestRSP();
-		
 		for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
 		{
 			if(protected_application_table[index].guest_sensitive_stats.SP_User == currentESP)
 			{
+				debug();
 				return &(protected_application_table[index]);
 			}
 		}
@@ -270,7 +273,8 @@ struct protected_application_t *findProtectedApplicationFromRIP(const GPA_t sour
 {
 	int index;
 	GPA_t currentRSP = getGuestRSP();
-
+	debug();
+	printf("Source : %llx\n",source);
 	for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
 	{
 		GPA_t currentProtectedApplicationRIPGPA;
@@ -279,6 +283,7 @@ struct protected_application_t *findProtectedApplicationFromRIP(const GPA_t sour
 		if(	currentProtectedApplicationRIPGPA == source &&
 			currentRSP == protected_application_table[index].guest_sensitive_stats.SP_User)
 		{
+			debug();
 			return &(protected_application_table[index]);
 		}
 	}
