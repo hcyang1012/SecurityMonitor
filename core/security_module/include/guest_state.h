@@ -38,7 +38,7 @@
 #define CR3_MASK (~((U64_t)0xFFF))
 #define EPTP_MASK (~((U64_t)0xFFF))
 
-#define IA32_LSTAR (0x176)
+#define IA32_LSTAR (0xc0000082)
 
 struct guest_sensitive_stats
 {

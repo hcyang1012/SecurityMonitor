@@ -200,10 +200,16 @@ vt_ept_violation (bool write, u64 gphys)
 									debug();
 									if(privilegeLevel > 0)
 									{
+										GPA_t cr3GPA;
+										cr3GPA = get_page_table_base_GPA();
+
 										//Recover context
 										debug();
 										//restore_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
-										openPage(entry.owner_VM, entry.owner_APP, gphys);
+										traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, openPage);
+										//openPage(entry.owner_VM, entry.owner_APP, gphys);
+										debug();
+										printf("Return to user\n");
 										setCurrentProtectedApplication(currentProtectedApplication);
 										closeSystemCallHandler();
 										debug();
