@@ -39,11 +39,34 @@ void traverseGuestPages(const VMID_t vmid, const APPID_t appID, const GPA_t star
 void saveSystemCallHandlerAddress(const GVA_t addr)
 {
 	GPA_t syscallHandlerAddressGPA;
-	syscallHandlerAddressGPA = gvaToGPA(addr, get_page_table_base_GPA());
-	syscallHandlerAddress = syscallHandlerAddressGPA;
-	debug();
-	printf("System call define.. %llx\n", syscallHandlerAddress);
-	closePage(0,0, syscallHandlerAddress);
+	
+	if(!syscallHandlerAddress)
+	{
+		syscallHandlerAddressGPA = gvaToGPA(addr, get_page_table_base_GPA());
+		syscallHandlerAddress = syscallHandlerAddressGPA;
+		printf("System call define.. %llx\n", syscallHandlerAddress);
+		//closeSystemCallHandler();
+	}
+}
+
+void closeSystemCallHandler()
+{
+	if(syscallHandlerAddress)
+	{
+		debug();
+		printf("Close system call handler\n");
+		closePage(0, 0, syscallHandlerAddress);
+	}	
+}
+
+void openSystemCallHandler()
+{
+	if(syscallHandlerAddress)
+	{
+		debug();
+		printf("Open system call handler\n");
+		openPage(0, 0, syscallHandlerAddress);
+	}	
 }
 
 GPA_t getSystemCallHandlerGPA()

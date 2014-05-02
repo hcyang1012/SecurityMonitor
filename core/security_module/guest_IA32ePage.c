@@ -34,7 +34,7 @@ void traverseIA32ePages(const VMID_t vmid, const APPID_t appID, const GPA_t star
 
 		startGPAofPDPT = currentPML4Entry & EPT_PML4_ENTRY_MASK;
 		
-		if(startGPAofPDPT && (currentPML4Entry & 0x01) && !(currentPML4Entry & 0x80))
+		if(startGPAofPDPT /*&& (currentPML4Entry & 0x01)*/ && !(currentPML4Entry & 0x80))
 		{
 			traverseIA32ePDPT(vmid, appID, startGPAofPDPT,do_something);
 		}
@@ -68,7 +68,7 @@ inline void traverseIA32ePDPT(const VMID_t vmid, const APPID_t appID, const GPA_
 
 		startGPAofPDT = currentPDPTEntry & EPT_PDP_ENTRY_MASK;	
 
-		if(startGPAofPDT && (currentPDPTEntry & 0x01) && !(currentPDPTEntry & 0x80))
+		if(startGPAofPDT /*&& (currentPDPTEntry & 0x01)*/ && !(currentPDPTEntry & 0x80))
 		{
 			traverseIA32ePDT(vmid, appID, startGPAofPDT, do_something);
 		}
@@ -103,7 +103,7 @@ inline void traverseIA32ePDT(const VMID_t vmid, const APPID_t appID, const GPA_t
 
 		startGPAofPT = currentPDTEntry & EPT_PD_ENTRY_MASK;
 		
-		if(startGPAofPT && (currentPDTEntry & 0x01) && !(currentPDTEntry & 0x80))
+		if(startGPAofPT /*&& (currentPDTEntry & 0x01)*/ && !(currentPDTEntry & 0x80))
 		{
 			traverseIA32ePT(vmid, appID, startGPAofPT,do_something);			
 		}
@@ -140,9 +140,12 @@ inline void traverseIA32ePT(const VMID_t vmid, const APPID_t appID, const GPA_t 
 			continue;			
 		}
 		pageGPA = currentPTEntry & EPT_PT_ENTRY_MASK;
-		if(do_something && (currentPTEntry & 0x01) && (currentPTEntry & (1 << 2)))
+		if(do_something /*&& (currentPTEntry & 0x01)*/ && (currentPTEntry & (1 << 2)))
 		{
-			(*do_something)(vmid, appID, pageGPA);			
+			if(pageGPA > 0xFFFFFFFF)
+			{
+				(*do_something)(vmid, appID, pageGPA);				
+			}		
 		}
 
 	}

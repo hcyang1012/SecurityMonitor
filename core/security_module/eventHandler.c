@@ -22,7 +22,7 @@ void hypercall_handler()
 		printf("Start protection\n");
 		//protecting = 1;
 		protectCurrentApplication();	
-		
+		printf("Start end\n");
 		//test_start();
 	}
 }

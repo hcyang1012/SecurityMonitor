@@ -145,7 +145,6 @@ vt_ept_violation (bool write, u64 gphys)
 			entry = getMemoryOwnershipTableEntry(index);
 			if(entry.state != UNPROTECTED)
 			{
-				
 				switch(entry.state)
 				{
 					case CLOSED:
@@ -162,6 +161,8 @@ vt_ept_violation (bool write, u64 gphys)
 
 								currentVMID = currentProtectedApplication->owner_VM;
 								currentAPPID = currentProtectedApplication->owner_APP;							
+								debug();
+								printf("Calling system call\n");
 								//Close all pages
 								GPA_t cr3GPA;
 								cr3GPA = get_page_table_base_GPA();
@@ -174,20 +175,20 @@ vt_ept_violation (bool write, u64 gphys)
 								save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
 								clear_guest_status();
 								setCurrentProtectedApplication(NULL);
-								//Handler System call
-								
+								//Handler System call	
+								openSystemCallHandler();						
 							}
 						}
 						else 
 						{
-							// Kernel to User due to IRET or syscall return
+							
 							U64_t exit_qualification;
 							exit_qualification = monitor_vmcs_read(FIELD_ENCODING_GUEST_EXIT_QUALIFICATION);
 
+							//EPT violation due to execution. In this case, it is kernel to user due to IRET or syscall return
 							if((exit_qualification & (1 << 2)))
 							{
 								struct protected_application_t *currentProtectedApplication;
-								debug();
 								currentProtectedApplication = findProtectedApplicationFromRIP(gphys);
 								if(currentProtectedApplication)
 								{
@@ -204,11 +205,18 @@ vt_ept_violation (bool write, u64 gphys)
 										//restore_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
 										openPage(entry.owner_VM, entry.owner_APP, gphys);
 										setCurrentProtectedApplication(currentProtectedApplication);
+										closeSystemCallHandler();
 										debug();
 									}								
 								}
 							}
-							openPage(entry.owner_VM, entry.owner_APP, gphys);
+							else
+							{
+								debug();
+								printf("ELSE GPHYS : %llx\n",gphys);
+								openPage(entry.owner_VM, entry.owner_APP, gphys);								
+							}
+
 						}
 					break;
 						case OPENED:

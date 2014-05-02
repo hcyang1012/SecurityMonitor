@@ -24,7 +24,7 @@ APPID_t currentRunningApplication = OWNER_OTHER;
 APPID_t numberOfProtectedApplications = 0;
 VMID_t numberOfVMs = 0;
 
-U64_t target = 0;
+
 
 struct protected_application_t *currentProtectedApplication = NULL;
 
@@ -39,6 +39,7 @@ void protectCurrentApplication()
 	cr3GPA = get_page_table_base_GPA();
 	traverseGuestPages(newVMID, newAPPID, cr3GPA, closePage);
 	traverseGuestPages(newVMID, newAPPID, cr3GPA, openPage);
+	closeSystemCallHandler();
 }
 
 void allocateNewApplicationIdentifiers(VMID_t *new_VMID, APPID_t *new_APPID)
@@ -77,10 +78,10 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 {
 	HPA_t targetEPTEntryHPA = 0;
 	EPT_ENTRY_t *pTargetEPTEntry, targetEPTEntry;
-	if(gpaToHPA(gpa, 0, 0, 0, &targetEPTEntryHPA))
+	if(!gpaToHPA(gpa, 0, 0, 0, &targetEPTEntryHPA))
 	{
-		debug();
-		printf("targetEPTEntryHPA : %llx\n",targetEPTEntryHPA);
+		// debug();
+		// printf("targetEPTEntryHPA(%llx) : %llx\n",gpa, targetEPTEntryHPA);
 	}
 	if(targetEPTEntryHPA)
 	{
@@ -97,7 +98,6 @@ void* closePage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 			targetEPTEntry = *pTargetEPTEntry;
 			targetEPTEntry &= (~(EPT_ATTRIBUTE_MASK));
 			*pTargetEPTEntry = targetEPTEntry;
-			if(!target) target = gpa;
 			
 		}
 		else
@@ -132,6 +132,7 @@ void* openPage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 		targetEPTEntry = *pTargetEPTEntry;
 		targetEPTEntry |= (original_permission);
 		*pTargetEPTEntry = targetEPTEntry;
+		printf("Opening.. : %llx\n",gpa);
 		unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));			
 	}
 
@@ -273,15 +274,13 @@ struct protected_application_t *findProtectedApplicationFromRIP(const GPA_t sour
 {
 	int index;
 	GPA_t currentRSP = getGuestRSP();
-	debug();
-	printf("Source : %llx\n",source);
 	for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
 	{
 		GPA_t currentProtectedApplicationRIPGPA;
 		currentProtectedApplicationRIPGPA = protected_application_table[index].guest_sensitive_stats.RIP_GPA;
 
-		if(	currentProtectedApplicationRIPGPA == source &&
-			currentRSP == protected_application_table[index].guest_sensitive_stats.SP_User)
+		if(	currentProtectedApplicationRIPGPA == source /*&&
+			currentRSP == protected_application_table[index].guest_sensitive_stats.SP_User*/)
 		{
 			debug();
 			return &(protected_application_table[index]);

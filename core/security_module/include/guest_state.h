@@ -109,6 +109,8 @@ void traverseGuestPages(const VMID_t vmid, 				/**< [in] VM ID to be passed to t
 						void* (*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa) /**< [in] a function pointer that will be invoked for each page */
 						);
 void saveSystemCallHandlerAddress(const GVA_t addr);
+void closeSystemCallHandler();
+void openSystemCallHandler();
 GPA_t getSystemCallHandlerGPA();
 void save_guest_status(struct guest_sensitive_stats *guest_status);
 void restore_guest_status(struct guest_sensitive_stats *guest_status);

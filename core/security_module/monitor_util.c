@@ -63,15 +63,6 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, H
 	pCurrentEPT_PML4_Entry = (EPT_ENTRY_t*)mapHPAintoHVA(currentEPT_PML4_Entry_HPA,sizeof(EPT_ENTRY_t));
 	if(!pCurrentEPT_PML4_Entry)
 	{
-		{
-			extern int protecting;
-			if(protecting)
-			{
-				debug();
-				printf("eptEntryHPA : %llx\n",eptEntryHPA);
-			}
-		
-		}
 		return 0;
 	}
 	currentEPT_PML4_Entry = *pCurrentEPT_PML4_Entry;
@@ -82,41 +73,13 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, H
 	unmapHPAintoHVA((void*)pCurrentEPT_PML4_Entry,sizeof(EPT_ENTRY_t));
 	if(!currentEPT_PML4_Entry)
 	{
-		
-		{
-			extern int protecting;
-			if(protecting)
-			{
-				debug();
-				printf("eptEntryHPA : %llx\n",eptEntryHPA);
-			}
-		
-		}
 		return 0;
-	}
-	{
-		extern int protecting;
-		if(protecting)
-		{
-			debug();
-			printf("%llx : %llx\n",gpa,currentEPT_PML4_Entry);
-		}
 	}
 	eptBase_PDP_HPA = currentEPT_PML4_Entry & EPT_PML4_ENTRY_MASK;
 	currentEPT_PDP_Entry_HPA = eptBase_PDP_HPA | ((gpa & EPT_PDP_GPA_MASK) >> EPT_PDP_GPA_SHIFT);
 	pCurrentEPT_PDP_Entry = (EPT_ENTRY_t*)mapHPAintoHVA(currentEPT_PDP_Entry_HPA,sizeof(EPT_ENTRY_t));
 	if(!pCurrentEPT_PDP_Entry)
 	{
-		
-		{
-			extern int protecting;
-			if(protecting)
-			{
-				debug();
-				printf("eptEntryHPA : %llx\n",eptEntryHPA);
-			}
-		
-		}
 		return 0;
 	}
 	currentEPT_PDP_Entry = *pCurrentEPT_PDP_Entry;
@@ -127,41 +90,13 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, H
 	unmapHPAintoHVA((void*)pCurrentEPT_PDP_Entry,sizeof(EPT_ENTRY_t));
 	if(!currentEPT_PDP_Entry)
 	{
-		{
-			extern int protecting;
-			if(protecting)
-			{
-				debug();
-				printf("eptEntryHPA : %llx\n",eptEntryHPA);
-			}
-		
-		}		
-
 		return 0;
 	}	
-	{
-		extern int protecting;
-		if(protecting)
-		{
-			debug();
-			printf("%llx : %llx - %llx\n",gpa, currentEPT_PML4_Entry, currentEPT_PDP_Entry);
-		}
-	}
 	eptBase_PD_HPA = currentEPT_PDP_Entry & EPT_PDP_ENTRY_MASK;
 	currentEPT_PD_Entry_HPA = eptBase_PD_HPA | ((gpa & EPT_PD_GPA_MASK) >> EPT_PD_GPA_SHIFT);
 	pCurrentEPT_PD_Entry = (EPT_ENTRY_t*)mapHPAintoHVA(currentEPT_PD_Entry_HPA,sizeof(EPT_ENTRY_t));
 	if(!pCurrentEPT_PD_Entry)
 	{		
-		
-		{
-			extern int protecting;
-			if(protecting)
-			{
-				debug();
-				printf("eptEntryHPA : %llx\n",eptEntryHPA);
-			}
-		
-		}
 		return 0;
 	}	
 	currentEPT_PD_Entry = *pCurrentEPT_PD_Entry;
@@ -172,24 +107,7 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, H
 	unmapHPAintoHVA((void*)pCurrentEPT_PD_Entry,sizeof(EPT_ENTRY_t));
 	if(!currentEPT_PD_Entry)
 	{	
-		{
-			extern int protecting;
-			if(protecting)
-			{
-				debug();
-				printf("eptEntryHPA : %llx\n",eptEntryHPA);
-			}
-		
-		}		
 		return 0;
-	}
-	{
-		extern int protecting;
-		if(protecting)
-		{
-			debug();
-			printf("%llx : %llx - %llx - %llx\n",gpa, currentEPT_PML4_Entry, currentEPT_PDP_Entry, currentEPT_PD_Entry);
-		}
 	}	
 	eptBase_PT_HPA = currentEPT_PD_Entry & EPT_PD_ENTRY_MASK;
 	currentEPT_PT_Entry_HPA = eptBase_PT_HPA | ((gpa & EPT_PT_GPA_MASK) >> EPT_PT_GPA_SHIFT);
@@ -197,15 +115,6 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, H
 
 	if(!pCurrentEPT_PT_Entry)
 	{
-		{
-			extern int protecting;
-			if(protecting)
-			{
-				debug();
-				printf("eptEntryHPA : %llx\n",eptEntryHPA);
-			}
-		
-		}
 		return 0;
 	}
 	
@@ -217,25 +126,8 @@ HPA_t gpaToHPA(const GPA_t gpa, HPA_t *eptPML4EntryHPA, HPA_t *eptPDPEntryHPA, H
 	unmapHPAintoHVA((void*)pCurrentEPT_PT_Entry,sizeof(EPT_ENTRY_t));	
 	if(!currentEPT_PT_Entry)
 	{
-		{
-			extern int protecting;
-			if(protecting)
-			{
-				debug();
-				printf("currentEPT_PD_Entry : %llx\n",*(U64_t*)currentEPT_PT_Entry_HPA);
-			}
-		
-		}
 		return 0;
 	}
-	{
-		extern int protecting;
-		if(protecting)
-		{
-			debug();
-			printf("%llx : %llx - %llx - %llx - %llx\n",gpa, currentEPT_PML4_Entry, currentEPT_PDP_Entry, currentEPT_PD_Entry, currentEPT_PT_Entry);
-		}
-	}	
 	pageFrameHPA = ((currentEPT_PT_Entry & EPT_PT_ENTRY_MASK) | (gpa & EPT_GPA_MASK));
 	
 

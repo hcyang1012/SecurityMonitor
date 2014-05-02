@@ -95,29 +95,31 @@ do_exint_pass (void)
 			current->exint.exintfunc_default (num);
 		current->vmctl.exint_pending (false);
 		current->vmctl.exint_pass (false);
+
+		#ifdef CONFIG_SSLAB
+		if(isUserToKernel){
+			struct protected_application_t *currentProtectedApplication;
+			currentProtectedApplication = getCurrentProtectedApplication();
+			if(currentProtectedApplication)
+			{
+				GPA_t cr3GPA;
+				save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));	
+				debug();
+				currentProtectedApplication->guest_sensitive_stats.RIP = monitor_vmcs_read(FIELD_ENCODING_GUEST_RIP);
+				currentProtectedApplication->guest_sensitive_stats.RIP_GPA = gvaToGPA(currentProtectedApplication->guest_sensitive_stats.RIP, get_page_table_base_GPA());
+				printf("currentProtectedApplication->guest_sensitive_stats.RIP_GPA : %llx\n",currentProtectedApplication->guest_sensitive_stats.RIP_GPA);
+				//clear_guest_status();
+				cr3GPA = get_page_table_base_GPA();
+				traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, closePage);
+				setCurrentProtectedApplication(NULL);
+				openSystemCallHandler();
+			}
+		}
+		#endif		
 	} else {
 		current->vmctl.exint_pending (true);
 		current->vmctl.exint_pass (true);
-	}
-	#ifdef CONFIG_SSLAB
-	if(isUserToKernel){
-		struct protected_application_t *currentProtectedApplication;
-		currentProtectedApplication = getCurrentProtectedApplication();
-		if(currentProtectedApplication)
-		{
-			GPA_t cr3GPA;
-			save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));	
-			debug();
-			currentProtectedApplication->guest_sensitive_stats.RIP = monitor_vmcs_read(FIELD_ENCODING_GUEST_RIP);
-			currentProtectedApplication->guest_sensitive_stats.RIP_GPA = gvaToGPA(currentProtectedApplication->guest_sensitive_stats.RIP, get_page_table_base_GPA());
-			printf("currentProtectedApplication->guest_sensitive_stats.RIP_GPA : %llx\n",currentProtectedApplication->guest_sensitive_stats.RIP_GPA);
-			//clear_guest_status();
-			cr3GPA = get_page_table_base_GPA();
-			traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, closePage);
-			setCurrentProtectedApplication(NULL);
-		}
-	}
-	#endif	
+	}	
 }
 
 static void
