@@ -14,7 +14,8 @@ core/exint_pass.o: core/exint_pass.c core/asm.h core/desc.h core/types.h \
  core/security_module/include/monitor_util.h \
  core/security_module/include/memory_ownership_table.h \
  core/security_module/include/guest_state.h \
- core/security_module/include/vmcs.h
+ core/security_module/include/vmcs.h \
+ core/security_module/include/eventHandler.h
 
 core/exint_pass.c core/asm.h core/desc.h core/types.h \
  include/core/types.h core/linkage.h include/core/linkage.h \
@@ -32,4 +33,5 @@ core/exint_pass.c core/asm.h core/desc.h core/types.h \
  core/security_module/include/monitor_util.h \
  core/security_module/include/memory_ownership_table.h \
  core/security_module/include/guest_state.h \
- core/security_module/include/vmcs.h :
+ core/security_module/include/vmcs.h \
+ core/security_module/include/eventHandler.h :

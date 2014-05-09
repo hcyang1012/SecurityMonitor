@@ -40,6 +40,7 @@
  #include <monitor_util.h>
  #include <memory_ownership_table.h>
  #include <vmcs.h>
+ #include <eventHandler.h>
 #endif
 
 static void exint_pass_int_enabled (void);
@@ -76,18 +77,6 @@ do_exint_pass (void)
 {
 	ulong rflags;
 	int num;
-
-	#ifdef CONFIG_SSLAB
-		int isUserToKernel = 0;
-		U64_t csSelector;
-		char privilegeLevel;
-		csSelector = monitor_vmcs_read(FIELD_ENCODING_GUEST_CS_SELECTOR);
-		privilegeLevel = csSelector & 0x3;
-		if(privilegeLevel > 0)
-		{
-			isUserToKernel = 1;
-		}
-	#endif
 	current->vmctl.read_flags (&rflags);
 	if (rflags & RFLAGS_IF_BIT) { /* if interrupts are enabled */
 		num = do_externalint_enable ();
@@ -95,27 +84,9 @@ do_exint_pass (void)
 			current->exint.exintfunc_default (num);
 		current->vmctl.exint_pending (false);
 		current->vmctl.exint_pass (false);
-
 		#ifdef CONFIG_SSLAB
-		if(isUserToKernel){
-			struct protected_application_t *currentProtectedApplication;
-			currentProtectedApplication = getCurrentProtectedApplication();
-			if(currentProtectedApplication)
-			{
-				GPA_t cr3GPA;
-				save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));	
-				debug();
-				currentProtectedApplication->guest_sensitive_stats.RIP = monitor_vmcs_read(FIELD_ENCODING_GUEST_RIP);
-				currentProtectedApplication->guest_sensitive_stats.RIP_GPA = gvaToGPA(currentProtectedApplication->guest_sensitive_stats.RIP, get_page_table_base_GPA());
-				printf("currentProtectedApplication->guest_sensitive_stats.RIP_GPA : %llx\n",currentProtectedApplication->guest_sensitive_stats.RIP_GPA);
-				//clear_guest_status();
-				cr3GPA = get_page_table_base_GPA();
-				traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, closePage);
-				setCurrentProtectedApplication(NULL);
-				openSystemCallHandler();
-			}
-		}
-		#endif		
+			interrupt_handler();
+		#endif				
 	} else {
 		current->vmctl.exint_pending (true);
 		current->vmctl.exint_pass (true);

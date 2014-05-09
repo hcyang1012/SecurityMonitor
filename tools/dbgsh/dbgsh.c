@@ -79,12 +79,17 @@ main (int argc, char **argv)
 	int s, r;
 	FILE *fp;
 	int fd;
+	int pid;
+	char path[256];
 
 	if (argc >= 2) {
 		fp = fopen (argv[1], "w");
 	} else {
 		fp = NULL;
 	}
+	pid = getpid();
+	sprintf(path,"cat /proc/%d/maps",pid);
+	system(path);
 	vmcall_dbgsh (-1);
 //	fd = open("/dev/dump", O_RDONLY);
 	while(1)

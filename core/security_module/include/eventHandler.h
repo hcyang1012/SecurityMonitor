@@ -19,5 +19,5 @@
 #define __EVENT_HANDLER_H__
 
 void hypercall_handler();
-
+void interrupt_handler();
 #endif

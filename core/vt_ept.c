@@ -148,7 +148,6 @@ vt_ept_violation (bool write, u64 gphys)
 				switch(entry.state)
 				{
 					case CLOSED:
-					
 						// Calling system call : user to kernel
 						if(gphys == getSystemCallHandlerGPA())
 						{
@@ -184,12 +183,12 @@ vt_ept_violation (bool write, u64 gphys)
 							
 							U64_t exit_qualification;
 							exit_qualification = monitor_vmcs_read(FIELD_ENCODING_GUEST_EXIT_QUALIFICATION);
-
 							//EPT violation due to execution. In this case, it is kernel to user due to IRET or syscall return
 							if((exit_qualification & (1 << 2)))
 							{
 								struct protected_application_t *currentProtectedApplication;
 								currentProtectedApplication = findProtectedApplicationFromRIP(gphys);
+								debug();
 								if(currentProtectedApplication)
 								{
 									//Is in user mode?
@@ -202,27 +201,48 @@ vt_ept_violation (bool write, u64 gphys)
 									{
 										GPA_t cr3GPA;
 										cr3GPA = get_page_table_base_GPA();
-
-										//Recover context
 										debug();
+										printf("Return to user\n");
+										//Recover context
 										//restore_guest_status(&(currentProtectedApplication->guest_sensitive_stats));
 										traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, openPage);
 										//openPage(entry.owner_VM, entry.owner_APP, gphys);
-										debug();
-										printf("Return to user\n");
 										setCurrentProtectedApplication(currentProtectedApplication);
-										closeSystemCallHandler();
-										debug();
+										//closeSystemCallHandler();
 									}								
 								}
+								else
+								{
+									debug();
+									printf("Executed but, library\n");
+					
+								}
 							}
-							else
-							{
-								debug();
-								printf("ELSE GPHYS : %llx\n",gphys);
-								openPage(entry.owner_VM, entry.owner_APP, gphys);								
-							}
+							else{
+								U64_t csSelector;
+								char privilegeLevel;
+								csSelector = monitor_vmcs_read(FIELD_ENCODING_GUEST_CS_SELECTOR);
+								privilegeLevel = csSelector & 0x3;								
 
+								debug();
+								printf("Else access : (%llx)%x\n",gphys,exit_qualification);
+								printf("CUrrent CR3 value : %llx\n",get_page_table_base_GPA());
+								printf("Current Privilege level : %x\n",privilegeLevel);
+
+								{
+									GVA_t rip;
+									GPA_t rip_gpa;
+									HPA_t hpa;
+									unsigned long long *value;
+									rip = monitor_vmcs_read(FIELD_ENCODING_GUEST_RIP);
+									rip_gpa = gvaToGPA(rip, get_page_table_base_GPA());
+									hpa = gpaToHPA(rip_gpa, 0,0,0,0);
+									value = (unsigned long long*)mapHPAintoHVA(hpa,sizeof(unsigned long long));
+									printf("Current instruction : %llx\n",*value);
+									unmapHPAintoHVA((void*)value,sizeof(unsigned long long));								
+								}
+								openPage(entry.owner_VM, entry.owner_APP, gphys);		
+							}
 						}
 					break;
 						case OPENED:

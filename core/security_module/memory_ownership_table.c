@@ -36,10 +36,10 @@ void protectCurrentApplication()
 
 	allocateNewApplicationIdentifiers(&newVMID,&newAPPID);
 	initializeNewProtectedApplication(newVMID,newAPPID);
-	cr3GPA = get_page_table_base_GPA();
-	traverseGuestPages(newVMID, newAPPID, cr3GPA, closePage);
-	traverseGuestPages(newVMID, newAPPID, cr3GPA, openPage);
-	closeSystemCallHandler();
+	// cr3GPA = get_page_table_base_GPA();
+	// traverseGuestPages(newVMID, newAPPID, cr3GPA, closePage);
+	// traverseGuestPages(newVMID, newAPPID, cr3GPA, openPage);
+	// closeSystemCallHandler();
 }
 
 void allocateNewApplicationIdentifiers(VMID_t *new_VMID, APPID_t *new_APPID)
@@ -274,11 +274,14 @@ struct protected_application_t *findProtectedApplicationFromRIP(const GPA_t sour
 {
 	int index;
 	GPA_t currentRSP = getGuestRSP();
+	debug();
+	printf("Violated RIP : %llx\n",source);
+	printf("Finding protected applications..\n");
 	for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
 	{
 		GPA_t currentProtectedApplicationRIPGPA;
 		currentProtectedApplicationRIPGPA = protected_application_table[index].guest_sensitive_stats.RIP_GPA;
-
+		printf("[%d] : %llx\n",index, currentProtectedApplicationRIPGPA);
 		if(	currentProtectedApplicationRIPGPA == source /*&&
 			currentRSP == protected_application_table[index].guest_sensitive_stats.SP_User*/)
 		{

@@ -5,6 +5,8 @@
 #include <guest_IA32ePage.h>
 #include <monitor_util.h>
 #include <monitor_types.h>
+
+U64_t a,b,c,d;
 void traverseIA32ePages(const VMID_t vmid, const APPID_t appID, const GPA_t startGPAofPageTable, void* (*do_something)(const VMID_t vmID, const APPID_t appID, GPA_t gpa))
 {
 	int pml4Index;
@@ -16,6 +18,8 @@ void traverseIA32ePages(const VMID_t vmid, const APPID_t appID, const GPA_t star
 		HPA_t currentPML4EntryHPA;
 		PGT_ENTRY_t *pCurrentPML4Entry, currentPML4Entry;
 		GPA_t startGPAofPDPT;
+
+		a = pml4Index;
 
 		currentPML4EntryGPA = (startGPAofPageTable | (pml4Index << GUEST_PML4_INDEX_SHIFT));
 		currentPML4EntryHPA = gpaToHPA(currentPML4EntryGPA, 0, 0, 0, 0);
@@ -51,6 +55,7 @@ inline void traverseIA32ePDPT(const VMID_t vmid, const APPID_t appID, const GPA_
 		PGT_ENTRY_t *pCurrentPDPTEntry, currentPDPTEntry;
 		GPA_t startGPAofPDT;
 
+		b = pdpIndex;
 		currentPDPTEntryGPA = (startGPAofPDPT | (pdpIndex << GUEST_PDP_INDEX_SHIFT));
 		currentPDPTEntryHPA = gpaToHPA(currentPDPTEntryGPA, 0, 0, 0, 0);
 		if(!currentPDPTEntryHPA)
@@ -85,6 +90,8 @@ inline void traverseIA32ePDT(const VMID_t vmid, const APPID_t appID, const GPA_t
 		HPA_t currentPDTEntryHPA;
 		PGT_ENTRY_t *pCurrentPDTEntry, currentPDTEntry;
 		GPA_t startGPAofPT;
+
+		c = pdIndex;
 
 		currentPDTEntryGPA = (startGPAofPDT | (pdIndex << GUEST_PD_INDEX_SHIFT));
 		currentPDTEntryHPA = gpaToHPA(currentPDTEntryGPA, 0, 0, 0, 0);
@@ -121,6 +128,7 @@ inline void traverseIA32ePT(const VMID_t vmid, const APPID_t appID, const GPA_t 
 		PGT_ENTRY_t *pCurrentPTEntry, currentPTEntry;
 		GPA_t pageGPA;
 
+		d = ptIndex;
 		currentPTEntryGPA = (startGPAofPT | (ptIndex << GUEST_PT_INDEX_SHIFT));
 		currentPTEntryHPA = gpaToHPA(currentPTEntryGPA, 0, 0, 0, 0);
 		if(!currentPTEntryHPA)
@@ -144,6 +152,9 @@ inline void traverseIA32ePT(const VMID_t vmid, const APPID_t appID, const GPA_t 
 		{
 			if(pageGPA > 0xFFFFFFFF)
 			{
+				GVA_t targetGVA = 0;
+				targetGVA = (a << 39) | (b << 30) | (c << 21) | (d << 12);
+				printf("Close GVA(%llx) - GPA(%llx)\n", targetGVA, pageGPA);
 				(*do_something)(vmid, appID, pageGPA);				
 			}		
 		}
@@ -247,7 +258,9 @@ GPA_t gvaToGPA(const GVA_t gva, const GPA_t startGPAofPageTable)
 				pageGPA = currentPTEntry & EPT_PT_ENTRY_MASK;
 				if((currentPTEntry & 0x01))
 				{
-					return pageGPA | (gva & 0xFFF);			
+					GPA_t result;
+					result = (GPA_t)pageGPA | (GPA_t)(gva & 0xFFF);
+					return result;			
 				}	
 			}
 			else

@@ -19,7 +19,8 @@ core/vt_main.o: core/vt_main.c core/asm.h core/desc.h core/types.h \
  core/security_module/include/monitor_types.h core/spinlock.h \
  core/security_module/include/vmcs.h \
  core/security_module/include/memory_ownership_table.h \
- core/security_module/include/monitor_util.h
+ core/security_module/include/monitor_util.h \
+ core/security_module/include/eventHandler.h
 
 core/vt_main.c core/asm.h core/desc.h core/types.h \
  include/core/types.h core/linkage.h include/core/linkage.h \
@@ -42,4 +43,5 @@ core/vt_main.c core/asm.h core/desc.h core/types.h \
  core/security_module/include/monitor_types.h core/spinlock.h \
  core/security_module/include/vmcs.h \
  core/security_module/include/memory_ownership_table.h \
- core/security_module/include/monitor_util.h :
+ core/security_module/include/monitor_util.h \
+ core/security_module/include/eventHandler.h :

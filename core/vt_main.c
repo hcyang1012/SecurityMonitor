@@ -59,6 +59,7 @@
  #include <guest_state.h>
  #include <memory_ownership_table.h>
  #include <monitor_util.h>
+ #include <eventHandler.h>
 #endif
 
 
@@ -176,19 +177,6 @@ do_exception (void)
 	ulong len;
 	enum vmmerr err;
 	ulong errc;
-	#ifdef CONFIG_SSLAB
-	int isUserToKernel = 0;
-	U64_t csSelector;
-	char privilegeLevel;
-	csSelector = monitor_vmcs_read(FIELD_ENCODING_GUEST_CS_SELECTOR);
-	privilegeLevel = csSelector & 0x3;
-	if(privilegeLevel > 0)
-	{
-		debug();
-		isUserToKernel = 1;
-	}
-	#endif
-
 	asm_vmread (VMCS_VMEXIT_INTR_INFO, &vii.v);
 	if (vii.s.valid == INTR_INFO_VALID_VALID) {
 		switch (vii.s.type) {
@@ -281,20 +269,7 @@ do_exception (void)
 		}
 	}
 	#ifdef CONFIG_SSLAB
-	if(isUserToKernel){
-		debug();
-		struct protected_application_t *currentProtectedApplication;
-		currentProtectedApplication = getCurrentProtectedApplication();
-		if(currentProtectedApplication)
-		{
-			GPA_t cr3GPA;
-			save_guest_status(&(currentProtectedApplication->guest_sensitive_stats));	
-			clear_guest_status();
-			cr3GPA = get_page_table_base_GPA();
-			traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, closePage);
-			setCurrentProtectedApplication(NULL);
-		}
-	}
+		interrupt_handler();
 	#endif
 }
 
