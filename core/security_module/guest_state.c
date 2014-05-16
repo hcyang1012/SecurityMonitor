@@ -247,3 +247,5 @@ GPA_t getGuestRSP()
 	#endif
 	return currentGuestRSP;
 }
+
+

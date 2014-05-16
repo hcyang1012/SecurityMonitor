@@ -180,6 +180,6 @@
 #define EPT_PD_GPA_SHIFT (21 - 3)
 #define EPT_PT_GPA_SHIFT (12 - 3)
 
-#define EPT_ATTRIBUTE_MASK 0x3
+#define EPT_ATTRIBUTE_MASK ((1 << 0 ) | (1 << 1) | (1 << 2))
 
 #endif

@@ -29,7 +29,6 @@ void hypercall_handler()
 		//test_start();
 	}
 }
-
 void interrupt_handler()
 {
 	int isUserToKernel = 0;
@@ -54,8 +53,11 @@ void interrupt_handler()
 			
 			gpa = gvaToGPA(currentProtectedApplication->guest_sensitive_stats.RIP, get_page_table_base_GPA());
 			currentProtectedApplication->guest_sensitive_stats.RIP_GPA = gpa;
+			printf("\n---------------------------------------------------\n");
 			debug();
 			printf("User to kernel due to interrupt : %llx(%llx)\n",currentProtectedApplication->guest_sensitive_stats.RIP_GPA, currentProtectedApplication->guest_sensitive_stats.RIP);
+			printf("Close %llx - %llx\n",currentProtectedApplication->guest_sensitive_stats.RIP,gpa);
+			printf("---------------------------------------------------\n");
 			//clear_guest_status();
 			cr3GPA = get_page_table_base_GPA();
 			traverseGuestPages(currentProtectedApplication->owner_VM, currentProtectedApplication->owner_APP, cr3GPA, closePage);

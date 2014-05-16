@@ -16,23 +16,22 @@
 
 #ifdef CONFIG_BITVISOR
 #include <mm.h>
+#include <printf.h>
 #endif
 
-static struct memory_ownership_table_entry_t memory_ownership_table[NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY];
-static struct protected_application_t protected_application_table[NUMBER_OF_PROTECTED_APPLICATIONS];
+struct memory_ownership_table_entry_t memory_ownership_table[NUMBER_OF_MEMORY_OWNERSHIP_TABLE_ENTRY];
+struct protected_application_t protected_application_table[NUMBER_OF_PROTECTED_APPLICATIONS];
 APPID_t currentRunningApplication = OWNER_OTHER;
 APPID_t numberOfProtectedApplications = 0;
 VMID_t numberOfVMs = 0;
-
-
-
 struct protected_application_t *currentProtectedApplication = NULL;
+
 
 void protectCurrentApplication()
 {
 	VMID_t newVMID;
 	APPID_t newAPPID;
-	GPA_t cr3GPA;
+	//GPA_t cr3GPA;
 
 	allocateNewApplicationIdentifiers(&newVMID,&newAPPID);
 	initializeNewProtectedApplication(newVMID,newAPPID);
@@ -132,7 +131,6 @@ void* openPage(const VMID_t vmID, const APPID_t appID, GPA_t gpa)
 		targetEPTEntry = *pTargetEPTEntry;
 		targetEPTEntry |= (original_permission);
 		*pTargetEPTEntry = targetEPTEntry;
-		printf("Opening.. : %llx\n",gpa);
 		unmapHPAintoHVA((void*)pTargetEPTEntry,sizeof(EPT_ENTRY_t));			
 	}
 
@@ -273,19 +271,12 @@ struct protected_application_t *getCurrentProtectedApplication()
 struct protected_application_t *findProtectedApplicationFromRIP(const GPA_t source)
 {
 	int index;
-	GPA_t currentRSP = getGuestRSP();
-	debug();
-	printf("Violated RIP : %llx\n",source);
-	printf("Finding protected applications..\n");
 	for(index = 0 ; index < NUMBER_OF_PROTECTED_APPLICATIONS ; index++)
 	{
 		GPA_t currentProtectedApplicationRIPGPA;
 		currentProtectedApplicationRIPGPA = protected_application_table[index].guest_sensitive_stats.RIP_GPA;
-		printf("[%d] : %llx\n",index, currentProtectedApplicationRIPGPA);
-		if(	currentProtectedApplicationRIPGPA == source /*&&
-			currentRSP == protected_application_table[index].guest_sensitive_stats.SP_User*/)
+		if(currentProtectedApplicationRIPGPA == source)
 		{
-			debug();
 			return &(protected_application_table[index]);
 		}
 	}
