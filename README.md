@@ -7,7 +7,7 @@ To address this problem, I bring the model from the [Overshadow](http://xenon.st
 
 # Design
 ## From para-virtualization to Full-virtualization.
-On the bitvisor, I implemented the overshadow's memory protection model in core/security_module(https://github.com/hcyang1012/SecurityMonitor/tree/master/core/security_module) directory. The model itself is very similar to the original one. However, the main difference is that I change the model to be run on full-virtualization, not para-virtualization. 
+On the bitvisor, I implemented the overshadow's memory protection model in [core/security_module](https://github.com/hcyang1012/SecurityMonitor/tree/master/core/security_module) directory. The model itself is very similar to the original one. However, the main difference is that I change the model to be run on full-virtualization, not para-virtualization. 
 
 To be specific, to protect user application's memory from other stakeholders including OS kernel, Overshadow requires to install library that connects between a protected application and the hypervisor. However, in practice, this approach is too complicated to adopt in the real world.
 
